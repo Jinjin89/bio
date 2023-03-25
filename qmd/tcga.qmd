@@ -1,0 +1,81 @@
+---
+title: "TCGA"
+---
+
+# data types
+
+## data types
+
+1.  Diagnostic Slide
+
+2.  Tissue Slide
+
+3.  WGX
+
+4.  WXS
+
+5.  RNA-seq
+
+6.  miRNA-seq
+
+7.  ATAC-seq
+
+8.  Genotyping Array
+
+9.  Methylation Array
+
+## TCGA sample preparation?
+
+https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/path.5028
+
+# Download resources
+
+-   [cbioportal](https://www.cbioportal.org/){target="_blank"}
+
+-   [firehose](https://gdac.broadinstitute.org/){target="_blank"}
+
+-   [xena](https://xenabrowser.net/datapages/){target="_blank"}
+
+-   [linkedomics](http://linkedomics.org/){target="_blank"}
+
+- ...
+
+# Download tools
+
+## TCGAbiolinks
+
+## Data_Transfer_Tool
+
+1.  download the manifest
+
+2.  download with gdc-client (redo with split manifest)
+
+    ```         
+    #!/bin/bash
+    usage ()
+    {
+    echo 'Usage : command <manifest.file> <cores>'
+    exit
+    }
+
+    if [ $# != 2 ];then
+    usage
+    fi 
+    # 1) parrelle using xargs; 2) download with gdc-client
+    wc -l $1 >> logs.txt
+    tail -n +2 $1 | \
+    cut -f1 |\
+    xargs -n 1 -P $2 \
+    /home/keke/app/conda/envs/tcga/bin/gdc-client download &
+    wait
+    # 3) calculate time
+    end=`date +%s`
+    runtime=$((end-start))
+    echo ">>>Running Finished...." >> logs.txt
+    echo ">>>Running times is ...." >> logs.txt
+    echo $runtime >>logs.txt
+    ```
+
+## gdc-application-programming-interface-api
+
+PASS

@@ -1,0 +1,241 @@
+---
+title: "NCBI"
+format:
+  html:
+    code-fold: true
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    code-line-numbers: true
+---
+
+
+# Databases
+
+## Bioproject
+
+https://www.ncbi.nlm.nih.gov/books/NBK54016/
+
+https://www.ncbi.nlm.nih.gov/bioproject/
+
+
+## BioSample
+
+
+## Clinvar
+
+keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)
+
+1. how to use clinvar?
+
+	* search in [https://www.ncbi.nlm.nih.gov/clinvar/](https://www.ncbi.nlm.nih.gov/clinvar/){target="_blank"}
+
+	* E-utilities and Entrez Direct
+
+2. how download clinvar database?
+
+	* [https://ftp.ncbi.nlm.nih.gov/pub/clinvar/](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/){target="_blank"}
+
+	* [https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited){target="_blank"}
+
+	* [https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/){target="_blank"}
+
+	* [https://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/){target="_blank"}
+
+
+## Conserved domains
+
+    1. upload a sequence and we could get the conserved domains
+
+
+## GEO
+
+## MeSH Database
+
+# Tools
+
+## BLAST
+
+## Comparative Genome Viewer
+
+## [E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK25501/){target="_blank"}
+
+
+1. Nine E-utilities
+
+    * EInfo --> database statistics
+
+    * ESearch --> text search
+
+    * EPost --> UID uploads
+    
+    * ESummary --> document summary downloads
+    
+    * EFetch --> data record downloads
+    
+    * [ELink](https://dataguide.nlm.nih.gov/eutilities/utilities.html#elink){taget="_blank"} --> Entrez links
+
+        -related: Neighbors in same database
+
+        -target: Links in different database
+
+        -cited: reference to this parer(pubmed)
+
+        -cites: publication reference list
+
+        -cmd: history,neighbor,acheck
+    
+    * EGQuery --> global query
+    
+    * ESpell --> spelling suggestions
+    
+    * EciMatch --> batch citation searching in PubMed
+
+
+3. pipeline
+
+    * Retrieving data records matching an Entrez query
+        1. ESearch -> Esummary
+        2. Esearch - > EFetch
+
+    * Retrieving data records matching a list of UIDs
+
+        1. Esearch -> ELink
+        2. EPost -> ELink
+
+    * Finding UIDs linked to a set of records
+        1. EPost -> ESearch
+
+        2. ELikn -> ESearch
+
+    * Limiting a set of records with an Entrez query
+        1. ESearch -> ELink -> ESummary
+        2. ESearch -> ELink -> EFetch
+
+    * Retrieving data records in database B linked to records in database A matching an Entrez query
+        1. EPost -> ESearch -> ESummary
+        2. EPOst -> ESearch -> EFetch
+
+    * Retrieving data records from a subset of an ID list defined by an Entrez query
+        1. EPost -> ESearch -> ESummary
+        2. EPost -> ESearch -> EFetch
+
+    * Retrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A
+        1. EPost -> ELink -> ESearch -> ESummary
+        2. EPost -> ELink -> ESearch -> EFetch
+
+4. Entrez Direct: E-utilities on the Unix Command Line
+
+    1. How to add keys
+
+        ```bash
+        export NCBI_API_KEY=unique_api_key
+
+        ```
+    2. resources
+
+        * [Entrez Unique Identifiers (UIDs) for selected databases](https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly){target="_blank"}
+
+    2. example
+        1. search pubmed
+
+            ```bash
+            # 1) examples context "NLRP3 AND TCGA"
+            esearch -db pubmed -query "NLRP3 AND TCGA" | esummary
+
+            # 2) search with date options
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2022 -maxdate 2023
+
+            # 3) sort by revelence or title or pub datetype
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            efetch -format xml
+
+            # 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block
+            esearch -db pubmed -query "selective serotonin reuptake inhibitor" |
+            efetch -format xml |
+            xtract -pattern PubmedArticle -block Author -element LastName, Initials
+
+            # 5) search pubmed with text, return the medline format
+            esearch -db pubmed -query "NLRP3 AND TCGA" | efetch -format medline
+
+            # 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            efetch -format xml |
+            xtract -pattern PubmedArticle \
+            -block Journal  -element "Title" \
+            -block Article -element "ArticleTitle" \
+            -block Author -sep " " -tab ", " -element Initials,LastName \
+            -block KeywordList -sep "," -element "Keyword" \
+            -block Abstract -element "AbstractText"
+
+            # 7) search pubmed text, and get the related results
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            elink -related | 
+            efetch -xml
+
+            # 8) search pubmed text, and get the related paper
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            elink -target pubmed 
+
+            # 9) search pubmed text, and get the related genes/protein...
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            elink -target gene 
+            
+            esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+            elink -target protein 
+  
+            ```
+
+        2. search gene
+
+            ```bash
+            # 1) search gene in Y in homo sampiens
+            esearch -db gene -query  "Homo sapiens [ORGN] AND Y [CHR]" |
+            efilter -query "alive [PROP]" |
+            esummary |
+            xtract -pattern DocumentSummary -NAME Name \
+            -block GenomicInfoType -match "ChrLoc:Y" \
+            -element "&NAME", ChrLoc, ChrAccVer, ChrStart, ChrStop
+            ```
+
+        3. search proteins
+
+
+        3. search proteins for each genes using `elink`
+
+            ```bash
+            esearch -db gene -query "NLPR3 AND Homo sapiens [ORGN] AND alive [prop]"|
+            elink -target protein -name gene_protein_refseq -cmd neighbor | 
+            xtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id
+
+            ```
+
+        3. xtract tips
+
+            1. pattern <STRINGS> with capitals, create a variable <STRINGS>, invoke it with &STRINGS
+
+
+            2. A slash (/) to indicate Parent/Child construction
+
+                ```bash
+                esearch -db pubmed -query "NLRP3 AND TCGA" -datetype PDAT -mindate 2021 -maxdate 2023 -sort "Pub Date" |
+                efetch -format xml |
+                xtract -pattern PubmedArticle -element PubDate/Year
+
+                ```
+
+
+## xml and xml2
+
+
+
+# reference
+
+1. https://www.ncbi.nlm.nih.gov/guide/all/
+
+2. https://www.youtube.com/playlist?list=PL7dF9e2qSW0a6zx-yGMJvY6mcwQz_Vx4b
+
+3. https://www.ncbi.nlm.nih.gov/books/NBK179288/
+
+4. https://dataguide.nlm.nih.gov/eutilities/utilities.html

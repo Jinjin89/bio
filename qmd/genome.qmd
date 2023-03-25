@@ -1,0 +1,87 @@
+---
+title: "Neocleotide"
+---
+
+# DNA
+
+## reference
+
+### Introduction
+
+1.  compare the contigs and scaffolds
+
+    |  Comparison  | Contig                                                                                          | Scalffold                                                                                        |
+    |:-----------------------:|:-----------------------|:-----------------------|
+    |     Size     | small                                                                                           | large                                                                                            |
+    | Connectivity | Contigs are often disconnected from each other and represent independent segments of the genome | connected by gaps that represent regions of the genome that have not been sequenced or assembled |
+    |   Accuracy   | accurate                                                                                        | more prone to errors                                                                             |
+    |   Utility    | identifying individual genes, exons, and other genomic features                                 | studying the larger-scale structure and organization of the genome                               |
+
+### Features of hg38
+
+1.  global statistics
+
+    | Stats                                            |        values |
+    |:-------------------------------------------------|--------------:|
+    | Number of regions with alternate loci or patches |           207 |
+    | Total sequence length                            | 3,099,734,149 |
+    | Total ungapped length                            | 2,948,611,470 |
+    | Gaps between scaffolds                           |           349 |
+    | Number of scaffolds                              |           473 |
+    | Scaffold N50                                     |    67,794,873 |
+    | Scaffold L50                                     |            16 |
+    | Number of contigs                                |           999 |
+    | Contig N50                                       |    57,879,411 |
+    | Contig L50                                       |            18 |
+    | Total number of chromosomes and plasmids         |            24 |
+    | Number of component sequences (WGS or clone)     |        35,614 |
+
+2.  Primary assembly
+
+    -   Assembled chromosomes for hg38 are chromosomes 1--22 (chr1--chr22), X (chrX), Y (chrY) and Mitochondrial (chrM).
+    -   Unlocalized sequences (known to belong on a specific chromosome but with unknown order or orientation) are identified by the \_random suffix.
+    -   Unplaced sequences (chromosome of origin unknown) are identified by the chrU\_ prefix.
+
+3.  GRCh38 ALT contigs, decoy contig
+
+    In genomics, a genome reference is a collection of genetic sequences that represents the consensus sequence of a species or a population. However, due to the complexity of many genomes, it is often necessary to include additional sequences in the reference to improve its accuracy or completeness. Two types of additional sequences commonly included in genome references are ALT contigs and decoy contigs.
+
+    ALT contigs, also known as alternative contigs, are additional contigs that represent alternative versions of genomic regions that are highly variable or difficult to assemble. These regions may include centromeres, telomeres, or segmental duplications. ALT contigs are typically labeled with an identifier that distinguishes them from the primary reference contigs, which are usually labeled with sequential numbers or letters.
+
+    Decoy contigs, on the other hand, are artificial sequences that are added to the reference to represent regions that are likely to be mistaken for real genomic regions during the sequencing or mapping process. These regions may include repetitive elements, transposable elements, or microbial contaminants. Decoy contigs are typically designed to be similar in length and complexity to real genomic regions, but with unique sequence content that can be used to distinguish them from real genomic regions.
+
+    The inclusion of ALT contigs and decoy contigs in genome references can help improve the accuracy and completeness of genomic analyses, such as variant calling and read mapping, by reducing the number of false positives and false negatives.
+
+4.  Scaffolds?
+
+    -   Placed scaffolds: the scaffolds have been placed within a chromosome.
+    -   Unlocalized scaffolds: although the chromosome within which the scaffold occurs is known, the scaffold's position or orientation is not known.
+    -   Unplaced scaffolds: it is not known which chromosome the scaffold belongs to.
+
+5.  what is the masked and soft-masked sequence types?
+
+    -   'dna' - unmasked genomic DNA sequences.
+    -   'dna_rm' - masked genomic DNA. Interspersed repeats and low complexity regions are detected with the RepeatMasker tool and masked by replacing repeats with 'N's.
+    -   'dna_sm' - soft-masked genomic DNA. All repeats and low complexity regions have been replaced with lowercased versions of their nucleic base
+
+6.  reference
+
+    1.  https://gatk.broadinstitute.org/hc/en-us/articles/360035890951-Human-genome-reference-builds-GRCh38-or-hg38-b37-hg19
+
+    2.  https://www.ncbi.nlm.nih.gov/grc/help/definitions/
+
+    3.  https://groups.google.com/a/soe.ucsc.edu/g/genome/c/Pvl3eAH0e_Y
+
+# RNA
+
+# non-coding RNA
+
+## miRNA
+
+## lncRNA
+
+# Q&A
+
+1.  does alt contigs overlap with primary assembly?
+
+2.  how to align readed into contigs?

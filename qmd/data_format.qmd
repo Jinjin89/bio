@@ -1,0 +1,43 @@
+---
+title: "data format"
+---
+
+# Neocleotides
+
+## Commons
+
+### Reference
+
+1.  why they have differen version(TODO)?
+
+-   Including alt configs
+
+-   rCRS mitochondrial sequence
+
+-   semi-ambigous codes to "N"
+
+2.  In reference, why there are so many N? How we benefit/suffer from it?
+
+## NCBI
+
+### What it has?
+
+1.  GEO
+
+2.  Bioprojects
+
+3.  Clinvar
+
+4.  download using `entrez-direct`
+
+    1.  `esearch`
+
+## ENSEMBL
+
+## DDBJ
+
+# Proteins
+
+# Q&A
+
+1.  what is difference between ensembl and UCSC?
