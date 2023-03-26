@@ -1,7 +1,14 @@
 ---
-title: "Bio-resuorces"
+pagetitle: "Home | Bioinfor"
+image: https://quarto.org/quarto.png
+
 ---
 
-This is a Quarto website.
+<body>
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<h1>Home page</h1>
+
+<p>How are your there?</p>
+
+
+</body>

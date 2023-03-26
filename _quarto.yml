@@ -2,33 +2,68 @@ project:
   type: website
   output-dir: docs
 
-
 website:
-  title: "Hello world"
+  title: "Bioinfor"
   navbar:
     left:
-      - href: index.qmd
-        text: Overview
-      - text: "db"
-        menu: 
-          - qmd/ncbi.qmd
-          - qmd/ensembl.qmd
-          - qmd/tcga.qmd
-      - qmd/data_format.qmd
+      - text: Home
+        href: index.qmd
+        
+      - text: "Bioinformatics"
+        href: qmd/bioinformatics/index.qmd
+        
+      - text: "ML"
+        href: qmd/ml/index.qmd
+        
+      - text: "Tools"
+        href: qmd/tools/index.qmd
+        
+    right:
+      - icon: twitter
+        href: https://twitter.com/SQiangqiang
+      - icon: github
+        href: https://github.com/Jinjin89
+        aria-label: github
+      - icon: linkedin
+        href: https://linkedin.com/in/keke-sun-6a9371267
+        
+  sidebar: 
+    - id: Bioinformatics
+      title: "Bioinformatics"
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "Bioinformatics"
+          href: qmd/bioinformatics/index.qmd
+        - section: "database"
+          contents: 
+          - qmd/bioinformatics/ncbi.qmd
+          - qmd/bioinformatics/ensembl.qmd
+          - qmd/bioinformatics/genome.qmd
+          - qmd/bioinformatics/tcga.qmd
+        - section: "format"
+          contents:
+          - qmd/bioinformatics/data_format.qmd
 
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - section: "Basics"
-        contents:
-        - qmd/tcga.qmd
-        - qmd/ncbi.qmd
-      - section: "Basics1"
-        contents:
-        - qmd/tcga.qmd
-        - qmd/ncbi.qmd
-
+    - id: ML
+      title: "Machine learning"
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "Machine learning"
+          href: qmd/ml/index.qmd
+        - href: qmd/ml/dl.qmd
+        
+    - id: Tools
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "Tools"
+          href: qmd/tools/index.qmd
+        - href: qmd/tools/git.qmd
 format:
   html:
     theme: cosmo
