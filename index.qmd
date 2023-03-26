@@ -1,7 +1,5 @@
 ---
-pagetitle: "Home | Bioinfor"
-image: https://quarto.org/quarto.png
-
+title: "Home | Bioinfor"
 ---
 
 <body>

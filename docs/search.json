@@ -2,205 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Bioinfor",
+    "title": "Home | Bioinfor",
     "section": "",
     "text": "How are your there?"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "genome.html",
-    "href": "genome.html",
-    "title": "Neocleotide",
-    "section": "",
-    "text": "compare the contigs and scaffolds\n\n\n\n\n\n\n\n\nComparison\nContig\nScalffold\n\n\n\n\nSize\nsmall\nlarge\n\n\nConnectivity\nContigs are often disconnected from each other and represent independent segments of the genome\nconnected by gaps that represent regions of the genome that have not been sequenced or assembled\n\n\nAccuracy\naccurate\nmore prone to errors\n\n\nUtility\nidentifying individual genes, exons, and other genomic features\nstudying the larger-scale structure and organization of the genome\n\n\n\n\n\n\n\n\nglobal statistics\n\n\n\nStats\nvalues\n\n\n\n\nNumber of regions with alternate loci or patches\n207\n\n\nTotal sequence length\n3,099,734,149\n\n\nTotal ungapped length\n2,948,611,470\n\n\nGaps between scaffolds\n349\n\n\nNumber of scaffolds\n473\n\n\nScaffold N50\n67,794,873\n\n\nScaffold L50\n16\n\n\nNumber of contigs\n999\n\n\nContig N50\n57,879,411\n\n\nContig L50\n18\n\n\nTotal number of chromosomes and plasmids\n24\n\n\nNumber of component sequences (WGS or clone)\n35,614\n\n\n\nPrimary assembly\n\nAssembled chromosomes for hg38 are chromosomes 1–22 (chr1–chr22), X (chrX), Y (chrY) and Mitochondrial (chrM).\nUnlocalized sequences (known to belong on a specific chromosome but with unknown order or orientation) are identified by the _random suffix.\nUnplaced sequences (chromosome of origin unknown) are identified by the chrU_ prefix.\n\nGRCh38 ALT contigs, decoy contig\nIn genomics, a genome reference is a collection of genetic sequences that represents the consensus sequence of a species or a population. However, due to the complexity of many genomes, it is often necessary to include additional sequences in the reference to improve its accuracy or completeness. Two types of additional sequences commonly included in genome references are ALT contigs and decoy contigs.\nALT contigs, also known as alternative contigs, are additional contigs that represent alternative versions of genomic regions that are highly variable or difficult to assemble. These regions may include centromeres, telomeres, or segmental duplications. ALT contigs are typically labeled with an identifier that distinguishes them from the primary reference contigs, which are usually labeled with sequential numbers or letters.\nDecoy contigs, on the other hand, are artificial sequences that are added to the reference to represent regions that are likely to be mistaken for real genomic regions during the sequencing or mapping process. These regions may include repetitive elements, transposable elements, or microbial contaminants. Decoy contigs are typically designed to be similar in length and complexity to real genomic regions, but with unique sequence content that can be used to distinguish them from real genomic regions.\nThe inclusion of ALT contigs and decoy contigs in genome references can help improve the accuracy and completeness of genomic analyses, such as variant calling and read mapping, by reducing the number of false positives and false negatives.\nScaffolds?\n\nPlaced scaffolds: the scaffolds have been placed within a chromosome.\nUnlocalized scaffolds: although the chromosome within which the scaffold occurs is known, the scaffold’s position or orientation is not known.\nUnplaced scaffolds: it is not known which chromosome the scaffold belongs to.\n\nwhat is the masked and soft-masked sequence types?\n\n‘dna’ - unmasked genomic DNA sequences.\n‘dna_rm’ - masked genomic DNA. Interspersed repeats and low complexity regions are detected with the RepeatMasker tool and masked by replacing repeats with ’N’s.\n‘dna_sm’ - soft-masked genomic DNA. All repeats and low complexity regions have been replaced with lowercased versions of their nucleic base\n\nreference\n\nhttps://gatk.broadinstitute.org/hc/en-us/articles/360035890951-Human-genome-reference-builds-GRCh38-or-hg38-b37-hg19\nhttps://www.ncbi.nlm.nih.gov/grc/help/definitions/\nhttps://groups.google.com/a/soe.ucsc.edu/g/genome/c/Pvl3eAH0e_Y"
-  },
-  {
-    "objectID": "genome.html#mirna",
-    "href": "genome.html#mirna",
-    "title": "Neocleotide",
-    "section": "miRNA",
-    "text": "miRNA"
-  },
-  {
-    "objectID": "genome.html#lncrna",
-    "href": "genome.html#lncrna",
-    "title": "Neocleotide",
-    "section": "lncRNA",
-    "text": "lncRNA"
-  },
-  {
-    "objectID": "ncbi.html",
-    "href": "ncbi.html",
-    "title": "NCBI",
-    "section": "",
-    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/\n\n\n\n\n\n\nkeywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/\n\n\n\n\n\n1. upload a sequence and we could get the conserved domains"
-  },
-  {
-    "objectID": "ncbi.html#blast",
-    "href": "ncbi.html#blast",
-    "title": "NCBI",
-    "section": "2.1 BLAST",
-    "text": "2.1 BLAST"
-  },
-  {
-    "objectID": "ncbi.html#comparative-genome-viewer",
-    "href": "ncbi.html#comparative-genome-viewer",
-    "title": "NCBI",
-    "section": "2.2 Comparative Genome Viewer",
-    "text": "2.2 Comparative Genome Viewer"
-  },
-  {
-    "objectID": "ncbi.html#e-utilities",
-    "href": "ncbi.html#e-utilities",
-    "title": "NCBI",
-    "section": "2.3 E-utilities",
-    "text": "2.3 E-utilities\n\nNine E-utilities\n\nEInfo –> database statistics\nESearch –> text search\nEPost –> UID uploads\nESummary –> document summary downloads\nEFetch –> data record downloads\nELink –> Entrez links\n-related: Neighbors in same database\n-target: Links in different database\n-cited: reference to this parer(pubmed)\n-cites: publication reference list\n-cmd: history,neighbor,acheck\nEGQuery –> global query\nESpell –> spelling suggestions\nEciMatch –> batch citation searching in PubMed\n\npipeline\n\nRetrieving data records matching an Entrez query\n\nESearch -> Esummary\nEsearch - > EFetch\n\nRetrieving data records matching a list of UIDs\n\nEsearch -> ELink\nEPost -> ELink\n\nFinding UIDs linked to a set of records\n\nEPost -> ESearch\nELikn -> ESearch\n\nLimiting a set of records with an Entrez query\n\nESearch -> ELink -> ESummary\nESearch -> ELink -> EFetch\n\nRetrieving data records in database B linked to records in database A matching an Entrez query\n\nEPost -> ESearch -> ESummary\nEPOst -> ESearch -> EFetch\n\nRetrieving data records from a subset of an ID list defined by an Entrez query\n\nEPost -> ESearch -> ESummary\nEPost -> ESearch -> EFetch\n\nRetrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A\n\nEPost -> ELink -> ESearch -> ESummary\nEPost -> ELink -> ESearch -> EFetch\n\n\nEntrez Direct: E-utilities on the Unix Command Line\n\nHow to add keys\nexport NCBI_API_KEY=unique_api_key\nresources\n\nEntrez Unique Identifiers (UIDs) for selected databases\n\nexample\n\nsearch pubmed\n# 1) examples context \"NLRP3 AND TCGA\"\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | esummary\n\n# 2) search with date options\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2022 -maxdate 2023\n\n# 3) sort by revelence or title or pub datetype\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml\n\n# 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block\nesearch -db pubmed -query \"selective serotonin reuptake inhibitor\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -block Author -element LastName, Initials\n\n# 5) search pubmed with text, return the medline format\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | efetch -format medline\n\n# 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle \\\n-block Journal  -element \"Title\" \\\n-block Article -element \"ArticleTitle\" \\\n-block Author -sep \" \" -tab \", \" -element Initials,LastName \\\n-block KeywordList -sep \",\" -element \"Keyword\" \\\n-block Abstract -element \"AbstractText\"\n\n# 7) search pubmed text, and get the related results\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -related | \nefetch -xml\n\n# 8) search pubmed text, and get the related paper\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target pubmed \n\n# 9) search pubmed text, and get the related genes/protein...\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target gene \n\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target protein \nsearch gene\n# 1) search gene in Y in homo sampiens\nesearch -db gene -query  \"Homo sapiens [ORGN] AND Y [CHR]\" |\nefilter -query \"alive [PROP]\" |\nesummary |\nxtract -pattern DocumentSummary -NAME Name \\\n-block GenomicInfoType -match \"ChrLoc:Y\" \\\n-element \"&NAME\", ChrLoc, ChrAccVer, ChrStart, ChrStop\nsearch proteins\nsearch proteins for each genes using elink\nesearch -db gene -query \"NLPR3 AND Homo sapiens [ORGN] AND alive [prop]\"|\nelink -target protein -name gene_protein_refseq -cmd neighbor | \nxtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id\nxtract tips\n\npattern  with capitals, create a variable , invoke it with &STRINGS\nA slash (/) to indicate Parent/Child construction\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -element PubDate/Year"
-  },
-  {
-    "objectID": "ncbi.html#xml-and-xml2",
-    "href": "ncbi.html#xml-and-xml2",
-    "title": "NCBI",
-    "section": "2.4 xml and xml2",
-    "text": "2.4 xml and xml2"
-  },
-  {
-    "objectID": "db.html",
-    "href": "db.html",
-    "title": "db and format",
-    "section": "",
-    "text": "why they have differen version(TODO)?\n\n\nIncluding alt configs\nrCRS mitochondrial sequence\nsemi-ambigous codes to “N”\n\n\nIn reference, why there are so many N? How we benefit/suffer from it?\n\n\n\n\n\n\n\n\nGEO\nBioprojects\nClinvar\ndownload using entrez-direct\n\nesearch"
-  },
-  {
-    "objectID": "tcga.html",
-    "href": "tcga.html",
-    "title": "TCGA",
-    "section": "",
-    "text": "Diagnostic Slide\nTissue Slide\nWGX\nWXS\nRNA-seq\nmiRNA-seq\nATAC-seq\nGenotyping Array\nMethylation Array\n\n\n\n\nhttps://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/path.5028"
-  },
-  {
-    "objectID": "tcga.html#tcgabiolinks",
-    "href": "tcga.html#tcgabiolinks",
-    "title": "TCGA",
-    "section": "TCGAbiolinks",
-    "text": "TCGAbiolinks"
-  },
-  {
-    "objectID": "tcga.html#data_transfer_tool",
-    "href": "tcga.html#data_transfer_tool",
-    "title": "TCGA",
-    "section": "Data_Transfer_Tool",
-    "text": "Data_Transfer_Tool\n\ndownload the manifest\ndownload with gdc-client (redo with split manifest)\n#!/bin/bash\nusage ()\n{\necho 'Usage : command <manifest.file> <cores>'\nexit\n}\n\nif [ $# != 2 ];then\nusage\nfi \n# 1) parrelle using xargs; 2) download with gdc-client\nwc -l $1 >> logs.txt\ntail -n +2 $1 | \\\ncut -f1 |\\\nxargs -n 1 -P $2 \\\n/home/keke/app/conda/envs/tcga/bin/gdc-client download &\nwait\n# 3) calculate time\nend=`date +%s`\nruntime=$((end-start))\necho \">>>Running Finished....\" >> logs.txt\necho \">>>Running times is ....\" >> logs.txt\necho $runtime >>logs.txt"
-  },
-  {
-    "objectID": "tcga.html#gdc-application-programming-interface-api",
-    "href": "tcga.html#gdc-application-programming-interface-api",
-    "title": "TCGA",
-    "section": "gdc-application-programming-interface-api",
-    "text": "gdc-application-programming-interface-api\nPASS"
-  },
-  {
-    "objectID": "data_format.html",
-    "href": "data_format.html",
-    "title": "data format",
-    "section": "",
-    "text": "why they have differen version(TODO)?\n\n\nIncluding alt configs\nrCRS mitochondrial sequence\nsemi-ambigous codes to “N”\n\n\nIn reference, why there are so many N? How we benefit/suffer from it?\n\n\n\n\n\n\n\n\nGEO\nBioprojects\nClinvar\ndownload using entrez-direct\n\nesearch"
-  },
-  {
-    "objectID": "qmd/genome.html",
-    "href": "qmd/genome.html",
-    "title": "Neocleotide",
-    "section": "",
-    "text": "compare the contigs and scaffolds\n\n\n\n\n\n\n\n\nComparison\nContig\nScalffold\n\n\n\n\nSize\nsmall\nlarge\n\n\nConnectivity\nContigs are often disconnected from each other and represent independent segments of the genome\nconnected by gaps that represent regions of the genome that have not been sequenced or assembled\n\n\nAccuracy\naccurate\nmore prone to errors\n\n\nUtility\nidentifying individual genes, exons, and other genomic features\nstudying the larger-scale structure and organization of the genome\n\n\n\n\n\n\n\n\nglobal statistics\n\n\n\nStats\nvalues\n\n\n\n\nNumber of regions with alternate loci or patches\n207\n\n\nTotal sequence length\n3,099,734,149\n\n\nTotal ungapped length\n2,948,611,470\n\n\nGaps between scaffolds\n349\n\n\nNumber of scaffolds\n473\n\n\nScaffold N50\n67,794,873\n\n\nScaffold L50\n16\n\n\nNumber of contigs\n999\n\n\nContig N50\n57,879,411\n\n\nContig L50\n18\n\n\nTotal number of chromosomes and plasmids\n24\n\n\nNumber of component sequences (WGS or clone)\n35,614\n\n\n\nPrimary assembly\n\nAssembled chromosomes for hg38 are chromosomes 1–22 (chr1–chr22), X (chrX), Y (chrY) and Mitochondrial (chrM).\nUnlocalized sequences (known to belong on a specific chromosome but with unknown order or orientation) are identified by the _random suffix.\nUnplaced sequences (chromosome of origin unknown) are identified by the chrU_ prefix.\n\nGRCh38 ALT contigs, decoy contig\nIn genomics, a genome reference is a collection of genetic sequences that represents the consensus sequence of a species or a population. However, due to the complexity of many genomes, it is often necessary to include additional sequences in the reference to improve its accuracy or completeness. Two types of additional sequences commonly included in genome references are ALT contigs and decoy contigs.\nALT contigs, also known as alternative contigs, are additional contigs that represent alternative versions of genomic regions that are highly variable or difficult to assemble. These regions may include centromeres, telomeres, or segmental duplications. ALT contigs are typically labeled with an identifier that distinguishes them from the primary reference contigs, which are usually labeled with sequential numbers or letters.\nDecoy contigs, on the other hand, are artificial sequences that are added to the reference to represent regions that are likely to be mistaken for real genomic regions during the sequencing or mapping process. These regions may include repetitive elements, transposable elements, or microbial contaminants. Decoy contigs are typically designed to be similar in length and complexity to real genomic regions, but with unique sequence content that can be used to distinguish them from real genomic regions.\nThe inclusion of ALT contigs and decoy contigs in genome references can help improve the accuracy and completeness of genomic analyses, such as variant calling and read mapping, by reducing the number of false positives and false negatives.\nScaffolds?\n\nPlaced scaffolds: the scaffolds have been placed within a chromosome.\nUnlocalized scaffolds: although the chromosome within which the scaffold occurs is known, the scaffold’s position or orientation is not known.\nUnplaced scaffolds: it is not known which chromosome the scaffold belongs to.\n\nwhat is the masked and soft-masked sequence types?\n\n‘dna’ - unmasked genomic DNA sequences.\n‘dna_rm’ - masked genomic DNA. Interspersed repeats and low complexity regions are detected with the RepeatMasker tool and masked by replacing repeats with ’N’s.\n‘dna_sm’ - soft-masked genomic DNA. All repeats and low complexity regions have been replaced with lowercased versions of their nucleic base\n\nreference\n\nhttps://gatk.broadinstitute.org/hc/en-us/articles/360035890951-Human-genome-reference-builds-GRCh38-or-hg38-b37-hg19\nhttps://www.ncbi.nlm.nih.gov/grc/help/definitions/\nhttps://groups.google.com/a/soe.ucsc.edu/g/genome/c/Pvl3eAH0e_Y"
-  },
-  {
-    "objectID": "qmd/genome.html#mirna",
-    "href": "qmd/genome.html#mirna",
-    "title": "Neocleotide",
-    "section": "miRNA",
-    "text": "miRNA"
-  },
-  {
-    "objectID": "qmd/genome.html#lncrna",
-    "href": "qmd/genome.html#lncrna",
-    "title": "Neocleotide",
-    "section": "lncRNA",
-    "text": "lncRNA"
-  },
-  {
-    "objectID": "qmd/data_format.html",
-    "href": "qmd/data_format.html",
-    "title": "data format",
-    "section": "",
-    "text": "Proteins\n\n\nQ&A\n\nwhat is difference between ensembl and UCSC?"
-  },
-  {
-    "objectID": "qmd/ncbi.html",
-    "href": "qmd/ncbi.html",
-    "title": "NCBI",
-    "section": "",
-    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/\n\n\n\n\n\n\nkeywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/\n\n\n\n\n\n1. upload a sequence and we could get the conserved domains"
-  },
-  {
-    "objectID": "qmd/ncbi.html#blast",
-    "href": "qmd/ncbi.html#blast",
-    "title": "NCBI",
-    "section": "2.1 BLAST",
-    "text": "2.1 BLAST"
-  },
-  {
-    "objectID": "qmd/ncbi.html#comparative-genome-viewer",
-    "href": "qmd/ncbi.html#comparative-genome-viewer",
-    "title": "NCBI",
-    "section": "2.2 Comparative Genome Viewer",
-    "text": "2.2 Comparative Genome Viewer"
-  },
-  {
-    "objectID": "qmd/ncbi.html#e-utilities",
-    "href": "qmd/ncbi.html#e-utilities",
-    "title": "NCBI",
-    "section": "2.3 E-utilities",
-    "text": "2.3 E-utilities\n\nNine E-utilities\n\nEInfo –> database statistics\nESearch –> text search\nEPost –> UID uploads\nESummary –> document summary downloads\nEFetch –> data record downloads\nELink –> Entrez links\n-related: Neighbors in same database\n-target: Links in different database\n-cited: reference to this parer(pubmed)\n-cites: publication reference list\n-cmd: history,neighbor,acheck\nEGQuery –> global query\nESpell –> spelling suggestions\nEciMatch –> batch citation searching in PubMed\n\npipeline\n\nRetrieving data records matching an Entrez query\n\nESearch -> Esummary\nEsearch - > EFetch\n\nRetrieving data records matching a list of UIDs\n\nEsearch -> ELink\nEPost -> ELink\n\nFinding UIDs linked to a set of records\n\nEPost -> ESearch\nELikn -> ESearch\n\nLimiting a set of records with an Entrez query\n\nESearch -> ELink -> ESummary\nESearch -> ELink -> EFetch\n\nRetrieving data records in database B linked to records in database A matching an Entrez query\n\nEPost -> ESearch -> ESummary\nEPOst -> ESearch -> EFetch\n\nRetrieving data records from a subset of an ID list defined by an Entrez query\n\nEPost -> ESearch -> ESummary\nEPost -> ESearch -> EFetch\n\nRetrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A\n\nEPost -> ELink -> ESearch -> ESummary\nEPost -> ELink -> ESearch -> EFetch\n\n\nEntrez Direct: E-utilities on the Unix Command Line\n\nHow to add keys\nexport NCBI_API_KEY=unique_api_key\nresources\n\nEntrez Unique Identifiers (UIDs) for selected databases\n\nexample\n\nsearch pubmed\n# 1) examples context \"NLRP3 AND TCGA\"\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | esummary\n\n# 2) search with date options\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2022 -maxdate 2023\n\n# 3) sort by revelence or title or pub datetype\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml\n\n# 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block\nesearch -db pubmed -query \"selective serotonin reuptake inhibitor\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -block Author -element LastName, Initials\n\n# 5) search pubmed with text, return the medline format\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | efetch -format medline\n\n# 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle \\\n-block Journal  -element \"Title\" \\\n-block Article -element \"ArticleTitle\" \\\n-block Author -sep \" \" -tab \", \" -element Initials,LastName \\\n-block KeywordList -sep \",\" -element \"Keyword\" \\\n-block Abstract -element \"AbstractText\"\n\n# 7) search pubmed text, and get the related results\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -related | \nefetch -xml\n\n# 8) search pubmed text, and get the related paper\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target pubmed \n\n# 9) search pubmed text, and get the related genes/protein...\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target gene \n\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target protein \nsearch gene\n# 1) search gene in Y in homo sampiens\nesearch -db gene -query  \"Homo sapiens [ORGN] AND Y [CHR]\" |\nefilter -query \"alive [PROP]\" |\nesummary |\nxtract -pattern DocumentSummary -NAME Name \\\n-block GenomicInfoType -match \"ChrLoc:Y\" \\\n-element \"&NAME\", ChrLoc, ChrAccVer, ChrStart, ChrStop\nsearch proteins\nsearch proteins for each genes using elink\nesearch -db gene -query \"NLPR3 AND Homo sapiens [ORGN] AND alive [prop]\"|\nelink -target protein -name gene_protein_refseq -cmd neighbor | \nxtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id\nxtract tips\n\npattern  with capitals, create a variable , invoke it with &STRINGS\nA slash (/) to indicate Parent/Child construction\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -element PubDate/Year"
-  },
-  {
-    "objectID": "qmd/ncbi.html#xml-and-xml2",
-    "href": "qmd/ncbi.html#xml-and-xml2",
-    "title": "NCBI",
-    "section": "2.4 xml and xml2",
-    "text": "2.4 xml and xml2"
-  },
-  {
-    "objectID": "qmd/tcga.html",
-    "href": "qmd/tcga.html",
-    "title": "TCGA",
-    "section": "",
-    "text": "Diagnostic Slide\nTissue Slide\nWGX\nWXS\nRNA-seq\nmiRNA-seq\nATAC-seq\nGenotyping Array\nMethylation Array\n\n\n\n\nhttps://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/path.5028"
-  },
-  {
-    "objectID": "qmd/tcga.html#tcgabiolinks",
-    "href": "qmd/tcga.html#tcgabiolinks",
-    "title": "TCGA",
-    "section": "TCGAbiolinks",
-    "text": "TCGAbiolinks"
-  },
-  {
-    "objectID": "qmd/tcga.html#data_transfer_tool",
-    "href": "qmd/tcga.html#data_transfer_tool",
-    "title": "TCGA",
-    "section": "Data_Transfer_Tool",
-    "text": "Data_Transfer_Tool\n\ndownload the manifest\ndownload with gdc-client (redo with split manifest)\n#!/bin/bash\nusage ()\n{\necho 'Usage : command <manifest.file> <cores>'\nexit\n}\n\nif [ $# != 2 ];then\nusage\nfi \n# 1) parrelle using xargs; 2) download with gdc-client\nwc -l $1 >> logs.txt\ntail -n +2 $1 | \\\ncut -f1 |\\\nxargs -n 1 -P $2 \\\n/home/keke/app/conda/envs/tcga/bin/gdc-client download &\nwait\n# 3) calculate time\nend=`date +%s`\nruntime=$((end-start))\necho \">>>Running Finished....\" >> logs.txt\necho \">>>Running times is ....\" >> logs.txt\necho $runtime >>logs.txt"
-  },
-  {
-    "objectID": "qmd/tcga.html#gdc-application-programming-interface-api",
-    "href": "qmd/tcga.html#gdc-application-programming-interface-api",
-    "title": "TCGA",
-    "section": "gdc-application-programming-interface-api",
-    "text": "gdc-application-programming-interface-api\nPASS"
   },
   {
     "objectID": "qmd/bioinformatics/genome.html",
@@ -222,6 +26,13 @@
     "title": "Neocleotide",
     "section": "lncRNA",
     "text": "lncRNA"
+  },
+  {
+    "objectID": "qmd/bioinformatics/index.html",
+    "href": "qmd/bioinformatics/index.html",
+    "title": "Bioinformatics",
+    "section": "",
+    "text": "Bioinformatics tutorial"
   },
   {
     "objectID": "qmd/bioinformatics/data_format.html",
@@ -299,13 +110,6 @@
     "title": "Machine learning",
     "section": "",
     "text": "Machine learning"
-  },
-  {
-    "objectID": "qmd/bioinformatics/index.html",
-    "href": "qmd/bioinformatics/index.html",
-    "title": "Bioinformatics",
-    "section": "",
-    "text": "Bioinformatics tutorial"
   },
   {
     "objectID": "qmd/tools/index.html",
