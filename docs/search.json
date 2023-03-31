@@ -46,7 +46,7 @@
     "href": "qmd/bioinformatics/ncbi.html",
     "title": "NCBI",
     "section": "",
-    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/\n\n\n\n\n\n\nkeywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/\n\n\n\n\n\n1. upload a sequence and we could get the conserved domains"
+    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/\n\n\n\n\n\n\n\nWhat can we retrive from gene database?\nGene supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data.\n\ngene\npublished papers\nsnps\ngeneRIF: gene referene into functions\nGene ontology\n\nWhat is refeseq?\n\nIt is a database\nwhen you search with NCBI Gene, there are filter options which you can select RefSeq/RefSeqGene/Ensembl and so on.\n\ntranscript\n\nN…: experiment validated transcript\nX…: predicted transcript\n\n\n\n\n\nkeywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/\n\n\n\n\n\n\nupload a sequence and we could get the conserved domains"
   },
   {
     "objectID": "qmd/bioinformatics/ncbi.html#blast",
@@ -67,7 +67,7 @@
     "href": "qmd/bioinformatics/ncbi.html#e-utilities",
     "title": "NCBI",
     "section": "2.3 E-utilities",
-    "text": "2.3 E-utilities\n\nNine E-utilities\n\nEInfo –> database statistics\nESearch –> text search\nEPost –> UID uploads\nESummary –> document summary downloads\nEFetch –> data record downloads\nELink –> Entrez links\n-related: Neighbors in same database\n-target: Links in different database\n-cited: reference to this parer(pubmed)\n-cites: publication reference list\n-cmd: history,neighbor,acheck\nEGQuery –> global query\nESpell –> spelling suggestions\nEciMatch –> batch citation searching in PubMed\n\npipeline\n\nRetrieving data records matching an Entrez query\n\nESearch -> Esummary\nEsearch - > EFetch\n\nRetrieving data records matching a list of UIDs\n\nEsearch -> ELink\nEPost -> ELink\n\nFinding UIDs linked to a set of records\n\nEPost -> ESearch\nELikn -> ESearch\n\nLimiting a set of records with an Entrez query\n\nESearch -> ELink -> ESummary\nESearch -> ELink -> EFetch\n\nRetrieving data records in database B linked to records in database A matching an Entrez query\n\nEPost -> ESearch -> ESummary\nEPOst -> ESearch -> EFetch\n\nRetrieving data records from a subset of an ID list defined by an Entrez query\n\nEPost -> ESearch -> ESummary\nEPost -> ESearch -> EFetch\n\nRetrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A\n\nEPost -> ELink -> ESearch -> ESummary\nEPost -> ELink -> ESearch -> EFetch\n\n\nEntrez Direct: E-utilities on the Unix Command Line\n\nHow to add keys\nexport NCBI_API_KEY=unique_api_key\nresources\n\nEntrez Unique Identifiers (UIDs) for selected databases\n\nexample\n\nsearch pubmed\n# 1) examples context \"NLRP3 AND TCGA\"\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | esummary\n\n# 2) search with date options\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2022 -maxdate 2023\n\n# 3) sort by revelence or title or pub datetype\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml\n\n# 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block\nesearch -db pubmed -query \"selective serotonin reuptake inhibitor\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -block Author -element LastName, Initials\n\n# 5) search pubmed with text, return the medline format\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | efetch -format medline\n\n# 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle \\\n-block Journal  -element \"Title\" \\\n-block Article -element \"ArticleTitle\" \\\n-block Author -sep \" \" -tab \", \" -element Initials,LastName \\\n-block KeywordList -sep \",\" -element \"Keyword\" \\\n-block Abstract -element \"AbstractText\"\n\n# 7) search pubmed text, and get the related results\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -related | \nefetch -xml\n\n# 8) search pubmed text, and get the related paper\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target pubmed \n\n# 9) search pubmed text, and get the related genes/protein...\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target gene \n\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target protein \nsearch gene\n# 1) search gene in Y in homo sampiens\nesearch -db gene -query  \"Homo sapiens [ORGN] AND Y [CHR]\" |\nefilter -query \"alive [PROP]\" |\nesummary |\nxtract -pattern DocumentSummary -NAME Name \\\n-block GenomicInfoType -match \"ChrLoc:Y\" \\\n-element \"&NAME\", ChrLoc, ChrAccVer, ChrStart, ChrStop\nsearch proteins\nsearch proteins for each genes using elink\nesearch -db gene -query \"NLPR3 AND Homo sapiens [ORGN] AND alive [prop]\"|\nelink -target protein -name gene_protein_refseq -cmd neighbor | \nxtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id\nxtract tips\n\npattern  with capitals, create a variable , invoke it with &STRINGS\nA slash (/) to indicate Parent/Child construction\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -element PubDate/Year"
+    "text": "2.3 E-utilities\n\nNine E-utilities\n\nEInfo –> database statistics\nESearch –> text search\nEPost –> UID uploads\nESummary –> document summary downloads\nEFetch –> data record downloads\nELink –> Entrez links\n-related: Neighbors in same database\n-target: Links in different database\n-cited: reference to this parer(pubmed)\n-cites: publication reference list\n-cmd: history,neighbor,acheck\nEGQuery –> global query\nESpell –> spelling suggestions\nEciMatch –> batch citation searching in PubMed\n\npipeline\n\nRetrieving data records matching an Entrez query\n\nESearch -> Esummary\nEsearch - > EFetch\n\nRetrieving data records matching a list of UIDs\n\nEsearch -> ELink\nEPost -> ELink\n\nFinding UIDs linked to a set of records\n\nEPost -> ESearch\nELikn -> ESearch\n\nLimiting a set of records with an Entrez query\n\nESearch -> ELink -> ESummary\nESearch -> ELink -> EFetch\n\nRetrieving data records in database B linked to records in database A matching an Entrez query\n\nEPost -> ESearch -> ESummary\nEPOst -> ESearch -> EFetch\n\nRetrieving data records from a subset of an ID list defined by an Entrez query\n\nEPost -> ESearch -> ESummary\nEPost -> ESearch -> EFetch\n\nRetrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A\n\nEPost -> ELink -> ESearch -> ESummary\nEPost -> ELink -> ESearch -> EFetch\n\n\nEntrez Direct: E-utilities on the Unix Command Line\n\nHow to add keys\nexport NCBI_API_KEY=unique_api_key\nresources\n\nEntrez Unique Identifiers (UIDs) for selected databases\n\nexample\n\nsearch pubmed\n# 1) examples context \"NLRP3 AND TCGA\"\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | esummary\n\n# 2) search with date options\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2022 -maxdate 2023\n\n# 3) sort by revelence or title or pub datetype\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml\n\n# 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block\nesearch -db pubmed -query \"selective serotonin reuptake inhibitor\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -block Author -element LastName, Initials\n\n# 5) search pubmed with text, return the medline format\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | efetch -format medline\n\n# 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle \\\n-block Journal  -element \"Title\" \\\n-block Article -element \"ArticleTitle\" \\\n-block Author -sep \" \" -tab \", \" -element Initials,LastName \\\n-block KeywordList -sep \",\" -element \"Keyword\" \\\n-block Abstract -element \"AbstractText\"\n\n# 7) search pubmed text, and get the related results\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -related | \nefetch -xml\n\n# 8) search pubmed text, and get the related paper\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target pubmed \n\n# 9) search pubmed text, and get the related genes/protein...\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target gene \n\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target protein \nsearch gene\n# 1) search gene in Y in homo sampiens, use other programming tools to find the gene in forward or reverse strand\nesearch -db gene -query  \"Homo sapiens [ORGN] AND Y [CHR]\" |\nefilter -query \"alive [PROP]\" |\nesummary |\nxtract -pattern DocumentSummary -NAME Name \\\n-block GenomicInfoType -match \"ChrLoc:Y\" \\\n-element \"&NAME\", ChrLoc, ChrAccVer, ChrStart, ChrStop\n\n# 2) search a gene get its  transcript\nesearch -db gene -query \"TP53[gene name] AND Homo sapiens[ORGN]\"|\nefetch -format fasta\nsearch proteins\nsearch proteins for each genes using elink\nesearch -db gene -query \"NLPR3 AND Homo sapiens [ORGN] AND alive [prop]\"|\nelink -target protein -name gene_protein_refseq -cmd neighbor | \nxtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id\nxtract tips\n\npattern  with capitals, create a variable , invoke it with &STRINGS\nA slash (/) to indicate Parent/Child construction\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -element PubDate/Year\n\nOthers\n\nalive[prop]: currently alive"
   },
   {
     "objectID": "qmd/bioinformatics/ncbi.html#xml-and-xml2",
@@ -116,6 +116,62 @@
     "href": "qmd/tools/index.html",
     "title": "Tools",
     "section": "",
-    "text": "Tools"
+    "text": "This is about useful tools that could help improve us to do bioinformatics job."
+  },
+  {
+    "objectID": "qmd/sas/index.html",
+    "href": "qmd/sas/index.html",
+    "title": "SAS",
+    "section": "",
+    "text": "What is SAS"
+  },
+  {
+    "objectID": "qmd/ml/microscopist.html",
+    "href": "qmd/ml/microscopist.html",
+    "title": "Python for microscopist",
+    "section": "",
+    "text": "read images into python\n\nskimage\n\n\n\n\nimage preprocessing\n\n\nreference\nAlmost all the content comes from: https://www.youtube.com/watch?v=X_pCiVQ4c4E&list=PLZsOBAyNTZwbIjGnolFydAN33gyyGP7lT"
+  },
+  {
+    "objectID": "qmd/tools/git.html",
+    "href": "qmd/tools/git.html",
+    "title": "git",
+    "section": "",
+    "text": "Q&A\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \n\n\nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b <newbranch>\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge <newbranch>\nclone with ssh\ngit clone username@ip_adress:/home/username/gitpath"
+  },
+  {
+    "objectID": "qmd/tools/restful.html",
+    "href": "qmd/tools/restful.html",
+    "title": "restful",
+    "section": "",
+    "text": "what is restful api\nThe full name is …\nHow to use it (if websites have api)?\nconstruct the paper\nAre there tools available that would make this simple for us?\nHow to achieve/implement it with Python programming?\nusing ensemle api"
+  },
+  {
+    "objectID": "qmd/tools/quarto_diagram.html",
+    "href": "qmd/tools/quarto_diagram.html",
+    "title": "quarto diagram",
+    "section": "",
+    "text": "Graphviz\n\n\n\n\n\n\n\nG\n\n  \n\nrun\n\n run   \n\nintr\n\n intr   \n\nrun–intr\n\n   \n\nkernel\n\n kernel   \n\nrun–kernel\n\n   \n\nrunbl\n\n runbl   \n\nintr–runbl\n\n   \n\nrunbl–run\n\n   \n\nzombie\n\n zombie   \n\nkernel–zombie\n\n   \n\nsleep\n\n sleep   \n\nkernel–sleep\n\n   \n\nrunmem\n\n runmem   \n\nkernel–runmem\n\n   \n\nsleep–runmem\n\n   \n\nswap\n\n swap   \n\nsleep–swap\n\n   \n\nrunswap\n\n runswap   \n\nswap–runswap\n\n   \n\nrunswap–runmem\n\n   \n\nnew\n\n new   \n\nrunswap–new\n\n   \n\nnew–runmem"
+  },
+  {
+    "objectID": "qmd/bioinformatics/sc.html",
+    "href": "qmd/bioinformatics/sc.html",
+    "title": "single cell",
+    "section": "",
+    "text": "Guidelines for annotate single cell?\nhttps://sci-hub.mksa.top/10.1038/s41596-021-00534-0\nthree steps\n 1. annotate use predefined set of marker genes\n\n     * marker based tools\n\n     * reference based tools\n\n 2.  manual annotation\n\n     * lower confidence, conflicting or absent cell labels, expert manual annotation is required\n\n     * \n\n 3. verification(1. other methods, 2. new validation experiments)\n\n     * statistical methods\n\n     * expert"
+  },
+  {
+    "objectID": "qmd/tools/quarto_tools.html",
+    "href": "qmd/tools/quarto_tools.html",
+    "title": "quarto tools",
+    "section": "",
+    "text": "citatation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\nbib file example\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::\n---"
+  },
+  {
+    "objectID": "qmd/tools/r_args.html",
+    "href": "qmd/tools/r_args.html",
+    "title": "how to use pass argument in R?",
+    "section": "",
+    "text": "what is {} {{}}?\n\n\nwhat is parse/eval/substitue?\n\n\nIn dplyr, what is vars, across, everything?"
   }
 ]

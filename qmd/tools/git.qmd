@@ -1,3 +1,64 @@
 ---
 title: "git"
 ---
+
+
+# TODO
+
+1. set difftoos
+
+2. set line end in different system
+
+3. how to arrange git in big project, like many people edit the same code system?
+
+3. how to arrange git in big project, if two people edit same code?
+
+
+# Q&A
+
+
+1. git globa options
+
+    ```git
+    # show global options
+    git config --list
+
+    # set git editor
+    git config --global core.editor "code --wait"
+    git config -e 
+    git config --global -e 
+
+
+
+    ```
+
+2. get git status short
+
+    ```git
+    git status 
+    git status -s
+
+    ```
+
+3. create new branch 
+
+
+    ```git
+    # create new brance
+    git checkout -b <newbranch>
+
+    # back to mater
+    git checkout master
+
+    # merge new brache into master(should be in master branche)
+    git merge <newbranch>
+
+    ```
+
+4. clone with ssh
+
+
+    ```git
+    git clone username@ip_adress:/home/username/gitpath
+
+    ```

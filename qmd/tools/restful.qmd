@@ -1,0 +1,21 @@
+---
+title: restful
+---
+
+
+
+1. what is restful api
+
+    The full name is ...
+
+2. How to use it (if websites have api)?
+
+    construct the paper
+
+3. Are there tools available that would make this simple for us?
+
+
+4. How to achieve/implement it with Python programming?
+
+
+4. using ensemle api

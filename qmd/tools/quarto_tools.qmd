@@ -1,0 +1,95 @@
+---
+title: quarto tools
+---
+
+# Diagram
+
+## mermaid
+
+1. tutorial <https://mermaid.js.org/config/Tutorials.html>
+
+```{mermaid}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+
+```
+
+```{mermaid}
+
+%%| fig-width: 6.5
+flowchart LR
+  A[multiple sc datasets] --> B[DC + mono/macro]
+  B --> C[integrate]
+  C --> D[clustering]
+  D --> E[annotation]
+  E --> F[differential expression analysis]
+```
+
+## Graphviz
+
+```{dot}
+graph G {
+  layout=neato
+  run -- intr;
+  intr -- runbl;
+  runbl -- run;
+  run -- kernel;
+  kernel -- zombie;
+  kernel -- sleep;
+  kernel -- runmem;
+  sleep -- swap;
+  swap -- runswap;
+  runswap -- new;
+  runswap -- runmem;
+  new -- runmem;
+  sleep -- runmem;
+}
+```
+
+
+
+# citatation
+
+  1. your should prepare
+
+      1. csl file: download from github
+
+          <https://github.com/citation-style-language/styles>
+
+      2. bib: you could prepare using endnote
+
+          bib file example
+
+          ```bib
+          @article{knuth:1984,
+            title={Literate Programming},
+            author={Donald E. Knuth},
+            journal={The Computer Journal},
+            volume={27},
+            number={2},
+            pages={97--111},
+            year={1984},
+            publisher={Oxford University Press}
+          }
+
+          ```
+
+  2. include it in the qmd yaml header; use with [@index] ; insert the reference
+
+      ```qmd
+      ---
+      title: "cite demo"
+      bibliography: references.bib
+
+      some words[@knuth:1984]
+
+      ## References
+      ::: {#refs}
+      :::
+      ---
+      ```
+
+

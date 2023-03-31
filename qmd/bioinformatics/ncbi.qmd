@@ -15,13 +15,43 @@ format:
 
 ## Bioproject
 
-https://www.ncbi.nlm.nih.gov/books/NBK54016/
+<https://www.ncbi.nlm.nih.gov/books/NBK54016/>
 
-https://www.ncbi.nlm.nih.gov/bioproject/
+<https://www.ncbi.nlm.nih.gov/bioproject/>
 
 
 ## BioSample
 
+
+## gene
+
+1. What can we retrive from gene database?
+
+    Gene supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data. 
+
+    * gene
+
+    * published papers
+
+    * snps
+
+    * geneRIF: gene referene into functions
+
+    * Gene ontology
+
+    
+
+2. What is refeseq?
+
+    1) It is a database
+    
+    2) when you search with NCBI `Gene`, there are filter options which you can select `RefSeq`/`RefSeqGene`/`Ensembl` and so on.
+
+3. transcript
+
+    1) N...: experiment validated transcript
+
+    2) X...: predicted transcript
 
 ## Clinvar
 
@@ -46,7 +76,7 @@ keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);L
 
 ## Conserved domains
 
-    1. upload a sequence and we could get the conserved domains
+1. upload a sequence and we could get the conserved domains
 
 
 ## GEO
@@ -133,6 +163,7 @@ keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);L
         export NCBI_API_KEY=unique_api_key
 
         ```
+
     2. resources
 
         * [Entrez Unique Identifiers (UIDs) for selected databases](https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly){target="_blank"}
@@ -190,13 +221,18 @@ keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);L
         2. search gene
 
             ```bash
-            # 1) search gene in Y in homo sampiens
+            # 1) search gene in Y in homo sampiens, use other programming tools to find the gene in forward or reverse strand
             esearch -db gene -query  "Homo sapiens [ORGN] AND Y [CHR]" |
             efilter -query "alive [PROP]" |
             esummary |
             xtract -pattern DocumentSummary -NAME Name \
             -block GenomicInfoType -match "ChrLoc:Y" \
             -element "&NAME", ChrLoc, ChrAccVer, ChrStart, ChrStop
+
+            # 2) search a gene get its  transcript
+            esearch -db gene -query "TP53[gene name] AND Homo sapiens[ORGN]"|
+            efetch -format fasta
+
             ```
 
         3. search proteins
@@ -224,6 +260,10 @@ keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);L
                 xtract -pattern PubmedArticle -element PubDate/Year
 
                 ```
+        
+        4. Others
+
+            * `alive[prop]`: currently alive 
 
 
 ## xml and xml2

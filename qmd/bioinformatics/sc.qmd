@@ -1,0 +1,32 @@
+---
+title: single cell
+---
+
+
+# TODO
+
+
+1. Guidelines for annotate single cell?
+
+    <https://sci-hub.mksa.top/10.1038/s41596-021-00534-0>
+
+    three steps
+        
+        1. annotate use predefined set of marker genes
+
+            * marker based tools
+
+            * reference based tools
+
+        2.  manual annotation
+
+            * lower confidence, conflicting or absent cell labels, expert manual annotation is required
+
+            * 
+
+        3. verification(1. other methods, 2. new validation experiments)
+
+            * statistical methods
+
+            * expert
+

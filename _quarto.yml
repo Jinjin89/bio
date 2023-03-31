@@ -18,6 +18,9 @@ website:
       - text: "Tools"
         href: qmd/tools/index.qmd
         
+      - text: "SAS"
+        href: qmd/sas/index.qmd
+        
     right:
       - icon: twitter
         href: https://twitter.com/SQiangqiang
@@ -42,6 +45,9 @@ website:
           - qmd/bioinformatics/ensembl.qmd
           - qmd/bioinformatics/genome.qmd
           - qmd/bioinformatics/tcga.qmd
+        - section: "sc"
+          contents: 
+            - qmd/bioinformatics/sc.qmd
         - section: "format"
           contents:
           - qmd/bioinformatics/data_format.qmd
@@ -52,9 +58,9 @@ website:
       collapse-level: 2
       alignment: left
       contents: 
-        - text: "Machine learning"
+        - text: "ML in bio"
           href: qmd/ml/index.qmd
-        - href: qmd/ml/dl.qmd
+        - href: qmd/ml/microscopist.qmd
         
     - id: Tools
       style: floating
@@ -64,11 +70,24 @@ website:
         - text: "Tools"
           href: qmd/tools/index.qmd
         - href: qmd/tools/git.qmd
+        - href: qmd/tools/restful.qmd
+        - href: qmd/tools/quarto_tools.qmd
+        
+    - id: SAS
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "SAS"
+          href: qmd/sas/index.qmd
+        
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    code-line-numbers: true
+    code-copy: true
 
 editor: source
 

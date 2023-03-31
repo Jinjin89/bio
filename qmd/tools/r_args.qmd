@@ -1,0 +1,11 @@
+---
+title: how to use pass argument in R?
+---
+
+# what is quote and unquote?
+
+# what is {} {{}}?
+
+# what is parse/eval/substitue?
+
+# In dplyr, what is vars, across, everything?

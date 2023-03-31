@@ -1,0 +1,33 @@
+---
+title: Python for microscopist
+---
+
+# basics
+## file formats
+  1. jpg or png
+  
+  2. svs(TCGA Digital Pathology Images)
+
+## images params
+
+  1. RGB
+  
+  2. 
+
+# read images into python
+
+  1. skimage
+  
+  2. 
+
+
+# image preprocessing
+
+
+
+# reference
+
+Almost all the content comes from:
+<https://www.youtube.com/watch?v=X_pCiVQ4c4E&list=PLZsOBAyNTZwbIjGnolFydAN33gyyGP7lT>
+
+
