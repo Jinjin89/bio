@@ -72,6 +72,7 @@ website:
         - href: qmd/tools/git.qmd
         - href: qmd/tools/restful.qmd
         - href: qmd/tools/quarto_tools.qmd
+        - href: qmd/tools/nginx.qmd
         
     - id: SAS
       style: floating

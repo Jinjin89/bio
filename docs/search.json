@@ -173,5 +173,12 @@
     "title": "how to use pass argument in R?",
     "section": "",
     "text": "what is {} {{}}?\n\n\nwhat is parse/eval/substitue?\n\n\nIn dplyr, what is vars, across, everything?"
+  },
+  {
+    "objectID": "qmd/tools/nginx.html",
+    "href": "qmd/tools/nginx.html",
+    "title": "nginx",
+    "section": "",
+    "text": "perfrom\n\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* => regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
   }
 ]
