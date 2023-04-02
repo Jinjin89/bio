@@ -14,12 +14,14 @@ website:
         
       - text: "ML"
         href: qmd/ml/index.qmd
+      
+      - text: "Pipeline"
+        href: qmd/pipeline/index.qmd
         
       - text: "Tools"
         href: qmd/tools/index.qmd
         
-      - text: "SAS"
-        href: qmd/sas/index.qmd
+
         
     right:
       - icon: twitter
@@ -61,6 +63,18 @@ website:
         - text: "ML in bio"
           href: qmd/ml/index.qmd
         - href: qmd/ml/microscopist.qmd
+
+    - id: Pipeline
+      title: Pipeline
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "Pipeline"
+          href: qmd/pipeline/index.qmd
+        - href: qmd/pipeline/dna.qmd
+        - href: qmd/pipeline/mrna.qmd
+        - href: qmd/pipeline/metagenomics.qmd
         
     - id: Tools
       style: floating
@@ -73,14 +87,7 @@ website:
         - href: qmd/tools/restful.qmd
         - href: qmd/tools/quarto_tools.qmd
         - href: qmd/tools/nginx.qmd
-        
-    - id: SAS
-      style: floating
-      collapse-level: 2
-      alignment: left
-      contents: 
-        - text: "SAS"
-          href: qmd/sas/index.qmd
+    
         
 format:
   html:

@@ -16,7 +16,6 @@ title: "git"
 
 # Q&A
 
-
 1. git globa options
 
     ```git
@@ -27,8 +26,6 @@ title: "git"
     git config --global core.editor "code --wait"
     git config -e 
     git config --global -e 
-
-
 
     ```
 
@@ -57,8 +54,26 @@ title: "git"
 
 4. clone with ssh
 
+    ```git
+    git clone username@ip_address:/path/to/your/git
+
+    ```
+
+5. build the data
+
 
     ```git
-    git clone username@ip_adress:/home/username/gitpath
+    # 1) build new data
+    git init
+
+    # 2) rename branch
+    git rename -m master current
+
+    # 3) add remote data
+    git remote add <repo-name> username@ip_address:/path/to/your/git
+
+    # 4) pull or push
+    git pull 
+    git push
 
     ```

@@ -61,7 +61,6 @@ graph G {
 
       2. bib: you could prepare using endnote
 
-          bib file example
 
           ```bib
           @article{knuth:1984,
@@ -83,13 +82,13 @@ graph G {
       ---
       title: "cite demo"
       bibliography: references.bib
-
+      ---
       some words[@knuth:1984]
 
       ## References
       ::: {#refs}
       :::
-      ---
+
       ```
 
 

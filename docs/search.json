@@ -137,7 +137,7 @@
     "href": "qmd/tools/git.html",
     "title": "git",
     "section": "",
-    "text": "Q&A\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \n\n\nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b <newbranch>\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge <newbranch>\nclone with ssh\ngit clone username@ip_adress:/home/username/gitpath"
+    "text": "Q&A\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b <newbranch>\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge <newbranch>\nclone with ssh\ngit clone username@ip_address:/path/to/your/git\nbuild the data\n# 1) build new data\ngit init\n\n# 2) rename branch\ngit rename -m master current\n\n# 3) add remote data\ngit remote add <repo-name> username@ip_address:/path/to/your/git\n\n# 4) pull or push\ngit pull \ngit push"
   },
   {
     "objectID": "qmd/tools/restful.html",
@@ -165,7 +165,7 @@
     "href": "qmd/tools/quarto_tools.html",
     "title": "quarto tools",
     "section": "",
-    "text": "citatation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\nbib file example\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::\n---"
+    "text": "citatation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n---\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::"
   },
   {
     "objectID": "qmd/tools/r_args.html",
