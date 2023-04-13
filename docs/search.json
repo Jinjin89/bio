@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Home | Bioinfor",
     "section": "",
-    "text": "How are your there?"
+    "text": "How are your there?\n\n\nBe patient?"
   },
   {
     "objectID": "qmd/bioinformatics/genome.html",
@@ -180,5 +180,40 @@
     "title": "nginx",
     "section": "",
     "text": "perfrom\n\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* => regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
+  },
+  {
+    "objectID": "qmd/bioinformatics/ensembl.html",
+    "href": "qmd/bioinformatics/ensembl.html",
+    "title": "Ensembl",
+    "section": "",
+    "text": "How?"
+  },
+  {
+    "objectID": "qmd/pipeline/mrna.html",
+    "href": "qmd/pipeline/mrna.html",
+    "title": "mRNA pipline",
+    "section": "",
+    "text": "References"
+  },
+  {
+    "objectID": "qmd/tools/network.html",
+    "href": "qmd/tools/network.html",
+    "title": "Network",
+    "section": "",
+    "text": "setup a squid server\nhttps://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04\n# 1) install\napt-get install squid\nsystemctl status squid\n\n# 2) allow ip, find `http_access deny ` to allow or deny ip, could set `http_access allow all`\nvim /etc/squid/squid.conf\n\n# 3) set password\napt install apache2-utils\nhtpasswd -c /etc/squid/passwords <user_name>\n\n# 4) check \ncat /etc/squid/passwords\n\n# 5) reopen, add params for authentication\nvim /etc/squid/squid.conf\n\n# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n#\ninclude /etc/squid/conf.d/*\n#######################ADD#########################\nauth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords\nauth_param basic realm proxy\nacl authenticated proxy_auth REQUIRED\n#######################ADD#########################\n\n# Example rule allowing access from your local networks.\nacl localnet src your_ip_address\n# Adapt localnet in the ACL section to list your (internal) IP networks\n# from where browsing should be allowed\n#http_access allow localnet\nhttp_access allow localhost\n\n#######################ADD#########################\nhttp_access allow authenticated\n#######################ADD#########################\n\n# And finally deny all other access to this proxy\nhttp_access deny all\n\n\n# 6) you could change the port if you want\nufw allow 7001\nvim /etc/squid/squid.conf\n\nhttp_port 3128\n\n# 7) test it \n\ncurl -L -C -  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy \"http://<user_name>:<passwd>@<address>:<port>\""
+  },
+  {
+    "objectID": "qmd/tools/docker.html",
+    "href": "qmd/tools/docker.html",
+    "title": "docker",
+    "section": "",
+    "text": "rstudio\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case)\ndocker run --rm -ti -p 8686:8787 rocker/rstudio:4.2\n\n# run it with user/password\n\n# stop it \ndocker stop <CONTAINER ID>\n\nhow to access using public ip address?"
+  },
+  {
+    "objectID": "qmd/tools/r.html",
+    "href": "qmd/tools/r.html",
+    "title": "R",
+    "section": "",
+    "text": "clindf\n\nWhy?\n\nsummarise the commonly used r function (DRY principle);\nThere are tons of packages/methods avaible for same task, We choose only one packages/methods for our specific task,\nfor examples: we use lasso to complete the lasso tasks\nAccording to our experiences, the defaults parameters fit most biological tasks, Also due to the concern of simplicity, most function are wrriten with default params. you only need to supply the basic/least arugments to run it.\n\nHow?\n\nall the funtion starts with fun_\ninput usually startswith input_\nconsistent names:\nfun_df1_work1_work2_df1\n\n\n\nThe output try to be simple, must be data.frame, or ggplot/grid object, which are easist structure;\neach function only do one certain task, if some function comprised with different steps, write each step with a funtion, and wrap it into it\nread data fun should start with fun_read_*\nshare the same parameters, so try avoid using\n\ninput_df\ninput_mat\ninput_variables\ninput_pct"
   }
 ]

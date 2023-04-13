@@ -1,3 +1,86 @@
 ---
 title: mRNA pipline
+bibliography: mrna.bib
 ---
+
+
+
+# TCGA
+
+The GDC mRNA quantification analysis pipeline measures gene level expression with `STAR` as raw read counts.
+
+for details about pipeline, please view <https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/>
+
+for details about `STAR`, plesae view <https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf>
+
+
+In this chapter, we
+    
+* first summarise the `STAR` method;
+
+* Then rewrite this pipeline with `snakemake` 
+
+
+```{mermaid}
+flowchart TD
+    input[fastq]
+    output[tpm/fpkm/count]
+
+    input --> output
+
+```
+
+
+
+## Some preparations about `STAR`
+
+Let us skip the common knowledge of alignment;
+
+1. what **bological** parameter do we have?
+
+    * About buiding index:
+
+        1. we need 1.) `genenome sequence` 2.) `gtf`
+
+        2. strand information
+
+
+2. what **computation** parameter do we have?
+
+    * Threads
+
+    * 2-pass mode
+
+        * `more` splices reads mapping
+
+
+## Writing `STAR` with snakemake
+
+1. Step 1: Building the STAR index.
+
+<https://gdc.cancer.gov/about-data/gdc-data-processing/gdc-reference-files>
+download from tcga 
+
+download gtf file
+
+
+```bash
+STAR
+--runMode genomeGenerate
+--genomeDir <star_index_path>
+--genomeFastaFiles <reference>
+--sjdbOverhang 100
+--sjdbGTFfile <gencode.v36.annotation.gtf>
+--runThreadN 8
+
+```
+
+
+
+2. Step2 Alignment
+
+
+
+
+::: {#refs}
+:::

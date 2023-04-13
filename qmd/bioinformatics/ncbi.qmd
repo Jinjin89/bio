@@ -39,7 +39,6 @@ format:
 
     * Gene ontology
 
-    
 
 2. What is refeseq?
 
@@ -264,10 +263,6 @@ keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);L
         4. Others
 
             * `alive[prop]`: currently alive 
-
-
-## xml and xml2
-
 
 
 # reference

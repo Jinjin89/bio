@@ -1,0 +1,67 @@
+---
+title: R
+---
+
+
+# metaprogramming
+
+## what is quote and unquote?
+
+## what is {} {{}}?
+
+## what is parse/eval/substitue?
+
+## In dplyr, what is vars, across, everything?
+
+# clindf
+
+1. what tools can be used  to develop r packages?
+
+    * `devtools`
+
+    * `usethis`
+
+2.  how to 
+
+    1. create a pckages?
+
+        1. `usethis::create_package()`
+
+    1. create a script?
+    
+        1. `use_r`
+        
+        2. write function
+        
+
+    2. create document(help page for each function)?
+
+        1. roxygen2
+
+        2. `document()`
+    
+    3. import package and function?
+
+        1. `use_package()`
+
+        2. <pkg>::<function>
+
+
+    4. create vignettes?
+
+        1. `use_vignette()`
+
+        2. write your rmd file
+
+    5. create pkgs websites?
+
+        1. `pkgdown::build_site()`
+
+
+    6. check?
+
+        1. `devtools::check()`
+
+    6. build pkgs?
+
+        1. 

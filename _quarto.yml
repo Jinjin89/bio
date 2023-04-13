@@ -86,9 +86,9 @@ website:
         - href: qmd/tools/git.qmd
         - href: qmd/tools/restful.qmd
         - href: qmd/tools/quarto_tools.qmd
-        - href: qmd/tools/nginx.qmd
-    
-        
+        - href: qmd/tools/network.qmd
+        - href: qmd/tools/r.qmd
+
 format:
   html:
     theme: cosmo

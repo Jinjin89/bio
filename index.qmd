@@ -8,4 +8,6 @@ title: "Home | Bioinfor"
 
 <p>How are your there?</p>
 
+<p>Be patient?<p/>
+
 </body>

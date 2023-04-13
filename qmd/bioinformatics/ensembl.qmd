@@ -1,3 +1,23 @@
 ---
 title: "Ensembl"
 ---
+
+
+
+# What?
+
+1. What can we do?
+
+    * Download genome data
+
+    * BLAST
+
+    * variation(VEP)
+
+    * Other tools(BioMART)
+
+
+
+
+# How?
+
