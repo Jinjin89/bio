@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bioinfor - R</title>
+<title>Bioinfor - RNA pipline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,25 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -58,12 +77,15 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -92,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../qmd/pipeline/index.html">Pipeline</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../qmd/tools/index.html" aria-current="page">Tools</a>
+    <a class="nav-link" href="../../qmd/tools/index.html">Tools</a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -116,68 +138,25 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">R</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/index.html" class="sidebar-item-text sidebar-link">Tools</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/git.html" class="sidebar-item-text sidebar-link">git</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/restful.html" class="sidebar-item-text sidebar-link">restful</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/quarto_tools.html" class="sidebar-item-text sidebar-link">quarto tools</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/network.html" class="sidebar-item-text sidebar-link">Network</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/tools/r.html" class="sidebar-item-text sidebar-link active">R</a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#metaprogramming" id="toc-metaprogramming" class="nav-link active" data-scroll-target="#metaprogramming">metaprogramming</a>
+  <li><a href="#rna" id="toc-rna" class="nav-link active" data-scroll-target="#rna">RNA</a></li>
+  <li><a href="#live-code" id="toc-live-code" class="nav-link" data-scroll-target="#live-code">live code</a>
   <ul class="collapse">
-  <li><a href="#what-is-quote-and-unquote" id="toc-what-is-quote-and-unquote" class="nav-link" data-scroll-target="#what-is-quote-and-unquote">what is quote and unquote?</a></li>
-  <li><a href="#what-is" id="toc-what-is" class="nav-link" data-scroll-target="#what-is">what is {} {{}}?</a></li>
-  <li><a href="#what-is-parseevalsubstitue" id="toc-what-is-parseevalsubstitue" class="nav-link" data-scroll-target="#what-is-parseevalsubstitue">what is parse/eval/substitue?</a></li>
-  <li><a href="#in-dplyr-what-is-vars-across-everything" id="toc-in-dplyr-what-is-vars-across-everything" class="nav-link" data-scroll-target="#in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</a></li>
+  <li><a href="#star" id="toc-star" class="nav-link" data-scroll-target="#star">STAR</a></li>
+  <li><a href="#some-preparations-about-star" id="toc-some-preparations-about-star" class="nav-link" data-scroll-target="#some-preparations-about-star">Some preparations about <code>STAR</code></a></li>
+  <li><a href="#rsem" id="toc-rsem" class="nav-link" data-scroll-target="#rsem">RSEM</a></li>
+  <li><a href="#kallisto" id="toc-kallisto" class="nav-link" data-scroll-target="#kallisto">kallisto</a></li>
+  <li><a href="#salmon" id="toc-salmon" class="nav-link" data-scroll-target="#salmon">Salmon</a></li>
   </ul></li>
-  <li><a href="#clindf" id="toc-clindf" class="nav-link" data-scroll-target="#clindf">clindf</a></li>
   </ul>
 </nav>
     </div>
@@ -186,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">R</h1>
+<h1 class="title">RNA pipline</h1>
 </div>
 
 
@@ -200,74 +179,73 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="metaprogramming" class="level1">
-<h1>metaprogramming</h1>
-<section id="what-is-quote-and-unquote" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-quote-and-unquote">what is quote and unquote?</h2>
-</section>
-<section id="what-is" class="level2">
-<h2 class="anchored" data-anchor-id="what-is">what is {} {{}}?</h2>
-</section>
-<section id="what-is-parseevalsubstitue" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-parseevalsubstitue">what is parse/eval/substitue?</h2>
-</section>
-<section id="in-dplyr-what-is-vars-across-everything" class="level2">
-<h2 class="anchored" data-anchor-id="in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</h2>
-</section>
-</section>
-<section id="clindf" class="level1">
-<h1>clindf</h1>
-<ol type="1">
-<li><p>what tools can be used to develop r packages?</p>
+<section id="rna" class="level1">
+<h1>RNA</h1>
+<p>The GDC mRNA quantification analysis pipeline measures gene level expression with <code>STAR</code> as raw read counts.</p>
+<p>for details about pipeline, please view <a href="https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/" class="uri">https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/</a></p>
+<p>for details about <code>STAR</code>, plesae view <a href="https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf" class="uri">https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf</a></p>
+<p>In this chapter,</p>
 <ul>
-<li><p><code>devtools</code></p></li>
-<li><p><code>usethis</code></p></li>
+<li><p>first summarise introduce the alignment</p>
+<ul>
+<li><p><code>STAR</code></p></li>
+<li><p><code>bowtie</code></p></li>
 </ul></li>
-<li><p>how to</p>
-<ol type="1">
-<li><p>create a pckages?</p>
-<ol type="1">
-<li><code>usethis::create_package()</code></li>
-</ol></li>
-<li><p>create a script?</p>
-<ol type="1">
-<li><p><code>use_r</code></p></li>
-<li><p>write function</p></li>
-</ol></li>
-<li><p>create document(help page for each function)?</p>
-<ol type="1">
-<li><p>roxygen2</p></li>
-<li><p><code>document()</code></p></li>
-</ol></li>
-<li><p>import package and function?</p>
-<ol type="1">
-<li><p><code>use_package()</code></p></li>
-<li><p><pkg>::<function></function></pkg></p></li>
-</ol></li>
-<li><p>create vignettes?</p>
-<ol type="1">
-<li><p><code>use_vignette()</code></p></li>
-<li><p>write your rmd file</p></li>
-</ol></li>
-<li><p>create pkgs websites?</p>
-<ol type="1">
-<li><code>pkgdown::build_site()</code></li>
-</ol></li>
-<li><p>check?</p>
-<ol type="1">
-<li><code>devtools::check()</code></li>
-</ol></li>
-<li><p>build pkgs?</p>
-<ol type="1">
-<li></li>
-</ol></li>
-</ol></li>
-</ol>
+<li><p>What is RSEM?</p></li>
+<li><p>samol</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
+    input[fastq]
+    output[tpm/fpkm/count]
+
+    input --&gt; output
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="live-code" class="level1">
+<h1>live code</h1>
+<ul>
+<li>snakemake</li>
+</ul>
+<section id="star" class="level2">
+<h2 class="anchored" data-anchor-id="star">STAR</h2>
+</section>
+<section id="some-preparations-about-star" class="level2">
+<h2 class="anchored" data-anchor-id="some-preparations-about-star">Some preparations about <code>STAR</code></h2>
+<pre><code>1. strand information
+
+2-pass mode
+
+    * more splices reads mapping</code></pre>
+</section>
+<section id="rsem" class="level2">
+<h2 class="anchored" data-anchor-id="rsem">RSEM</h2>
+</section>
+<section id="kallisto" class="level2">
+<h2 class="anchored" data-anchor-id="kallisto">kallisto</h2>
+</section>
+<section id="salmon" class="level2">
+
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Salmon</h2><div id="refs" role="doc-bibliography">
+
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

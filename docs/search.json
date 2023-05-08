@@ -200,7 +200,7 @@
     "href": "qmd/tools/network.html",
     "title": "Network",
     "section": "",
-    "text": "setup a squid server\nhttps://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04\n# 1) install\napt-get install squid\nsystemctl status squid\n\n# 2) allow ip, find `http_access deny ` to allow or deny ip, could set `http_access allow all`\nvim /etc/squid/squid.conf\n\n# 3) set password\napt install apache2-utils\nhtpasswd -c /etc/squid/passwords <user_name>\n\n# 4) check \ncat /etc/squid/passwords\n\n# 5) reopen, add params for authentication\nvim /etc/squid/squid.conf\n\n# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n#\ninclude /etc/squid/conf.d/*\n#######################ADD#########################\nauth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords\nauth_param basic realm proxy\nacl authenticated proxy_auth REQUIRED\n#######################ADD#########################\n\n# Example rule allowing access from your local networks.\nacl localnet src your_ip_address\n# Adapt localnet in the ACL section to list your (internal) IP networks\n# from where browsing should be allowed\n#http_access allow localnet\nhttp_access allow localhost\n\n#######################ADD#########################\nhttp_access allow authenticated\n#######################ADD#########################\n\n# And finally deny all other access to this proxy\nhttp_access deny all\n\n\n# 6) you could change the port if you want\nufw allow 7001\nvim /etc/squid/squid.conf\n\nhttp_port 3128\n\n# 7) test it \n\ncurl -L -C -  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy \"http://<user_name>:<passwd>@<address>:<port>\""
+    "text": "how to proxy?\nwho to reverse proxy?\nhow to add https\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* => regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
   },
   {
     "objectID": "qmd/tools/docker.html",
@@ -214,6 +214,62 @@
     "href": "qmd/tools/r.html",
     "title": "R",
     "section": "",
-    "text": "clindf\n\nWhy?\n\nsummarise the commonly used r function (DRY principle);\nThere are tons of packages/methods avaible for same task, We choose only one packages/methods for our specific task,\nfor examples: we use lasso to complete the lasso tasks\nAccording to our experiences, the defaults parameters fit most biological tasks, Also due to the concern of simplicity, most function are wrriten with default params. you only need to supply the basic/least arugments to run it.\n\nHow?\n\nall the funtion starts with fun_\ninput usually startswith input_\nconsistent names:\nfun_df1_work1_work2_df1\n\n\n\nThe output try to be simple, must be data.frame, or ggplot/grid object, which are easist structure;\neach function only do one certain task, if some function comprised with different steps, write each step with a funtion, and wrap it into it\nread data fun should start with fun_read_*\nshare the same parameters, so try avoid using\n\ninput_df\ninput_mat\ninput_variables\ninput_pct"
+    "text": "clindf\n\nwhat tools can be used to develop r packages?\n\ndevtools\nusethis\n\nhow to\n\ncreate a pckages?\n\nusethis::create_package()\n\ncreate a script?\n\nuse_r\nwrite function\n\ncreate document(help page for each function)?\n\nroxygen2\ndocument()\n\nimport package and function?\n\nuse_package()\n::\n\ncreate vignettes?\n\nuse_vignette()\nwrite your rmd file\n\ncreate pkgs websites?\n\npkgdown::build_site()\n\ncheck?\n\ndevtools::check()\n\nbuild pkgs?"
+  },
+  {
+    "objectID": "qmd/pipeline/rna.html",
+    "href": "qmd/pipeline/rna.html",
+    "title": "RNA pipline",
+    "section": "",
+    "text": "The GDC mRNA quantification analysis pipeline measures gene level expression with STAR as raw read counts.\nfor details about pipeline, please view https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/\nfor details about STAR, plesae view https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf\nIn this chapter,\n\nfirst summarise introduce the alignment\n\nSTAR\nbowtie\n\nWhat is RSEM?\nsamol\n\n\n\n\n\nflowchart TD\n    input[fastq]\n    output[tpm/fpkm/count]\n\n    input --> output"
+  },
+  {
+    "objectID": "qmd/pipeline/rna.html#star",
+    "href": "qmd/pipeline/rna.html#star",
+    "title": "RNA pipline",
+    "section": "STAR",
+    "text": "STAR"
+  },
+  {
+    "objectID": "qmd/pipeline/rna.html#some-preparations-about-star",
+    "href": "qmd/pipeline/rna.html#some-preparations-about-star",
+    "title": "RNA pipline",
+    "section": "Some preparations about STAR",
+    "text": "Some preparations about STAR\n1. strand information\n\n2-pass mode\n\n    * more splices reads mapping"
+  },
+  {
+    "objectID": "qmd/pipeline/rna.html#rsem",
+    "href": "qmd/pipeline/rna.html#rsem",
+    "title": "RNA pipline",
+    "section": "RSEM",
+    "text": "RSEM"
+  },
+  {
+    "objectID": "qmd/pipeline/rna.html#kallisto",
+    "href": "qmd/pipeline/rna.html#kallisto",
+    "title": "RNA pipline",
+    "section": "kallisto",
+    "text": "kallisto"
+  },
+  {
+    "objectID": "qmd/tools/network.html#install",
+    "href": "qmd/tools/network.html#install",
+    "title": "Network",
+    "section": "install",
+    "text": "install\n\ninstall docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop <id>\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull <iamge>\n\n# pull and run images\ndocker run <iamge:tag>\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d <container>\n\ndocker attach <id>\n\n# inspect containder\ndocker inspect <id>\n\n# check logs\ndocker logs <id>\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -> data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t <image_name>"
+  },
+  {
+    "objectID": "qmd/tools/network.html#docker-1",
+    "href": "qmd/tools/network.html#docker-1",
+    "title": "Network",
+    "section": "Docker",
+    "text": "Docker\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n    \n# stop it \ndocker stop <CONTAINER ID>\n\n\ndocker file permission"
+  },
+  {
+    "objectID": "qmd/tools/network.html#docker-app",
+    "href": "qmd/tools/network.html#docker-app",
+    "title": "Network",
+    "section": "Docker app",
+    "text": "Docker app\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\nrun docker without root permission\n\n\nrun ubuntu\ndocker run ubuntu sleep 5\n\n\n\ndocker network\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\nvoumnes\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\ndocker-compose\n\n\ndocker registry\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\norchestrate\n\n\ndocker swarm\ndocker service --replicas=3 my-web\n\n\n\nkubernetes"
   }
 ]

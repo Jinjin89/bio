@@ -1,0 +1,63 @@
+---
+title: RNA pipline
+bibliography: rna.bib
+---
+
+
+
+# RNA
+
+The GDC mRNA quantification analysis pipeline measures gene level expression with `STAR` as raw read counts.
+
+for details about pipeline, please view <https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/>
+
+for details about `STAR`, plesae view <https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf>
+
+
+In this chapter, 
+    
+* first summarise introduce the alignment
+
+    * `STAR`
+
+    * `bowtie`
+
+
+* What is RSEM?
+
+* samol
+
+
+```{mermaid}
+flowchart TD
+    input[fastq]
+    output[tpm/fpkm/count]
+
+    input --> output
+
+```
+
+
+
+# live code
+
+* snakemake
+
+## STAR
+
+## Some preparations about `STAR`
+    1. strand information
+
+    2-pass mode
+
+        * more splices reads mapping
+
+## RSEM
+
+## kallisto
+
+## Salmon
+
+
+::: {#refs}
+:::

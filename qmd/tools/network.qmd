@@ -132,7 +132,6 @@ http_access allow authenticated
 # And finally deny all other access to this proxy
 http_access deny all
 
-
 # 6) you could change the port if you want
 ufw allow 7001
 vim /etc/squid/squid.conf
@@ -141,10 +140,9 @@ http_port 3128
 
 # 7) test it 
 
-curl -L -C -  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy "http://<user_name>:<passwd>@<address>:<port>"
+curl -OJ  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy "http://<user_name>:<passwd>@<address>:<port>"
 
 ```
-
 
 # how to monitor the network dataflow
 
@@ -166,11 +164,85 @@ curl -L -C -  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-5830707638
 <https://www.kali.org/docs/containers/installing-docker-on-kali/>
 
 
-2. configure the docker
-    
-    1. Where the docker save its images?
 
-## Docker
+2. docker basic commnad
+
+
+```bash
+# docker version
+# containers
+docker ps
+docker ps -a
+docker stop <id>
+
+# showing images
+docker images
+# remove images
+docker rmi
+
+# pull images 
+docker pull <iamge>
+
+# pull and run images
+docker run <iamge:tag>
+
+# run ubuntu
+docker run ubuntu sleep 100 
+
+# run: attach detached
+docker run -d <container>
+
+docker attach <id>
+
+# inspect containder
+docker inspect <id>
+
+# check logs
+docker logs <id>
+
+```
+
+
+3. docker params
+
+
+    * -i: interactive mode
+
+    * -t: pesuodo terminal
+
+    * -p: port mapping
+
+        each container has its own ip, which can only be acessed in containder host
+    
+    * -v: volumn mappping -> data persistent
+
+    * -e: set enviroment variables
+
+
+
+4. create images
+
+
+```docker-file
+FROM Ubuntu
+
+RUN apt-get update
+RUN apt-get install python
+
+RUN pip install flask
+
+COPY . ???
+
+ENTRYPOINT ???
+
+CMD ["command", "param1"]
+
+```
+
+`docker build Dockerfile -t <image_name>`
+
+
+## Docker app
 
 ### rstudio config
 
@@ -210,13 +282,72 @@ docker run --rm -ti \
 docker run --rm -ti \
     -e PASSWORD=happy_password\
     -d\
-    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\
+    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\
     -v /home/keke/data/:/home/rstudio/data/\
     -p 8686:8787 \
     rocker/rstudio:4.2
+
 # stop it 
 docker stop <CONTAINER ID>
 ```
 
+### run docker without root permission
 
-### docker file permission
+
+### run ubuntu
+
+```bash
+docker run ubuntu sleep 5
+
+
+```
+
+
+### docker network
+
+    * bride[default]:  `docker run ubuntu`
+
+    * none:  `docker run ubuntu --network=none`
+
+    * host:  `docker run ubuntu --network=host`
+
+    * create sub network
+
+### voumnes
+
+`docker volumne create data_volumn` 
+
+    * -v
+
+    * --mount
+
+
+### docker-compose
+
+
+### docker registry
+
+
+1. private
+
+```bash
+docker run -d --name registry
+
+docker image tag my-image localhost:5000/my-image
+docker push localhost:5000/my-image
+docker pull localhost:5000/my-image
+
+```
+
+### orchestrate
+
+
+### docker swarm
+
+```
+docker service --replicas=3 my-web
+
+```
+
+### kubernetes
+

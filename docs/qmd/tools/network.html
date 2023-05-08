@@ -235,6 +235,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#nginx" id="toc-nginx" class="nav-link active" data-scroll-target="#nginx">Nginx</a></li>
   <li><a href="#setup-a-squid-server" id="toc-setup-a-squid-server" class="nav-link" data-scroll-target="#setup-a-squid-server">setup a squid server</a></li>
+  <li><a href="#how-to-monitor-the-network-dataflow" id="toc-how-to-monitor-the-network-dataflow" class="nav-link" data-scroll-target="#how-to-monitor-the-network-dataflow">how to monitor the network dataflow</a></li>
+  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a>
+  <ul class="collapse">
+  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">install</a></li>
+  <li><a href="#docker-app" id="toc-docker-app" class="nav-link" data-scroll-target="#docker-app">Docker app</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-config" id="toc-rstudio-config" class="nav-link" data-scroll-target="#rstudio-config">rstudio config</a></li>
+  <li><a href="#run-docker-without-root-permission" id="toc-run-docker-without-root-permission" class="nav-link" data-scroll-target="#run-docker-without-root-permission">run docker without root permission</a></li>
+  <li><a href="#run-ubuntu" id="toc-run-ubuntu" class="nav-link" data-scroll-target="#run-ubuntu">run ubuntu</a></li>
+  <li><a href="#docker-network" id="toc-docker-network" class="nav-link" data-scroll-target="#docker-network">docker network</a></li>
+  <li><a href="#voumnes" id="toc-voumnes" class="nav-link" data-scroll-target="#voumnes">voumnes</a></li>
+  <li><a href="#docker-compose" id="toc-docker-compose" class="nav-link" data-scroll-target="#docker-compose">docker-compose</a></li>
+  <li><a href="#docker-registry" id="toc-docker-registry" class="nav-link" data-scroll-target="#docker-registry">docker registry</a></li>
+  <li><a href="#orchestrate" id="toc-orchestrate" class="nav-link" data-scroll-target="#orchestrate">orchestrate</a></li>
+  <li><a href="#docker-swarm" id="toc-docker-swarm" class="nav-link" data-scroll-target="#docker-swarm">docker swarm</a></li>
+  <li><a href="#kubernetes" id="toc-kubernetes" class="nav-link" data-scroll-target="#kubernetes">kubernetes</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -365,18 +383,186 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-38"><a href="#cb2-38"></a><span class="co"># And finally deny all other access to this proxy</span></span>
 <span id="cb2-39"><a href="#cb2-39"></a><span class="ex">http_access</span> deny all</span>
 <span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="co"># 6) you could change the port if you want</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="ex">ufw</span> allow 7001</span>
-<span id="cb2-44"><a href="#cb2-44"></a><span class="ex">vim</span> /etc/squid/squid.conf</span>
-<span id="cb2-45"><a href="#cb2-45"></a></span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="ex">http_port</span> 3128</span>
-<span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="co"># 7) test it </span></span>
-<span id="cb2-49"><a href="#cb2-49"></a></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-C</span> <span class="at">-</span>  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   <span class="at">--proxy</span> <span class="st">"http://&lt;user_name&gt;:&lt;passwd&gt;@&lt;address&gt;:&lt;port&gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co"># 6) you could change the port if you want</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="ex">ufw</span> allow 7001</span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="ex">vim</span> /etc/squid/squid.conf</span>
+<span id="cb2-44"><a href="#cb2-44"></a></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="ex">http_port</span> 3128</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="co"># 7) test it </span></span>
+<span id="cb2-48"><a href="#cb2-48"></a></span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-C</span> <span class="at">-</span>  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   <span class="at">--proxy</span> <span class="st">"http://&lt;user_name&gt;:&lt;passwd&gt;@&lt;address&gt;:&lt;port&gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-to-monitor-the-network-dataflow" class="level1">
+<h1>how to monitor the network dataflow</h1>
+</section>
+<section id="docker" class="level1">
+<h1>Docker</h1>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">install</h2>
+<ol type="1">
+<li>install docker</li>
+</ol>
+<p><a href="https://docs.docker.com/engine/install/binaries/" class="uri">https://docs.docker.com/engine/install/binaries/</a></p>
+<p><a href="https://www.kali.org/docs/containers/installing-docker-on-kali/" class="uri">https://www.kali.org/docs/containers/installing-docker-on-kali/</a></p>
+<ol start="2" type="1">
+<li>docker basic commnad</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># docker version</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># containers</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">docker</span> ps</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># showing images</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="ex">docker</span> images</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># remove images</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="ex">docker</span> rmi</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co"># pull images </span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="ex">docker</span> pull <span class="op">&lt;</span>iamge<span class="op">&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co"># pull and run images</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="ex">docker</span> run <span class="op">&lt;</span>iamge:tag<span class="op">&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co"># run ubuntu</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="ex">docker</span> run ubuntu sleep 100 </span>
+<span id="cb3-20"><a href="#cb3-20"></a></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co"># run: attach detached</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="op">&lt;</span>container<span class="op">&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="ex">docker</span> attach <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co"># inspect containder</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="ex">docker</span> inspect <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co"># check logs</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="ex">docker</span> logs <span class="op">&lt;</span>id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li><p>docker params</p>
+<ul>
+<li><p>-i: interactive mode</p></li>
+<li><p>-t: pesuodo terminal</p></li>
+<li><p>-p: port mapping</p>
+<p>each container has its own ip, which can only be acessed in containder host</p></li>
+<li><p>-v: volumn mappping -&gt; data persistent</p></li>
+<li><p>-e: set enviroment variables</p></li>
+</ul></li>
+<li><p>create images</p></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource docker-file number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>FROM Ubuntu</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>RUN apt-get update</span>
+<span id="cb4-4"><a href="#cb4-4"></a>RUN apt-get install python</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a>RUN pip install flask</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>COPY . ???</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>ENTRYPOINT ???</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a>CMD ["command", "param1"]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>docker build Dockerfile -t &lt;image_name&gt;</code></p>
+</section>
+<section id="docker-app" class="level2">
+<h2 class="anchored" data-anchor-id="docker-app">Docker app</h2>
+<section id="rstudio-config" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-config">rstudio config</h3>
+<ol type="1">
+<li>Have a rstudio in docker(version=4.2)</li>
+</ol>
+<p><a href="https://rocker-project.org/images/versioned/rstudio.html" class="uri">https://rocker-project.org/images/versioned/rstudio.html</a></p>
+<p>https://hub.docker.com/r/rocker/rstudio</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource docker number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a># pull images (Make sure the version is what you want)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>docker pull rocker/rstudio:4.2</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a># run it (should not change the image port in this case), with password</span>
+<span id="cb5-5"><a href="#cb5-5"></a># inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>docker run --rm -ti -e PASSWORD=&lt;passwd&gt; -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a># how to make packages persistent and rstudio configs persistent </span>
+<span id="cb5-9"><a href="#cb5-9"></a># 1) Check the libs path `.libPaths()`</span>
+<span id="cb5-10"><a href="#cb5-10"></a># 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`</span>
+<span id="cb5-11"><a href="#cb5-11"></a># 3) relaod `R` and install the packages</span>
+<span id="cb5-12"><a href="#cb5-12"></a># 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded</span>
+<span id="cb5-13"><a href="#cb5-13"></a>mkdir ~/.Renviron</span>
+<span id="cb5-14"><a href="#cb5-14"></a>R_LIBS_USER=/home/rstudio/r_lib</span>
+<span id="cb5-15"><a href="#cb5-15"></a>R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library</span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a></span>
+<span id="cb5-18"><a href="#cb5-18"></a># mount a second volumn</span>
+<span id="cb5-19"><a href="#cb5-19"></a>docker run --rm -ti \</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    -e PASSWORD=happy_password\</span>
+<span id="cb5-21"><a href="#cb5-21"></a>    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\</span>
+<span id="cb5-22"><a href="#cb5-22"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    -p 8686:8787 \</span>
+<span id="cb5-24"><a href="#cb5-24"></a>    rocker/rstudio:4.2</span>
+<span id="cb5-25"><a href="#cb5-25"></a></span>
+<span id="cb5-26"><a href="#cb5-26"></a># run in background(--detached -d)</span>
+<span id="cb5-27"><a href="#cb5-27"></a>docker run --rm -ti \</span>
+<span id="cb5-28"><a href="#cb5-28"></a>    -e PASSWORD=happy_password\</span>
+<span id="cb5-29"><a href="#cb5-29"></a>    -d\</span>
+<span id="cb5-30"><a href="#cb5-30"></a>    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\</span>
+<span id="cb5-31"><a href="#cb5-31"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    -p 8686:8787 \</span>
+<span id="cb5-33"><a href="#cb5-33"></a>    rocker/rstudio:4.2</span>
+<span id="cb5-34"><a href="#cb5-34"></a></span>
+<span id="cb5-35"><a href="#cb5-35"></a># stop it </span>
+<span id="cb5-36"><a href="#cb5-36"></a>docker stop &lt;CONTAINER ID&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-docker-without-root-permission" class="level3">
+<h3 class="anchored" data-anchor-id="run-docker-without-root-permission">run docker without root permission</h3>
+</section>
+<section id="run-ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="run-ubuntu">run ubuntu</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">docker</span> run ubuntu sleep 5</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="docker-network" class="level3">
+<h3 class="anchored" data-anchor-id="docker-network">docker network</h3>
+<pre><code>* bride[default]:  `docker run ubuntu`
+
+* none:  `docker run ubuntu --network=none`
+
+* host:  `docker run ubuntu --network=host`
+
+* create sub network</code></pre>
+</section>
+<section id="voumnes" class="level3">
+<h3 class="anchored" data-anchor-id="voumnes">voumnes</h3>
+<p><code>docker volumne create data_volumn</code></p>
+<pre><code>* -v
+
+* --mount</code></pre>
+</section>
+<section id="docker-compose" class="level3">
+<h3 class="anchored" data-anchor-id="docker-compose">docker-compose</h3>
+</section>
+<section id="docker-registry" class="level3">
+<h3 class="anchored" data-anchor-id="docker-registry">docker registry</h3>
+<ol type="1">
+<li>private</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> registry</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="ex">docker</span> image tag my-image localhost:5000/my-image</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="ex">docker</span> push localhost:5000/my-image</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="ex">docker</span> pull localhost:5000/my-image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="orchestrate" class="level3">
+<h3 class="anchored" data-anchor-id="orchestrate">orchestrate</h3>
+</section>
+<section id="docker-swarm" class="level3">
+<h3 class="anchored" data-anchor-id="docker-swarm">docker swarm</h3>
+<pre><code>docker service --replicas=3 my-web
+</code></pre>
+</section>
+<section id="kubernetes" class="level3">
+<h3 class="anchored" data-anchor-id="kubernetes">kubernetes</h3>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
