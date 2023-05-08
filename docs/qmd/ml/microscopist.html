@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -89,10 +152,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="../../qmd/ml/index.html" aria-current="page">ML</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../qmd/tools/index.html">Tools</a>
+    <a class="nav-link" href="../../qmd/pipeline/index.html">Pipeline</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../qmd/sas/index.html">SAS</a>
+    <a class="nav-link" href="../../qmd/tools/index.html">Tools</a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -150,13 +213,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">basics</a>
+  <li><a href="#aims" id="toc-aims" class="nav-link active" data-scroll-target="#aims">Aims</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a>
   <ul class="collapse">
-  <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">file formats</a></li>
-  <li><a href="#images-params" id="toc-images-params" class="nav-link" data-scroll-target="#images-params">images params</a></li>
+  <li><a href="#images-in-python" id="toc-images-in-python" class="nav-link" data-scroll-target="#images-in-python">images in python</a></li>
   </ul></li>
-  <li><a href="#read-images-into-python" id="toc-read-images-into-python" class="nav-link" data-scroll-target="#read-images-into-python">read images into python</a></li>
-  <li><a href="#image-preprocessing" id="toc-image-preprocessing" class="nav-link" data-scroll-target="#image-preprocessing">image preprocessing</a></li>
+  <li><a href="#io" id="toc-io" class="nav-link" data-scroll-target="#io">IO</a></li>
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#pil" id="toc-pil" class="nav-link" data-scroll-target="#pil">PIL</a></li>
+  <li><a href="#skimage" id="toc-skimage" class="nav-link" data-scroll-target="#skimage">skimage</a></li>
+  </ul></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">reference</a></li>
   </ul>
 </nav>
@@ -180,32 +247,349 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="basics" class="level1">
-<h1>basics</h1>
-<section id="file-formats" class="level2">
-<h2 class="anchored" data-anchor-id="file-formats">file formats</h2>
-<ol type="1">
-<li><p>jpg or png</p></li>
-<li><p>svs(TCGA Digital Pathology Images)</p></li>
-</ol>
-</section>
-<section id="images-params" class="level2">
-<h2 class="anchored" data-anchor-id="images-params">images params</h2>
-<ol type="1">
-<li><p>RGB</p></li>
+<section id="aims" class="level1">
+<h1>Aims</h1>
+<ul>
+<li><p>processing HE</p></li>
+<li><p>processing immune staining</p></li>
 <li></li>
-</ol>
+</ul>
+</section>
+<section id="images" class="level1">
+<h1>Images</h1>
+<section id="images-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="images-in-python">images in python</h2>
 </section>
 </section>
-<section id="read-images-into-python" class="level1">
-<h1>read images into python</h1>
-<ol type="1">
+<section id="io" class="level1">
+<h1>IO</h1>
+<ul>
+<li><p>PIL</p></li>
+<li><p>matplotlib</p></li>
 <li><p>skimage</p></li>
-<li></li>
+<li><p>openCV</p></li>
+</ul>
+<ol type="1">
+<li>basic usages</li>
 </ol>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4"></a>images_file <span class="op">=</span> <span class="st">'/home/keke/data/web/python_for_microscopists/images/test_image.jpg'</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>images_file_czi <span class="op">=</span> <span class="st">'/home/keke/data/web/python_for_microscopists/images/test_image.czi'</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>images_file_ome_tiff <span class="op">=</span> <span class="st">'/home/keke/data/web/python_for_microscopists/images/test_image.ome.tif'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 1) read by PIL</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb2-5"><a href="#cb2-5"></a>img <span class="op">=</span> Image.<span class="bu">open</span>(images_file)</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#print(type(img))</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># img.show()</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># change images into arrays</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>img_array <span class="op">=</span> np.asarray(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 2) read by matplotlib</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mping</span>
+<span id="cb3-3"><a href="#cb3-3"></a>img <span class="op">=</span> mping.imread(images_file)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(<span class="bu">type</span>(img))</span>
+<span id="cb3-5"><a href="#cb3-5"></a>plt.imshow(img)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>plt.colorbar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'numpy.ndarray'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fee16d37450&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-4-output-3.png" width="550" height="397"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 3) read by skimage</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="im">from</span> skimage <span class="im">import</span> io, img_as_float, img_as_ubyte</span>
+<span id="cb6-3"><a href="#cb6-3"></a>img <span class="op">=</span> io.imread(images_file)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="bu">print</span>(<span class="bu">type</span>(img))</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># conver imgae as float</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>img_float <span class="op">=</span> img_as_float(img)</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="bu">print</span>(img_float)</span>
+<span id="cb6-8"><a href="#cb6-8"></a>plt.imshow(img)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>plt.colorbar()</span>
+<span id="cb6-10"><a href="#cb6-10"></a>plt.show()</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a>plt.imshow(img_float)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>plt.colorbar()</span>
+<span id="cb6-14"><a href="#cb6-14"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'numpy.ndarray'&gt;
+[[[0.04705882 0.21176471 0.36078431]
+  [0.         0.36470588 0.49411765]
+  [0.         0.45882353 0.60392157]
+  ...
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]]
+
+ [[0.06666667 0.23137255 0.3254902 ]
+  [0.02745098 0.34901961 0.44313725]
+  [0.         0.4        0.5372549 ]
+  ...
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]]
+
+ [[0.09019608 0.16078431 0.20784314]
+  [0.05490196 0.2627451  0.3254902 ]
+  [0.01568627 0.30980392 0.42352941]
+  ...
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]
+  [0.         0.         0.        ]]
+
+ ...
+
+ [[0.         0.10196078 0.01176471]
+  [0.         0.09019608 0.00784314]
+  [0.         0.08235294 0.01176471]
+  ...
+  [0.03137255 0.07843137 0.13333333]
+  [0.01176471 0.03137255 0.05490196]
+  [0.00392157 0.01176471 0.00784314]]
+
+ [[0.         0.17647059 0.03137255]
+  [0.         0.15294118 0.02745098]
+  [0.         0.12941176 0.03529412]
+  ...
+  [0.0745098  0.14117647 0.21176471]
+  [0.04705882 0.07058824 0.11764706]
+  [0.02745098 0.02352941 0.04313725]]
+
+ [[0.00784314 0.25882353 0.05490196]
+  [0.00392157 0.21176471 0.04705882]
+  [0.         0.14509804 0.02352941]
+  ...
+  [0.05098039 0.19215686 0.27843137]
+  [0.16078431 0.09019608 0.17647059]
+  [0.07843137 0.02745098 0.05490196]]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-5-output-2.png" width="550" height="397"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-5-output-3.png" width="546" height="402"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>reading multiple images / time-series files</li>
+</ol>
+<ul>
+<li>czifile</li>
+</ul>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> czifile </span>
+<span id="cb8-2"><a href="#cb8-2"></a>img <span class="op">=</span> czifile.imread(images_file_czi)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">print</span>(img.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1, 513, 639, 3)</code></pre>
+</div>
+</div>
+<ul>
+<li>apeer-ometiff-library</li>
+</ul>
+<ol start="3" type="1">
+<li>read all files</li>
+</ol>
+<p>using glob</p>
 </section>
-<section id="image-preprocessing" class="level1">
-<h1>image preprocessing</h1>
+<section id="preprocessing" class="level1">
+<h1>preprocessing</h1>
+<section id="pil" class="level2">
+<h2 class="anchored" data-anchor-id="pil">PIL</h2>
+<ul>
+<li><p>resize: change the ratio</p></li>
+<li><p>thumbnail: orgin ratio</p></li>
+<li><p>crop</p></li>
+<li><p>paste:</p></li>
+<li><p>rotate</p></li>
+</ul>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb10-2"><a href="#cb10-2"></a>img <span class="op">=</span> Image.<span class="bu">open</span>(images_file)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="bu">print</span>(img.<span class="bu">format</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="bu">print</span>(img.mode)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span>(img.size)</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="bu">print</span>(<span class="bu">type</span>(img))</span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co"># resize</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>plt.imshow(img)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>plt.show()</span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a>small_img <span class="op">=</span> img.resize((<span class="dv">200</span>,<span class="dv">300</span>))</span>
+<span id="cb10-13"><a href="#cb10-13"></a>plt.imshow(small_img)</span>
+<span id="cb10-14"><a href="#cb10-14"></a>plt.show()</span>
+<span id="cb10-15"><a href="#cb10-15"></a></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="co"># thumbnail</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>img.thumbnail((<span class="dv">200</span>,<span class="dv">300</span>))</span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="bu">print</span>(img.size)</span>
+<span id="cb10-19"><a href="#cb10-19"></a>plt.imshow(img)</span>
+<span id="cb10-20"><a href="#cb10-20"></a>plt.show()</span>
+<span id="cb10-21"><a href="#cb10-21"></a></span>
+<span id="cb10-22"><a href="#cb10-22"></a>img.thumbnail((<span class="dv">1200</span>,<span class="dv">1300</span>))</span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="bu">print</span>(img.size)</span>
+<span id="cb10-24"><a href="#cb10-24"></a>plt.imshow(img)</span>
+<span id="cb10-25"><a href="#cb10-25"></a>plt.show()</span>
+<span id="cb10-26"><a href="#cb10-26"></a></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="co"># crop</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>img <span class="op">=</span> Image.<span class="bu">open</span>(images_file)</span>
+<span id="cb10-29"><a href="#cb10-29"></a>crop_img <span class="op">=</span> img.crop((<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">300</span>))</span>
+<span id="cb10-30"><a href="#cb10-30"></a></span>
+<span id="cb10-31"><a href="#cb10-31"></a>plt.imshow(crop_img)</span>
+<span id="cb10-32"><a href="#cb10-32"></a>plt.show()</span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a><span class="co"># paste</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a>img.paste(crop_img)</span>
+<span id="cb10-36"><a href="#cb10-36"></a></span>
+<span id="cb10-37"><a href="#cb10-37"></a><span class="co"># image</span></span>
+<span id="cb10-38"><a href="#cb10-38"></a>img.rotate(<span class="dv">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>JPEG
+RGB
+(639, 513)
+&lt;class 'PIL.JpegImagePlugin.JpegImageFile'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-7-output-2.png" width="514" height="416"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-7-output-3.png" width="300" height="416"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(200, 161)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-7-output-5.png" width="513" height="415"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(200, 161)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-7-output-7.png" width="513" height="415"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-7-output-8.png" width="424" height="416"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<p><img src="microscopist_files/figure-html/cell-7-output-9.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="skimage" class="level2">
+<h2 class="anchored" data-anchor-id="skimage">skimage</h2>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> skimage <span class="im">import</span> io</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="im">from</span> skimage.transform <span class="im">import</span> rescale,resize,downscale_local_mean</span>
+<span id="cb14-4"><a href="#cb14-4"></a>img <span class="op">=</span> io.imread(images_file,as_gray<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>plt.imshow(img)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>plt.show()</span>
+<span id="cb14-7"><a href="#cb14-7"></a></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co"># rescale</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>img_rescale <span class="op">=</span> rescale(img,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,anti_aliasing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a>plt.imshow(img_rescale)</span>
+<span id="cb14-11"><a href="#cb14-11"></a>plt.show()</span>
+<span id="cb14-12"><a href="#cb14-12"></a>img_resize <span class="op">=</span>resize(img,(<span class="dv">200</span>,<span class="dv">200</span>),anti_aliasing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-13"><a href="#cb14-13"></a>plt.imshow(img_resize)</span>
+<span id="cb14-14"><a href="#cb14-14"></a>plt.show()</span>
+<span id="cb14-15"><a href="#cb14-15"></a>img_down <span class="op">=</span> downscale_local_mean(img,(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb14-16"><a href="#cb14-16"></a>plt.imshow(img_down)</span>
+<span id="cb14-17"><a href="#cb14-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-8-output-1.png" width="514" height="416"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-8-output-2.png" width="516" height="415"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-8-output-3.png" width="424" height="415"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-8-output-4.png" width="575" height="361"></p>
+</div>
+</div>
+<ul>
+<li>edge detections</li>
+</ul>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> roberts,sobel,scharr,prewitt</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="im">from</span> skimage.feature <span class="im">import</span> canny</span>
+<span id="cb15-4"><a href="#cb15-4"></a>edge_canny <span class="op">=</span> canny(img,sigma <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>plt.imshow(edge_canny)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-9-output-1.png" width="514" height="416"></p>
+</div>
+</div>
+<ul>
+<li>deconvolution</li>
+</ul>
+<p>psf: point spread function</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> skimage <span class="im">import</span> restoration</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-3"><a href="#cb16-3"></a>psf <span class="op">=</span> np.ones((<span class="dv">3</span>,<span class="dv">3</span>)) <span class="op">/</span> <span class="dv">9</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>decon,_ <span class="op">=</span> restoration.unsupervised_wiener(img,psf)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a>plt.imshow(decon,cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-10-output-1.png" width="514" height="416"></p>
+</div>
+</div>
+<ul>
+<li>example: wound healing</li>
+</ul>
+<p>Introduce entropy there, in wound healing experiments, the clean images and the</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> skimage <span class="im">import</span> io,restoration</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="im">from</span> skimage.filters.rank <span class="im">import</span> entropy</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> disk</span>
+<span id="cb17-4"><a href="#cb17-4"></a>images_file <span class="op">=</span> <span class="st">'/home/keke/data/web/python_for_microscopists/images/scratch.jpg'</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>img <span class="op">=</span> io.imread(images_file)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>entr_img <span class="op">=</span> entropy(img,disk(<span class="dv">3</span>))</span>
+<span id="cb17-7"><a href="#cb17-7"></a>plt.imshow(entr_img,cmap <span class="op">=</span> <span class="st">"gray"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8"></a>plt.show()</span>
+<span id="cb17-9"><a href="#cb17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="co"># try all</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="im">from</span> skimage.filters <span class="im">import</span> try_all_threshold</span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="im">from</span> skimage.filters <span class="im">import</span> threshold_otsu</span>
+<span id="cb17-13"><a href="#cb17-13"></a>fig,ax <span class="op">=</span> try_all_threshold(entr_img,figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">8</span>),verbose <span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-14"><a href="#cb17-14"></a>plt.show()</span>
+<span id="cb17-15"><a href="#cb17-15"></a></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="co"># thereshold is one single number</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a>ts_value <span class="op">=</span> threshold_otsu(entr_img)</span>
+<span id="cb17-18"><a href="#cb17-18"></a><span class="bu">print</span>(ts_value)</span>
+<span id="cb17-19"><a href="#cb17-19"></a></span>
+<span id="cb17-20"><a href="#cb17-20"></a><span class="co"># sum the value to get percentages</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a>np.<span class="bu">sum</span>(entr_img <span class="op">&lt;</span> ts_value)<span class="op">/</span>(np.<span class="bu">sum</span>(entr_img <span class="op">&lt;</span> ts_value) <span class="op">+</span> np.<span class="bu">sum</span>(entr_img <span class="op">&gt;</span> ts_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-11-output-1.png" width="566" height="415"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="microscopist_files/figure-html/cell-11-output-2.png" width="625" height="758"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2.134854929499421</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0.2891522491349481</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="reference" class="level1">
 <h1>reference</h1>

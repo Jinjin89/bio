@@ -130,7 +130,7 @@
     "href": "qmd/ml/microscopist.html",
     "title": "Python for microscopist",
     "section": "",
-    "text": "read images into python\n\nskimage\n\n\n\n\nimage preprocessing\n\n\nreference\nAlmost all the content comes from: https://www.youtube.com/watch?v=X_pCiVQ4c4E&list=PLZsOBAyNTZwbIjGnolFydAN33gyyGP7lT"
+    "text": "processing HE\nprocessing immune staining"
   },
   {
     "objectID": "qmd/tools/git.html",
@@ -271,5 +271,26 @@
     "title": "Network",
     "section": "Docker app",
     "text": "Docker app\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\nrun docker without root permission\n\n\nrun ubuntu\ndocker run ubuntu sleep 5\n\n\n\ndocker network\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\nvoumnes\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\ndocker-compose\n\n\ndocker registry\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\norchestrate\n\n\ndocker swarm\ndocker service --replicas=3 my-web\n\n\n\nkubernetes"
+  },
+  {
+    "objectID": "qmd/ml/microscopist.html#images-in-python",
+    "href": "qmd/ml/microscopist.html#images-in-python",
+    "title": "Python for microscopist",
+    "section": "images in python",
+    "text": "images in python"
+  },
+  {
+    "objectID": "qmd/ml/microscopist.html#pil",
+    "href": "qmd/ml/microscopist.html#pil",
+    "title": "Python for microscopist",
+    "section": "PIL",
+    "text": "PIL\n\nresize: change the ratio\nthumbnail: orgin ratio\ncrop\npaste:\nrotate\n\n\nfrom PIL import Image\nimg = Image.open(images_file)\nprint(img.format)\nprint(img.mode)\nprint(img.size)\nprint(type(img))\n\n# resize\nplt.imshow(img)\nplt.show()\n\nsmall_img = img.resize((200,300))\nplt.imshow(small_img)\nplt.show()\n\n# thumbnail\nimg.thumbnail((200,300))\nprint(img.size)\nplt.imshow(img)\nplt.show()\n\nimg.thumbnail((1200,1300))\nprint(img.size)\nplt.imshow(img)\nplt.show()\n\n# crop\nimg = Image.open(images_file)\ncrop_img = img.crop((0,0,300,300))\n\nplt.imshow(crop_img)\nplt.show()\n\n# paste\nimg.paste(crop_img)\n\n# image\nimg.rotate(90)\n\nJPEG\nRGB\n(639, 513)\n<class 'PIL.JpegImagePlugin.JpegImageFile'>\n\n\n\n\n\n\n\n\n(200, 161)\n\n\n\n\n\n(200, 161)"
+  },
+  {
+    "objectID": "qmd/ml/microscopist.html#skimage",
+    "href": "qmd/ml/microscopist.html#skimage",
+    "title": "Python for microscopist",
+    "section": "skimage",
+    "text": "skimage\n\nfrom skimage import io\nfrom matplotlib import pyplot as plt\nfrom skimage.transform import rescale,resize,downscale_local_mean\nimg = io.imread(images_file,as_gray=True)\nplt.imshow(img)\nplt.show()\n\n# rescale\nimg_rescale = rescale(img,1/4,anti_aliasing=True)\nplt.imshow(img_rescale)\nplt.show()\nimg_resize =resize(img,(200,200),anti_aliasing=True)\nplt.imshow(img_resize)\nplt.show()\nimg_down = downscale_local_mean(img,(4,3))\nplt.imshow(img_down)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nedge detections\n\n\nfrom skimage.filters import roberts,sobel,scharr,prewitt\n\nfrom skimage.feature import canny\nedge_canny = canny(img,sigma = 5)\nplt.imshow(edge_canny)\nplt.show()\n\n\n\n\n\ndeconvolution\n\npsf: point spread function\n\nfrom skimage import restoration\nimport numpy as np\npsf = np.ones((3,3)) / 9\ndecon,_ = restoration.unsupervised_wiener(img,psf)\n\nplt.imshow(decon,cmap=\"gray\")\nplt.show()\n\n\n\n\n\nexample: wound healing\n\nIntroduce entropy there, in wound healing experiments, the clean images and the\n\nfrom skimage import io,restoration\nfrom skimage.filters.rank import entropy\nfrom skimage.morphology import disk\nimages_file = '/home/keke/data/web/python_for_microscopists/images/scratch.jpg'\nimg = io.imread(images_file)\nentr_img = entropy(img,disk(3))\nplt.imshow(entr_img,cmap = \"gray\")\nplt.show()\n\n# try all\nfrom skimage.filters import try_all_threshold\nfrom skimage.filters import threshold_otsu\nfig,ax = try_all_threshold(entr_img,figsize = (10,8),verbose =False)\nplt.show()\n\n# thereshold is one single number\nts_value = threshold_otsu(entr_img)\nprint(ts_value)\n\n# sum the value to get percentages\nnp.sum(entr_img < ts_value)/(np.sum(entr_img < ts_value) + np.sum(entr_img > ts_value))\n\n\n\n\n\n\n\n2.134854929499421\n\n\n0.2891522491349481"
   }
 ]
