@@ -5,13 +5,74 @@ title: R
 
 # metaprogramming
 
+
+1. what is call2
+
+```
+# call2
+call2("fun_name",1,2,3)
+fun_name(1,2,3)
+
+
+```
+
+2. expr/enexpr  and eval
+
+
+
+```
+string_math <- function(x) {
+  e <- env(
+    caller_env(),
+    `+` = function(x, y) paste0(x, y),
+    `*` = function(x, y) strrep(x, y)
+  )
+
+  eval(enexpr(x), e)
+}
+
+name <- "Hadley"
+string_math("Hello " + name)
+#> [1] "Hello Hadley"
+string_math(("x" * 2 + "-y") * 3)
+#> [1] "xx-yxx-yxx-y"
+
+```
+
 ## what is quote and unquote?
 
 ## what is {} {{}}?
 
 ## what is parse/eval/substitue?
 
+substittue <-> unquote
+
 ## In dplyr, what is vars, across, everything?
+
+
+# r config
+
+## Change the default r installed library
+
+1. create the new `.Renviron` files
+
+2. add the installed library
+
+```
+R_LIBS_USER=/home/rstudio/r_lib
+R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library
+
+```
+
+## Append the new `LD_LIBRARY_PATH`
+
+so you can use the conda to install the library
+
+```
+LD_LIBRARY_PATH=/usr/local/lib/R/lib:/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:/home/rstudio/app/conda/lib
+```
+
+
 
 # clindf
 

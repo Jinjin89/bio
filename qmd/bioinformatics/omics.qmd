@@ -1,0 +1,41 @@
+---
+title: "Omics field"
+---
+
+# DNA methylation
+
+
+## how to detect DNA methylation?
+
+1. BeadChip(27,450K,EPIC)
+
+    * 
+
+2. Bisulfit techniques
+
+    * single-base resolution
+
+    * loss of complementarity(why? and how it matters?)
+
+        1. All Cs are converted into Us
+
+        2. probe design must be target specific and assue complete bisulfite conversion
+
+3. compare infinium1 and infinium2?
+
+
+
+
+## what is the difference between 450K and EPIC?
+
+* 450K contains >450K probes(discontinued) 
+
+* EPIC contains >850K probes
+
+
+1. what is the basic structure of idat file format?
+
+
+
+## SNP-array
+what is SNP6.0?

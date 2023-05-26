@@ -1,0 +1,374 @@
+---
+title: "Numpy"
+format: 
+    html: 
+        toc: true
+---
+
+
+[https://github.com/rougier/numpy-100/]
+
+
+#### Print the numpy version and the configuration
+
+```{python}
+import numpy as np
+print(np.__version__)
+print(np.show_config())
+
+```
+
+
+#### Create a null vector of size 10, and get the size 
+
+
+```{python}
+a = np.zeros([10])
+print(a)
+print(np.size(a))
+
+# get size
+print("Found element " + str(a.size) + ".\neach element is " + str(a.itemsize) +    " Bytes.\nIn total we have "+ str(a.size * a.itemsize) +" Bytes")
+
+```
+
+
+#### How to get the documentation of the numpy add function from the command line?
+
+
+```{bash}
+python -c "import numpy; numpy.info(numpy.add)"
+
+```
+
+
+
+#### Create a null vector of size 10 but the fifth value which is 1
+
+```{python}
+
+a = np.zeros([10])
+a[4] = 1
+print(a)
+
+```
+
+#### Create a vector with values ranging from 10 to 49, reserve it
+
+```{python}
+
+print(np.arange(10,50))
+
+# reverse
+print(np.arange(10,50)[::-1])
+
+```
+
+
+
+####  Create a 3x3 matrix with values ranging from 0 to 8
+
+
+```{python}
+
+np.arange(0,9).reshape([3,3])
+
+```
+
+
+#### Find indices of non-zero elements from an array
+
+```{python}
+np.nonzero([1,0,0,1,1,0])
+
+```
+
+
+#### Create a 3x3 identity matrix
+
+
+```{python}
+
+np.eye(3)
+
+```
+
+
+#### create 3x3x3 matrix with random values
+
+
+```{python}
+np.random.random([3,3,3])
+
+```
+
+
+####  Create a 2d array with 1 on the border and 0 insid
+
+
+
+```{python}
+
+Z=np.ones([10,10])
+Z[1:-1,1:-1] = 0
+Z
+
+```
+
+
+####  How to add a border (filled with 0's) around an existing array
+
+
+```{python}
+Z = np.zeros([10,10])
+
+Z[:,[0,-1]] = 1
+Z[[0,-1],:] = 1
+Z
+
+```
+
+#### test the results
+
+
+```{python}
+print(0 * np.nan)
+print(np.nan == np.nan)
+print(np.inf > np.nan)
+print(np.nan - np.nan)
+print(np.nan in set([np.nan]))
+print(0.3 == 3 * 0.1)
+
+```
+
+
+#### Create a 5x5 matrix with values 1,2,3,4 just below the diagonal?
+
+```{python}
+
+Z = np.diag(1+np.arange(4),k=-1)
+print(Z)
+
+```
+
+
+#### Create a 8x8 matrix and fill it with a checkerboard pattern?
+
+
+```{python}
+Z = np.zeros((8,8),dtype=int)
+Z[1::2,::2] = 1
+Z[::2,1::2] = 1
+print(Z)
+
+```
+
+
+### Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?
+
+
+```{python}
+print(np.unravel_index(99,(6,7,8)))
+print(np.unravel_index(99,(10,100)))
+
+```
+
+
+#### Create a checkerboard 8x8 matrix using the tile function
+
+
+```{python}
+
+np.tile([[1,0],[0,1]],[5,5,5]).shape
+
+np.tile([[1,0],[0,1]],[5,5]).shape
+
+```
+
+####  Normalize a 5x5 random matrix
+
+```{python}
+Z = np.random.random((3,5,7))
+# print(Z)
+print(np.std(Z,0))
+print(np.std(Z,1))
+print(np.std(Z,2))
+
+```
+
+
+
+#### Create a custom dtype that describes a color as four unsigned bytes (RGBA)?
+
+
+```{python}
+color = np.dtype([("r", np.ubyte),("g", np.ubyte),("b", np.ubyte),("a", np.ubyte)])
+print(color)
+
+```
+
+#### dot product
+
+
+```{python}
+np.dot(np.ones((5,3)),np.ones((3,2)))
+
+Z = np.ones((5,3)) @ np.ones((3,2))
+print(Z)
+
+```
+
+#### Given a 1D array, negate all elements which are between 3 and 8, in place
+
+what is the difference between `and` and `&`?
+
+`&`: is the bitwise operator
+
+```{python}
+np.random.seed(1)
+Z = np.random.random((10))*10
+Z[(Z < 8) & (Z > 3)] *= -1
+Z
+
+```
+
+
+#### Consider an integer vector Z, which of these expressions are legal
+
+`<<`: bitwise operator, shift left
+
+`>>`: bitwise operator, shift right
+
+
+
+```{python}
+Z = 3
+Z**Z
+2 << Z >> 2
+Z <- Z
+1j*Z
+Z/1/1
+Z<Z>Z
+```
+
+
+#### How to ignore all numpy warnings (not recommended)
+
+
+```{python}
+
+defaults = np.seterr(all="ignore")
+Z = np.ones(1) / 0
+_ = np.seterr(**defaults)
+
+with np.errstate(all="ignore"):
+    np.arange(3) / 0
+
+```
+
+
+#### How to get all the dates corresponding to the month of July 2016
+
+```{python}
+np.arange('2016-07', '2016-08', dtype='datetime64[D]')
+
+```
+
+
+#### How to compute ((A+B)*(-A/2)) in place (without copy)?
+
+
+```{python}
+
+A = np.ones(3)*1
+B = np.ones(3)*2
+np.add(A,B,out=B)
+np.divide(A,2,out=A)
+np.negative(A,out=A)
+np.multiply(A,B,out=A)
+
+```
+
+
+#### Extract the integer part of a random array of positive numbers using 4 different methods
+
+```{python}
+Z = np.random.uniform(0,10,10)
+
+# 1)
+np.divmod(Z,1)
+Z//1
+
+# 2)
+Z.astype(np.int)
+
+# 3)
+Z - Z%1
+
+# 4) 
+np.trunc(Z)
+
+```
+
+
+#### Create a 5x5 matrix with row values ranging from 0 to 4
+
+
+```{python}
+Z = np.zeros((5,5))
+Z[:,:] = np.arange(0,5)
+Z
+
+np.tile(np.arange(0,5),(5,1))
+
+```
+
+#### genrator function
+
+```{python}
+
+def generate():
+    for x in range(10):
+        yield x
+
+Z = np.fromiter(generate(),dtype=float,count=-1)
+
+print(Z)
+
+```
+
+
+
+####  Create a vector of size 10 with values ranging from 0 to 1, both excluded
+
+```{python}
+#np.random.random((10))
+Z = np.linspace(0,1,11,endpoint=False)[1:]
+Z
+```
+
+
+#### How to sum a small array faster than np.sum?
+
+`np.sum`
+
+`np.add.reduce`
+
+
+```{python}
+
+```
+
+
+
+#### Consider two random array A and B, check if they are equal
+
+
+```{python}
+
+A = np.array([1,2,3])
+B = np.array([1,2,3])
+np.allclose(A,B)
+np.equal(A,B)
+
+```

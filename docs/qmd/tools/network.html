@@ -251,6 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#orchestrate" id="toc-orchestrate" class="nav-link" data-scroll-target="#orchestrate">orchestrate</a></li>
   <li><a href="#docker-swarm" id="toc-docker-swarm" class="nav-link" data-scroll-target="#docker-swarm">docker swarm</a></li>
   <li><a href="#kubernetes" id="toc-kubernetes" class="nav-link" data-scroll-target="#kubernetes">kubernetes</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">exercise</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -497,18 +498,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-22"><a href="#cb5-22"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
 <span id="cb5-23"><a href="#cb5-23"></a>    -p 8686:8787 \</span>
 <span id="cb5-24"><a href="#cb5-24"></a>    rocker/rstudio:4.2</span>
-<span id="cb5-25"><a href="#cb5-25"></a></span>
-<span id="cb5-26"><a href="#cb5-26"></a># run in background(--detached -d)</span>
-<span id="cb5-27"><a href="#cb5-27"></a>docker run --rm -ti \</span>
-<span id="cb5-28"><a href="#cb5-28"></a>    -e PASSWORD=happy_password\</span>
-<span id="cb5-29"><a href="#cb5-29"></a>    -d\</span>
-<span id="cb5-30"><a href="#cb5-30"></a>    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\</span>
-<span id="cb5-31"><a href="#cb5-31"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
-<span id="cb5-32"><a href="#cb5-32"></a>    -p 8686:8787 \</span>
-<span id="cb5-33"><a href="#cb5-33"></a>    rocker/rstudio:4.2</span>
-<span id="cb5-34"><a href="#cb5-34"></a></span>
-<span id="cb5-35"><a href="#cb5-35"></a># stop it </span>
-<span id="cb5-36"><a href="#cb5-36"></a>docker stop &lt;CONTAINER ID&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-25"><a href="#cb5-25"></a># run in background(--detached -d)</span>
+<span id="cb5-26"><a href="#cb5-26"></a>docker run --rm -ti \</span>
+<span id="cb5-27"><a href="#cb5-27"></a>    -e PASSWORD=happy_password\</span>
+<span id="cb5-28"><a href="#cb5-28"></a>    -d\</span>
+<span id="cb5-29"><a href="#cb5-29"></a>    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\</span>
+<span id="cb5-30"><a href="#cb5-30"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
+<span id="cb5-31"><a href="#cb5-31"></a>    -p 8686:8787 \</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    rocker/rstudio:4.2</span>
+<span id="cb5-33"><a href="#cb5-33"></a></span>
+<span id="cb5-34"><a href="#cb5-34"></a># stop it </span>
+<span id="cb5-35"><a href="#cb5-35"></a>docker stop &lt;CONTAINER ID&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="run-docker-without-root-permission" class="level3">
 <h3 class="anchored" data-anchor-id="run-docker-without-root-permission">run docker without root permission</h3>
@@ -559,6 +559,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="kubernetes" class="level3">
 <h3 class="anchored" data-anchor-id="kubernetes">kubernetes</h3>
+</section>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">exercise</h3>
+<ol type="1">
+<li>create a restudio docker image</li>
+<li>with r-version</li>
+<li>with package installation</li>
+<li>try: conda integrations?</li>
+</ol>
 
 
 </section>

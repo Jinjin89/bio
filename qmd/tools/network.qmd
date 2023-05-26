@@ -277,7 +277,6 @@ docker run --rm -ti \
     -v /home/keke/data/:/home/rstudio/data/\
     -p 8686:8787 \
     rocker/rstudio:4.2
-
 # run in background(--detached -d)
 docker run --rm -ti \
     -e PASSWORD=happy_password\
@@ -351,3 +350,11 @@ docker service --replicas=3 my-web
 
 ### kubernetes
 
+
+
+### exercise
+
+1. create a restudio docker image
+2. with r-version
+3. with package installation
+4. try: conda integrations?

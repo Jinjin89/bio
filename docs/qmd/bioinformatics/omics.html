@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bioinfor - single cell</title>
+<title>Bioinfor - Omics field</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">single cell</h1>
+      <h1 class="quarto-secondary-nav-title">Omics field</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../qmd/bioinformatics/sc.html" class="sidebar-item-text sidebar-link active">single cell</a>
+  <a href="../../qmd/bioinformatics/sc.html" class="sidebar-item-text sidebar-link">single cell</a>
   </div>
 </li>
       </ul>
@@ -198,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../qmd/bioinformatics/omics.html" class="sidebar-item-text sidebar-link">Omics</a>
+  <a href="../../qmd/bioinformatics/omics.html" class="sidebar-item-text sidebar-link active">Omics</a>
   </div>
 </li>
     </ul>
@@ -210,7 +210,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#todo" id="toc-todo" class="nav-link active" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#dna-methylation" id="toc-dna-methylation" class="nav-link active" data-scroll-target="#dna-methylation">DNA methylation</a>
+  <ul class="collapse">
+  <li><a href="#how-to-detect-dna-methylation" id="toc-how-to-detect-dna-methylation" class="nav-link" data-scroll-target="#how-to-detect-dna-methylation">how to detect DNA methylation?</a></li>
+  <li><a href="#what-is-the-difference-between-450k-and-epic" id="toc-what-is-the-difference-between-450k-and-epic" class="nav-link" data-scroll-target="#what-is-the-difference-between-450k-and-epic">what is the difference between 450K and EPIC?</a></li>
+  <li><a href="#snp-array" id="toc-snp-array" class="nav-link" data-scroll-target="#snp-array">SNP-array</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -219,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">single cell</h1>
+<h1 class="title d-none d-lg-block">Omics field</h1>
 </div>
 
 
@@ -233,32 +238,43 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="todo" class="level1">
-<h1>TODO</h1>
+<section id="dna-methylation" class="level1">
+<h1>DNA methylation</h1>
+<section id="how-to-detect-dna-methylation" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-detect-dna-methylation">how to detect DNA methylation?</h2>
 <ol type="1">
-<li><p>Guidelines for annotate single cell?</p>
-<p><a href="https://sci-hub.mksa.top/10.1038/s41596-021-00534-0" class="uri">https://sci-hub.mksa.top/10.1038/s41596-021-00534-0</a></p>
-<p>three steps</p>
-<pre><code> 1. annotate use predefined set of marker genes
-
-     * marker based tools
-
-     * reference based tools
-
- 2.  manual annotation
-
-     * lower confidence, conflicting or absent cell labels, expert manual annotation is required
-
-     * 
-
- 3. verification(1. other methods, 2. new validation experiments)
-
-     * statistical methods
-
-     * expert</code></pre></li>
+<li><p>BeadChip(27,450K,EPIC)</p>
+<ul>
+<li></li>
+</ul></li>
+<li><p>Bisulfit techniques</p>
+<ul>
+<li><p>single-base resolution</p></li>
+<li><p>loss of complementarity(why? and how it matters?)</p>
+<ol type="1">
+<li><p>All Cs are converted into Us</p></li>
+<li><p>probe design must be target specific and assue complete bisulfite conversion</p></li>
+</ol></li>
+</ul></li>
+<li><p>compare infinium1 and infinium2?</p></li>
 </ol>
+</section>
+<section id="what-is-the-difference-between-450k-and-epic" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-difference-between-450k-and-epic">what is the difference between 450K and EPIC?</h2>
+<ul>
+<li><p>450K contains &gt;450K probes(discontinued)</p></li>
+<li><p>EPIC contains &gt;850K probes</p></li>
+</ul>
+<ol type="1">
+<li>what is the basic structure of idat file format?</li>
+</ol>
+</section>
+<section id="snp-array" class="level2">
+<h2 class="anchored" data-anchor-id="snp-array">SNP-array</h2>
+<p>what is SNP6.0?</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

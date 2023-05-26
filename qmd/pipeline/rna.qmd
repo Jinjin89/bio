@@ -1,6 +1,6 @@
 ---
 title: RNA pipline
-bibliography: rna.bib
+bibliography: "../citation/rna.bib"
 ---
 
 
@@ -14,7 +14,7 @@ for details about pipeline, please view <https://docs.gdc.cancer.gov/Data/Bioinf
 for details about `STAR`, plesae view <https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf>
 
 
-In this chapter, 
+In this chapter@misc
     
 * first summarise introduce the alignment
 
@@ -27,6 +27,7 @@ In this chapter,
 
 * samol
 
+Salmon
 
 ```{mermaid}
 flowchart TD
@@ -36,8 +37,6 @@ flowchart TD
     input --> output
 
 ```
-
-
 
 # live code
 

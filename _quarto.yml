@@ -54,6 +54,9 @@ website:
           contents:
           - qmd/bioinformatics/data_format.qmd
 
+        - text: Omics
+          href: qmd/bioinformatics/omics.qmd
+
     - id: ML
       title: "Machine learning"
       style: floating
@@ -63,7 +66,7 @@ website:
         - text: "ML in bio"
           href: qmd/ml/index.qmd
         - href: qmd/ml/microscopist.qmd
-
+        - href: qmd/ml/numpy.qmd
     - id: Pipeline
       title: Pipeline
       style: floating
@@ -73,7 +76,7 @@ website:
         - text: "Pipeline"
           href: qmd/pipeline/index.qmd
         - href: qmd/pipeline/dna.qmd
-        - href: qmd/pipeline/mrna.qmd
+        - href: qmd/pipeline/rna.qmd
         - href: qmd/pipeline/metagenomics.qmd
         
     - id: Tools
@@ -88,6 +91,7 @@ website:
         - href: qmd/tools/quarto_tools.qmd
         - href: qmd/tools/network.qmd
         - href: qmd/tools/r.qmd
+        - href: qmd/tools/webtools.qmd
 
 format:
   html:

@@ -177,6 +177,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-is-parseevalsubstitue" id="toc-what-is-parseevalsubstitue" class="nav-link" data-scroll-target="#what-is-parseevalsubstitue">what is parse/eval/substitue?</a></li>
   <li><a href="#in-dplyr-what-is-vars-across-everything" id="toc-in-dplyr-what-is-vars-across-everything" class="nav-link" data-scroll-target="#in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</a></li>
   </ul></li>
+  <li><a href="#r-config" id="toc-r-config" class="nav-link" data-scroll-target="#r-config">r config</a>
+  <ul class="collapse">
+  <li><a href="#change-the-default-r-installed-library" id="toc-change-the-default-r-installed-library" class="nav-link" data-scroll-target="#change-the-default-r-installed-library">Change the default r installed library</a></li>
+  <li><a href="#append-the-new-ld_library_path" id="toc-append-the-new-ld_library_path" class="nav-link" data-scroll-target="#append-the-new-ld_library_path">Append the new <code>LD_LIBRARY_PATH</code></a></li>
+  </ul></li>
   <li><a href="#clindf" id="toc-clindf" class="nav-link" data-scroll-target="#clindf">clindf</a></li>
   </ul>
 </nav>
@@ -202,6 +207,33 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="metaprogramming" class="level1">
 <h1>metaprogramming</h1>
+<ol type="1">
+<li>what is call2</li>
+</ol>
+<pre><code># call2
+call2("fun_name",1,2,3)
+fun_name(1,2,3)
+
+</code></pre>
+<ol start="2" type="1">
+<li>expr/enexpr and eval</li>
+</ol>
+<pre><code>string_math &lt;- function(x) {
+  e &lt;- env(
+    caller_env(),
+    `+` = function(x, y) paste0(x, y),
+    `*` = function(x, y) strrep(x, y)
+  )
+
+  eval(enexpr(x), e)
+}
+
+name &lt;- "Hadley"
+string_math("Hello " + name)
+#&gt; [1] "Hello Hadley"
+string_math(("x" * 2 + "-y") * 3)
+#&gt; [1] "xx-yxx-yxx-y"
+</code></pre>
 <section id="what-is-quote-and-unquote" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-quote-and-unquote">what is quote and unquote?</h2>
 </section>
@@ -210,9 +242,28 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-parseevalsubstitue" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-parseevalsubstitue">what is parse/eval/substitue?</h2>
+<p>substittue &lt;-&gt; unquote</p>
 </section>
 <section id="in-dplyr-what-is-vars-across-everything" class="level2">
 <h2 class="anchored" data-anchor-id="in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</h2>
+</section>
+</section>
+<section id="r-config" class="level1">
+<h1>r config</h1>
+<section id="change-the-default-r-installed-library" class="level2">
+<h2 class="anchored" data-anchor-id="change-the-default-r-installed-library">Change the default r installed library</h2>
+<ol type="1">
+<li><p>create the new <code>.Renviron</code> files</p></li>
+<li><p>add the installed library</p></li>
+</ol>
+<pre><code>R_LIBS_USER=/home/rstudio/r_lib
+R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library
+</code></pre>
+</section>
+<section id="append-the-new-ld_library_path" class="level2">
+<h2 class="anchored" data-anchor-id="append-the-new-ld_library_path">Append the new <code>LD_LIBRARY_PATH</code></h2>
+<p>so you can use the conda to install the library</p>
+<pre><code>LD_LIBRARY_PATH=/usr/local/lib/R/lib:/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:/home/rstudio/app/conda/lib</code></pre>
 </section>
 </section>
 <section id="clindf" class="level1">
