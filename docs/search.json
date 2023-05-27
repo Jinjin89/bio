@@ -327,5 +327,96 @@
     "title": "R",
     "section": "Append the new LD_LIBRARY_PATH",
     "text": "Append the new LD_LIBRARY_PATH\nso you can use the conda to install the library\nLD_LIBRARY_PATH=/usr/local/lib/R/lib:/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:/home/rstudio/app/conda/lib"
+  },
+  {
+    "objectID": "qmd/03_ml/01_index.html",
+    "href": "qmd/03_ml/01_index.html",
+    "title": "Machine learning",
+    "section": "",
+    "text": "Machine learning"
+  },
+  {
+    "objectID": "qmd/04_tools/13_r.html",
+    "href": "qmd/04_tools/13_r.html",
+    "title": "R",
+    "section": "",
+    "text": "what is call2\n\n# call2\ncall2(\"fun_name\",1,2,3)\nfun_name(1,2,3)\n\n\n\nexpr/enexpr and eval\n\nstring_math <- function(x) {\n  e <- env(\n    caller_env(),\n    `+` = function(x, y) paste0(x, y),\n    `*` = function(x, y) strrep(x, y)\n  )\n\n  eval(enexpr(x), e)\n}\n\nname <- \"Hadley\"\nstring_math(\"Hello \" + name)\n#> [1] \"Hello Hadley\"\nstring_math((\"x\" * 2 + \"-y\") * 3)\n#> [1] \"xx-yxx-yxx-y\"\n\n\n\n\n\n\n\n\n\nsubstittue <-> unquote"
+  },
+  {
+    "objectID": "qmd/04_tools/13_r.html#change-the-default-r-installed-library",
+    "href": "qmd/04_tools/13_r.html#change-the-default-r-installed-library",
+    "title": "R",
+    "section": "Change the default r installed library",
+    "text": "Change the default r installed library\n\ncreate the new .Renviron files\nadd the installed library\n\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library"
+  },
+  {
+    "objectID": "qmd/04_tools/13_r.html#append-the-new-ld_library_path",
+    "href": "qmd/04_tools/13_r.html#append-the-new-ld_library_path",
+    "title": "R",
+    "section": "Append the new LD_LIBRARY_PATH",
+    "text": "Append the new LD_LIBRARY_PATH\nso you can use the conda to install the library\nLD_LIBRARY_PATH=/usr/local/lib/R/lib:/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:/home/rstudio/app/conda/lib"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html",
+    "href": "qmd/04_tools/15_docker.html",
+    "title": "Docker",
+    "section": "",
+    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop <id>\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull <iamge>\n\n# pull and run images\ndocker run <iamge:tag>\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d <container>\n\ndocker attach <id>\n\n# inspect containder\ndocker inspect <id>\n\n# check logs\ndocker logs <id>\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -> data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t <image_name>\n\n\n\n\n\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\n\n\n\n\ndocker run ubuntu sleep 5\n\n\n\n\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\n\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\n\n\n\n\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\n\n\n\n\ndocker service --replicas=3 my-web"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
+    "href": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
+    "title": "Docker",
+    "section": "1) create a rstudio images",
+    "text": "1) create a rstudio images\n\nWhat to containrize?\n\nubuntu\nrstudio\nr\nr-packages\nothers"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html#wordpress-with-docker",
+    "href": "qmd/04_tools/15_docker.html#wordpress-with-docker",
+    "title": "Docker",
+    "section": "2) wordpress with docker",
+    "text": "2) wordpress with docker\n\noption 1. build your own docker file\nhttps://github.com/aschmelyun/docker-compose-wordpress\n\n\noption2: pull official website"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html#discuz-with-docker",
+    "href": "qmd/04_tools/15_docker.html#discuz-with-docker",
+    "title": "Docker",
+    "section": "3) discuz with docker",
+    "text": "3) discuz with docker"
+  },
+  {
+    "objectID": "qmd/04_tools/12_restful.html",
+    "href": "qmd/04_tools/12_restful.html",
+    "title": "restful",
+    "section": "",
+    "text": "what is restful api\nThe full name is …\nHow to use it (if websites have api)?\nconstruct the paper\nAre there tools available that would make this simple for us?\nHow to achieve/implement it with Python programming?\nusing ensemle api"
+  },
+  {
+    "objectID": "qmd/04_tools/01_index.html",
+    "href": "qmd/04_tools/01_index.html",
+    "title": "Tools",
+    "section": "",
+    "text": "This is about useful tools that could help improve us to do bioinformatics job."
+  },
+  {
+    "objectID": "qmd/04_tools/11_git.html",
+    "href": "qmd/04_tools/11_git.html",
+    "title": "git",
+    "section": "",
+    "text": "Q&A\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b <newbranch>\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge <newbranch>\nclone with ssh\ngit clone username@ip_address:/path/to/your/git\nbuild the data\n# 1) build new data\ngit init\n\n# 2) rename branch\ngit rename -m master current\n\n# 3) add remote data\ngit remote add <repo-name> username@ip_address:/path/to/your/git\n\n# 4) pull or push\ngit pull \ngit push"
+  },
+  {
+    "objectID": "qmd/04_tools/16_web.html",
+    "href": "qmd/04_tools/16_web.html",
+    "title": "Web",
+    "section": "",
+    "text": "setup a squid server\nhttps://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04\n# 1) install\napt-get install squid\nsystemctl status squid\n\n# 2) allow ip, find `http_access deny ` to allow or deny ip, could set `http_access allow all`\nvim /etc/squid/squid.conf\n\n# 3) set password\napt install apache2-utils\nhtpasswd -c /etc/squid/passwords <user_name>\n\n# 4) check \ncat /etc/squid/passwords\n\n# 5) reopen, add params for authentication\nvim /etc/squid/squid.conf\n\n# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n#\ninclude /etc/squid/conf.d/*\n#######################ADD#########################\nauth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords\nauth_param basic realm proxy\nacl authenticated proxy_auth REQUIRED\n#######################ADD#########################\n\n# Example rule allowing access from your local networks.\nacl localnet src your_ip_address\n# Adapt localnet in the ACL section to list your (internal) IP networks\n# from where browsing should be allowed\n#http_access allow localnet\nhttp_access allow localhost\n\n#######################ADD#########################\nhttp_access allow authenticated\n#######################ADD#########################\n\n# And finally deny all other access to this proxy\nhttp_access deny all\n\n# 6) you could change the port if you want\nufw allow 7001\nvim /etc/squid/squid.conf\n\nhttp_port 3128\n\n# 7) test it \n\ncurl -OJ  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy \"http://<user_name>:<passwd>@<address>:<port>\"\n\n\nhow to monitor the network dataflow"
+  },
+  {
+    "objectID": "qmd/04_tools/14_quarto_tools.html",
+    "href": "qmd/04_tools/14_quarto_tools.html",
+    "title": "quarto tools",
+    "section": "",
+    "text": "citatation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n---\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::"
   }
 ]

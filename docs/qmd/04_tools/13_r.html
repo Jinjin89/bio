@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bioinfor - R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Bioinfor</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/01_bioinformatics/01_index.html">Bioinformatics</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/02_pipeline/01_index.html">Pipeline</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/03_ml/01_index.html">ML</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../qmd/04_tools/01_index.html" aria-current="page">Tools</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/SQiangqiang"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Jinjin89"><i class="bi bi-github" role="img" aria-label="github">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/keke-sun-6a9371267"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">R</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/01_index.html" class="sidebar-item-text sidebar-link">Tools</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/11_git.html" class="sidebar-item-text sidebar-link">git</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/12_restful.html" class="sidebar-item-text sidebar-link">restful</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/13_r.html" class="sidebar-item-text sidebar-link active">R</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/14_quarto_tools.html" class="sidebar-item-text sidebar-link">quarto tools</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/15_docker.html" class="sidebar-item-text sidebar-link">Docker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/16_web.html" class="sidebar-item-text sidebar-link">Web</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#metaprogramming" id="toc-metaprogramming" class="nav-link active" data-scroll-target="#metaprogramming">metaprogramming</a>
+  <ul class="collapse">
+  <li><a href="#what-is-quote-and-unquote" id="toc-what-is-quote-and-unquote" class="nav-link" data-scroll-target="#what-is-quote-and-unquote">what is quote and unquote?</a></li>
+  <li><a href="#what-is" id="toc-what-is" class="nav-link" data-scroll-target="#what-is">what is {} {{}}?</a></li>
+  <li><a href="#what-is-parseevalsubstitue" id="toc-what-is-parseevalsubstitue" class="nav-link" data-scroll-target="#what-is-parseevalsubstitue">what is parse/eval/substitue?</a></li>
+  <li><a href="#in-dplyr-what-is-vars-across-everything" id="toc-in-dplyr-what-is-vars-across-everything" class="nav-link" data-scroll-target="#in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</a></li>
+  </ul></li>
+  <li><a href="#r-config" id="toc-r-config" class="nav-link" data-scroll-target="#r-config">r config</a>
+  <ul class="collapse">
+  <li><a href="#change-the-default-r-installed-library" id="toc-change-the-default-r-installed-library" class="nav-link" data-scroll-target="#change-the-default-r-installed-library">Change the default r installed library</a></li>
+  <li><a href="#append-the-new-ld_library_path" id="toc-append-the-new-ld_library_path" class="nav-link" data-scroll-target="#append-the-new-ld_library_path">Append the new <code>LD_LIBRARY_PATH</code></a></li>
+  </ul></li>
+  <li><a href="#clindf" id="toc-clindf" class="nav-link" data-scroll-target="#clindf">clindf</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="metaprogramming" class="level1">
+<h1>metaprogramming</h1>
+<ol type="1">
+<li>what is call2</li>
+</ol>
+<pre><code># call2
+call2("fun_name",1,2,3)
+fun_name(1,2,3)
+
+</code></pre>
+<ol start="2" type="1">
+<li>expr/enexpr and eval</li>
+</ol>
+<pre><code>string_math &lt;- function(x) {
+  e &lt;- env(
+    caller_env(),
+    `+` = function(x, y) paste0(x, y),
+    `*` = function(x, y) strrep(x, y)
+  )
+
+  eval(enexpr(x), e)
+}
+
+name &lt;- "Hadley"
+string_math("Hello " + name)
+#&gt; [1] "Hello Hadley"
+string_math(("x" * 2 + "-y") * 3)
+#&gt; [1] "xx-yxx-yxx-y"
+</code></pre>
+<section id="what-is-quote-and-unquote" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quote-and-unquote">what is quote and unquote?</h2>
+</section>
+<section id="what-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-is">what is {} {{}}?</h2>
+</section>
+<section id="what-is-parseevalsubstitue" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-parseevalsubstitue">what is parse/eval/substitue?</h2>
+<p>substittue &lt;-&gt; unquote</p>
+</section>
+<section id="in-dplyr-what-is-vars-across-everything" class="level2">
+<h2 class="anchored" data-anchor-id="in-dplyr-what-is-vars-across-everything">In dplyr, what is vars, across, everything?</h2>
+</section>
+</section>
+<section id="r-config" class="level1">
+<h1>r config</h1>
+<section id="change-the-default-r-installed-library" class="level2">
+<h2 class="anchored" data-anchor-id="change-the-default-r-installed-library">Change the default r installed library</h2>
+<ol type="1">
+<li><p>create the new <code>.Renviron</code> files</p></li>
+<li><p>add the installed library</p></li>
+</ol>
+<pre><code>R_LIBS_USER=/home/rstudio/r_lib
+R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library
+</code></pre>
+</section>
+<section id="append-the-new-ld_library_path" class="level2">
+<h2 class="anchored" data-anchor-id="append-the-new-ld_library_path">Append the new <code>LD_LIBRARY_PATH</code></h2>
+<p>so you can use the conda to install the library</p>
+<pre><code>LD_LIBRARY_PATH=/usr/local/lib/R/lib:/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:/home/rstudio/app/conda/lib</code></pre>
+</section>
+</section>
+<section id="clindf" class="level1">
+<h1>clindf</h1>
+<ol type="1">
+<li><p>what tools can be used to develop r packages?</p>
+<ul>
+<li><p><code>devtools</code></p></li>
+<li><p><code>usethis</code></p></li>
+</ul></li>
+<li><p>how to</p>
+<ol type="1">
+<li><p>create a pckages?</p>
+<ol type="1">
+<li><code>usethis::create_package()</code></li>
+</ol></li>
+<li><p>create a script?</p>
+<ol type="1">
+<li><p><code>use_r</code></p></li>
+<li><p>write function</p></li>
+</ol></li>
+<li><p>create document(help page for each function)?</p>
+<ol type="1">
+<li><p>roxygen2</p></li>
+<li><p><code>document()</code></p></li>
+</ol></li>
+<li><p>import package and function?</p>
+<ol type="1">
+<li><p><code>use_package()</code></p></li>
+<li><p><pkg>::<function></function></pkg></p></li>
+</ol></li>
+<li><p>create vignettes?</p>
+<ol type="1">
+<li><p><code>use_vignette()</code></p></li>
+<li><p>write your rmd file</p></li>
+</ol></li>
+<li><p>create pkgs websites?</p>
+<ol type="1">
+<li><code>pkgdown::build_site()</code></li>
+</ol></li>
+<li><p>check?</p>
+<ol type="1">
+<li><code>devtools::check()</code></li>
+</ol></li>
+<li><p>build pkgs?</p>
+<ol type="1">
+<li></li>
+</ol></li>
+</ol></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

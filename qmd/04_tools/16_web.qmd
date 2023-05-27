@@ -1,0 +1,145 @@
+---
+title: "Web"
+---
+
+# Nginx
+
+1. how to proxy?
+
+2. who to reverse proxy?
+
+3. how to add https
+
+
+1. `nginx.conf` contains
+
+    1. http
+        serve the directory
+
+    2. events
+
+
+    3. `MINE`
+
+        nigix comes with default MINE types
+
+    4. location
+
+        `alias`
+
+    5. try_files
+
+
+    6. rewrite and redirect
+
+    ```nginx
+    http {
+        # MINE teypes
+        #types {
+        #    text/css css;
+        #    text/html html;
+        #}
+
+        include mime.types
+
+        # server
+        server {
+            listen 80;
+            root /path;
+
+            # get locations
+            location /fruits{
+                root /path ;
+            }
+
+            location /carbs{
+                alias /path/fruits;
+
+            }
+
+            # try files
+            location /veges{
+                root /path;
+                try_files /veges/vege.html /veges/index.html = 404;
+            }
+
+            # count regular expression ~* => regular expression
+            location ~* /count/[0-9]{
+                root /path
+                try_files /index.html =404;
+            }
+
+            # return
+            location /crops {
+                return 307 /fruits;
+            }
+
+            # rewrite/redirect
+            rewrite ^/number/(\w+) /counts/$1
+        }
+    }
+
+    ```
+
+
+2. load balancer
+
+
+# setup a squid server
+
+<https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04>
+
+```bash
+# 1) install
+apt-get install squid
+systemctl status squid
+
+# 2) allow ip, find `http_access deny ` to allow or deny ip, could set `http_access allow all`
+vim /etc/squid/squid.conf
+
+# 3) set password
+apt install apache2-utils
+htpasswd -c /etc/squid/passwords <user_name>
+
+# 4) check 
+cat /etc/squid/passwords
+
+# 5) reopen, add params for authentication
+vim /etc/squid/squid.conf
+
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+include /etc/squid/conf.d/*
+#######################ADD#########################
+auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords
+auth_param basic realm proxy
+acl authenticated proxy_auth REQUIRED
+#######################ADD#########################
+
+# Example rule allowing access from your local networks.
+acl localnet src your_ip_address
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+#http_access allow localnet
+http_access allow localhost
+
+#######################ADD#########################
+http_access allow authenticated
+#######################ADD#########################
+
+# And finally deny all other access to this proxy
+http_access deny all
+
+# 6) you could change the port if you want
+ufw allow 7001
+vim /etc/squid/squid.conf
+
+http_port 3128
+
+# 7) test it 
+
+curl -OJ  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy "http://<user_name>:<passwd>@<address>:<port>"
+
+```
+
+# how to monitor the network dataflow

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bioinfor - Docker</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Bioinfor</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/01_bioinformatics/01_index.html">Bioinformatics</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/02_pipeline/01_index.html">Pipeline</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../qmd/03_ml/01_index.html">ML</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../qmd/04_tools/01_index.html" aria-current="page">Tools</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/SQiangqiang"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Jinjin89"><i class="bi bi-github" role="img" aria-label="github">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/keke-sun-6a9371267"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Docker</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/01_index.html" class="sidebar-item-text sidebar-link">Tools</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/11_git.html" class="sidebar-item-text sidebar-link">git</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/12_restful.html" class="sidebar-item-text sidebar-link">restful</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/13_r.html" class="sidebar-item-text sidebar-link">R</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/14_quarto_tools.html" class="sidebar-item-text sidebar-link">quarto tools</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/15_docker.html" class="sidebar-item-text sidebar-link active">Docker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../qmd/04_tools/16_web.html" class="sidebar-item-text sidebar-link">Web</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#docker" id="toc-docker" class="nav-link active" data-scroll-target="#docker">Docker</a>
+  <ul class="collapse">
+  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">install</a></li>
+  <li><a href="#docker-app" id="toc-docker-app" class="nav-link" data-scroll-target="#docker-app">Docker app</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-config" id="toc-rstudio-config" class="nav-link" data-scroll-target="#rstudio-config">rstudio config</a></li>
+  <li><a href="#run-docker-without-root-permission" id="toc-run-docker-without-root-permission" class="nav-link" data-scroll-target="#run-docker-without-root-permission">run docker without root permission</a></li>
+  <li><a href="#run-ubuntu" id="toc-run-ubuntu" class="nav-link" data-scroll-target="#run-ubuntu">run ubuntu</a></li>
+  <li><a href="#docker-network" id="toc-docker-network" class="nav-link" data-scroll-target="#docker-network">docker network</a></li>
+  <li><a href="#volumns" id="toc-volumns" class="nav-link" data-scroll-target="#volumns">volumns</a></li>
+  <li><a href="#docker-compose" id="toc-docker-compose" class="nav-link" data-scroll-target="#docker-compose">docker-compose</a></li>
+  <li><a href="#docker-registry" id="toc-docker-registry" class="nav-link" data-scroll-target="#docker-registry">docker registry</a></li>
+  <li><a href="#orchestrate" id="toc-orchestrate" class="nav-link" data-scroll-target="#orchestrate">orchestrate</a></li>
+  <li><a href="#docker-swarm" id="toc-docker-swarm" class="nav-link" data-scroll-target="#docker-swarm">docker swarm</a></li>
+  <li><a href="#kubernetes" id="toc-kubernetes" class="nav-link" data-scroll-target="#kubernetes">kubernetes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">exercise</a>
+  <ul class="collapse">
+  <li><a href="#create-a-rstudio-images" id="toc-create-a-rstudio-images" class="nav-link" data-scroll-target="#create-a-rstudio-images">1) create a rstudio images</a></li>
+  <li><a href="#wordpress-with-docker" id="toc-wordpress-with-docker" class="nav-link" data-scroll-target="#wordpress-with-docker">2) wordpress with docker</a>
+  <ul class="collapse">
+  <li><a href="#option-1.-build-your-own-docker-file" id="toc-option-1.-build-your-own-docker-file" class="nav-link" data-scroll-target="#option-1.-build-your-own-docker-file">option 1. build your own docker file</a></li>
+  <li><a href="#option2-pull-official-website" id="toc-option2-pull-official-website" class="nav-link" data-scroll-target="#option2-pull-official-website">option2: pull official website</a></li>
+  </ul></li>
+  <li><a href="#discuz-with-docker" id="toc-discuz-with-docker" class="nav-link" data-scroll-target="#discuz-with-docker">3) discuz with docker</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Docker</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="docker" class="level1">
+<h1>Docker</h1>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">install</h2>
+<ol type="1">
+<li>install docker</li>
+</ol>
+<p><a href="https://docs.docker.com/engine/install/binaries/" class="uri">https://docs.docker.com/engine/install/binaries/</a></p>
+<p><a href="https://www.kali.org/docs/containers/installing-docker-on-kali/" class="uri">https://www.kali.org/docs/containers/installing-docker-on-kali/</a></p>
+<ol start="2" type="1">
+<li>docker basic commnad</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># docker version</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># containers</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="ex">docker</span> ps</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># showing images</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">docker</span> images</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># remove images</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ex">docker</span> rmi</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># pull images </span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="ex">docker</span> pull <span class="op">&lt;</span>iamge<span class="op">&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># pull and run images</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="ex">docker</span> run <span class="op">&lt;</span>iamge:tag<span class="op">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># run ubuntu</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="ex">docker</span> run ubuntu sleep 100 </span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># run: attach detached</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="op">&lt;</span>container<span class="op">&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="ex">docker</span> attach <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="co"># inspect containder</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="ex">docker</span> inspect <span class="op">&lt;</span>id<span class="op">&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="co"># check logs</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="ex">docker</span> logs <span class="op">&lt;</span>id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li><p>docker params</p>
+<ul>
+<li><p>-i: interactive mode</p></li>
+<li><p>-t: pesuodo terminal</p></li>
+<li><p>-p: port mapping</p>
+<p>each container has its own ip, which can only be acessed in containder host</p></li>
+<li><p>-v: volumn mappping -&gt; data persistent</p></li>
+<li><p>-e: set enviroment variables</p></li>
+</ul></li>
+<li><p>create images</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource docker-file number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>FROM Ubuntu</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>RUN apt-get update</span>
+<span id="cb2-4"><a href="#cb2-4"></a>RUN apt-get install python</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>RUN pip install flask</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>COPY . ???</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>ENTRYPOINT ???</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>CMD ["command", "param1"]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>docker build Dockerfile -t &lt;image_name&gt;</code></p>
+</section>
+<section id="docker-app" class="level2">
+<h2 class="anchored" data-anchor-id="docker-app">Docker app</h2>
+<section id="rstudio-config" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-config">rstudio config</h3>
+<ol type="1">
+<li>Have a rstudio in docker(version=4.2)</li>
+</ol>
+<p><a href="https://rocker-project.org/images/versioned/rstudio.html" class="uri">https://rocker-project.org/images/versioned/rstudio.html</a></p>
+<p>https://hub.docker.com/r/rocker/rstudio</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource docker number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a># pull images (Make sure the version is what you want)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>docker pull rocker/rstudio:4.2</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a># run it (should not change the image port in this case), with password</span>
+<span id="cb3-5"><a href="#cb3-5"></a># inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>docker run --rm -ti -e PASSWORD=&lt;passwd&gt; -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a># how to make packages persistent and rstudio configs persistent </span>
+<span id="cb3-9"><a href="#cb3-9"></a># 1) Check the libs path `.libPaths()`</span>
+<span id="cb3-10"><a href="#cb3-10"></a># 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`</span>
+<span id="cb3-11"><a href="#cb3-11"></a># 3) relaod `R` and install the packages</span>
+<span id="cb3-12"><a href="#cb3-12"></a># 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded</span>
+<span id="cb3-13"><a href="#cb3-13"></a>mkdir ~/.Renviron</span>
+<span id="cb3-14"><a href="#cb3-14"></a>R_LIBS_USER=/home/rstudio/r_lib</span>
+<span id="cb3-15"><a href="#cb3-15"></a>R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library</span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a># mount a second volumn</span>
+<span id="cb3-19"><a href="#cb3-19"></a>docker run --rm -ti \</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    -e PASSWORD=happy_password\</span>
+<span id="cb3-21"><a href="#cb3-21"></a>    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\</span>
+<span id="cb3-22"><a href="#cb3-22"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    -p 8686:8787 \</span>
+<span id="cb3-24"><a href="#cb3-24"></a>    rocker/rstudio:4.2</span>
+<span id="cb3-25"><a href="#cb3-25"></a># run in background(--detached -d)</span>
+<span id="cb3-26"><a href="#cb3-26"></a>docker run --rm -ti \</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    -e PASSWORD=happy_password\</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    -d\</span>
+<span id="cb3-29"><a href="#cb3-29"></a>    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\</span>
+<span id="cb3-30"><a href="#cb3-30"></a>    -v /home/keke/data/:/home/rstudio/data/\</span>
+<span id="cb3-31"><a href="#cb3-31"></a>    -p 8686:8787 \</span>
+<span id="cb3-32"><a href="#cb3-32"></a>    rocker/rstudio:4.2</span>
+<span id="cb3-33"><a href="#cb3-33"></a></span>
+<span id="cb3-34"><a href="#cb3-34"></a># stop it </span>
+<span id="cb3-35"><a href="#cb3-35"></a>docker stop &lt;CONTAINER ID&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-docker-without-root-permission" class="level3">
+<h3 class="anchored" data-anchor-id="run-docker-without-root-permission">run docker without root permission</h3>
+</section>
+<section id="run-ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="run-ubuntu">run ubuntu</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">docker</span> run ubuntu sleep 5</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="docker-network" class="level3">
+<h3 class="anchored" data-anchor-id="docker-network">docker network</h3>
+<pre><code>* bride[default]:  `docker run ubuntu`
+
+* none:  `docker run ubuntu --network=none`
+
+* host:  `docker run ubuntu --network=host`
+
+* create sub network</code></pre>
+</section>
+<section id="volumns" class="level3">
+<h3 class="anchored" data-anchor-id="volumns">volumns</h3>
+<p><code>docker volumne create data_volumn</code></p>
+<pre><code>* -v
+
+* --mount</code></pre>
+</section>
+<section id="docker-compose" class="level3">
+<h3 class="anchored" data-anchor-id="docker-compose">docker-compose</h3>
+</section>
+<section id="docker-registry" class="level3">
+<h3 class="anchored" data-anchor-id="docker-registry">docker registry</h3>
+<ol type="1">
+<li>private</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> registry</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">docker</span> image tag my-image localhost:5000/my-image</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">docker</span> push localhost:5000/my-image</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">docker</span> pull localhost:5000/my-image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="orchestrate" class="level3">
+<h3 class="anchored" data-anchor-id="orchestrate">orchestrate</h3>
+</section>
+<section id="docker-swarm" class="level3">
+<h3 class="anchored" data-anchor-id="docker-swarm">docker swarm</h3>
+<pre><code>docker service --replicas=3 my-web
+</code></pre>
+</section>
+<section id="kubernetes" class="level3">
+<h3 class="anchored" data-anchor-id="kubernetes">kubernetes</h3>
+</section>
+</section>
+</section>
+<section id="exercise" class="level1">
+<h1>exercise</h1>
+<section id="create-a-rstudio-images" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-rstudio-images">1) create a rstudio images</h2>
+<ol type="1">
+<li><p>What to containrize?</p>
+<ul>
+<li>ubuntu</li>
+<li>rstudio</li>
+<li>r</li>
+<li>r-packages</li>
+<li>others</li>
+</ul></li>
+<li></li>
+</ol>
+</section>
+<section id="wordpress-with-docker" class="level2">
+<h2 class="anchored" data-anchor-id="wordpress-with-docker">2) wordpress with docker</h2>
+<section id="option-1.-build-your-own-docker-file" class="level3">
+<h3 class="anchored" data-anchor-id="option-1.-build-your-own-docker-file">option 1. build your own docker file</h3>
+<p>https://github.com/aschmelyun/docker-compose-wordpress</p>
+</section>
+<section id="option2-pull-official-website" class="level3">
+<h3 class="anchored" data-anchor-id="option2-pull-official-website">option2: pull official website</h3>
+</section>
+</section>
+<section id="discuz-with-docker" class="level2">
+<h2 class="anchored" data-anchor-id="discuz-with-docker">3) discuz with docker</h2>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

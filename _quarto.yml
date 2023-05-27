@@ -10,19 +10,17 @@ website:
         href: index.qmd
         
       - text: "Bioinformatics"
-        href: qmd/bioinformatics/index.qmd
-        
-      - text: "ML"
-        href: qmd/ml/index.qmd
-      
-      - text: "Pipeline"
-        href: qmd/pipeline/index.qmd
-        
-      - text: "Tools"
-        href: qmd/tools/index.qmd
-        
+        href: qmd/01_bioinformatics/01_index.qmd
 
-        
+      - text: "Pipeline"
+        href: qmd/02_pipeline/01_index.qmd
+          
+      - text: "ML"
+        href: qmd/03_ml/01_index.qmd
+      
+      - text: "Tools"
+        href: qmd/04_tools/01_index.qmd
+
     right:
       - icon: twitter
         href: https://twitter.com/SQiangqiang
@@ -40,33 +38,23 @@ website:
       alignment: left
       contents: 
         - text: "Bioinformatics"
-          href: qmd/bioinformatics/index.qmd
+          href: qmd/01_bioinformatics/01_index.qmd
         - section: "database"
           contents: 
-          - qmd/bioinformatics/ncbi.qmd
-          - qmd/bioinformatics/ensembl.qmd
-          - qmd/bioinformatics/genome.qmd
-          - qmd/bioinformatics/tcga.qmd
+          - qmd/01_bioinformatics/11_ncbi.qmd
+          - qmd/01_bioinformatics/12_ensembl.qmd
+          - qmd/01_bioinformatics/13_genome.qmd
+          - qmd/01_bioinformatics/14_tcga.qmd
         - section: "sc"
           contents: 
-            - qmd/bioinformatics/sc.qmd
+            - qmd/01_bioinformatics/21_sc.qmd
         - section: "format"
           contents:
-          - qmd/bioinformatics/data_format.qmd
+          - qmd/01_bioinformatics/31_data_format.qmd
 
         - text: Omics
-          href: qmd/bioinformatics/omics.qmd
-
-    - id: ML
-      title: "Machine learning"
-      style: floating
-      collapse-level: 2
-      alignment: left
-      contents: 
-        - text: "ML in bio"
-          href: qmd/ml/index.qmd
-        - href: qmd/ml/microscopist.qmd
-        - href: qmd/ml/numpy.qmd
+          href: qmd/01_bioinformatics/41_omics.qmd
+  
     - id: Pipeline
       title: Pipeline
       style: floating
@@ -74,24 +62,33 @@ website:
       alignment: left
       contents: 
         - text: "Pipeline"
-          href: qmd/pipeline/index.qmd
-        - href: qmd/pipeline/dna.qmd
-        - href: qmd/pipeline/rna.qmd
-        - href: qmd/pipeline/metagenomics.qmd
+          href: qmd/02_pipeline/01_index.qmd
+        - href: qmd/02_pipeline/11_dna.qmd
+        - href: qmd/02_pipeline/21_rna.qmd
+        - href: qmd/02_pipeline/31_metagenomics.qmd
         
+    - id: ML
+      title: "Machine learning"
+      style: floating
+      collapse-level: 2
+      alignment: left
+      contents: 
+        - text: "ML in bio"
+          href: qmd/03_ml/01_index.qmd
+          
     - id: Tools
       style: floating
       collapse-level: 2
       alignment: left
       contents: 
         - text: "Tools"
-          href: qmd/tools/index.qmd
-        - href: qmd/tools/git.qmd
-        - href: qmd/tools/restful.qmd
-        - href: qmd/tools/quarto_tools.qmd
-        - href: qmd/tools/network.qmd
-        - href: qmd/tools/r.qmd
-        - href: qmd/tools/webtools.qmd
+          href: qmd/04_tools/01_index.qmd
+        - href: qmd/04_tools/11_git.qmd
+        - href: qmd/04_tools/12_restful.qmd
+        - href: qmd/04_tools/13_r.qmd
+        - href: qmd/04_tools/14_quarto_tools.qmd
+        - href: qmd/04_tools/15_docker.qmd
+        - href: qmd/04_tools/16_web.qmd
 
 format:
   html:
