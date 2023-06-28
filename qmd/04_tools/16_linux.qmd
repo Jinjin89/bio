@@ -1,5 +1,5 @@
 ---
-title: "Web"
+title: "Linux tools"
 ---
 
 # Nginx
@@ -138,8 +138,62 @@ http_port 3128
 
 # 7) test it 
 
-curl -OJ  https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893   --proxy "http://<user_name>:<passwd>@<address>:<port>"
+curl -OJ https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893 --proxy "http://<user_name>:<passwd>@<address>:<port>"
 
 ```
+# What is GPG key? why we use it? 
 
 # how to monitor the network dataflow
+
+# File Integrity Monitor(FIM)
+
+# wazuh
+
+<img src="https://documentation.wazuh.com/current/_images/deployment-architecture1.png" width="50%">
+
+1. what is wazuh?
+
+    1. https://www.youtube.com/watch?v=Hq58_yGJwHk
+
+    2. thread detection, prevention and response
+
+2. features
+
+    * FIM
+
+    * ...
+
+3. how it works?
+
+    wazuh-agent: send message to server
+
+    wazuh-server: recevie message from agents and anlyze it
+
+    Elastic stack: Kibana,Elasticsearch
+
+
+## how to install? 
+
+* all in one
+
+* Distributed
+
+
+https://socfortress.medium.com/installing-the-new-wazuh-version-4-4-the-socfortress-way-ea3a8030d94b
+
+
+### Wazuh Indexer
+
+what is memory locking?
+
+
+### Wazuh Dashboard
+
+
+### Graylog
+
+### Wazuh Manager
+
+# ftp download script
+
+# aspera

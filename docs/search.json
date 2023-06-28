@@ -361,14 +361,14 @@
     "href": "qmd/04_tools/15_docker.html",
     "title": "Docker",
     "section": "",
-    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop <id>\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull <iamge>\n\n# pull and run images\ndocker run <iamge:tag>\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d <container>\n\ndocker attach <id>\n\n# inspect containder\ndocker inspect <id>\n\n# check logs\ndocker logs <id>\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -> data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t <image_name>\n\n\n\n\n\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\n\n\n\n\ndocker run ubuntu sleep 5\n\n\n\n\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\n\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\n\n\n\n\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\n\n\n\n\ndocker service --replicas=3 my-web"
+    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop <id>\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull <iamge>\n\n# pull and run images\ndocker run <iamge:tag>\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d <container>\n\ndocker attach <id>\n\n# inspect containder\ndocker inspect <id>\n\n# check logs\ndocker logs <id>\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -> data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t <image_name>"
   },
   {
     "objectID": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
     "href": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
     "title": "Docker",
     "section": "1) create a rstudio images",
-    "text": "1) create a rstudio images\n\nWhat to containrize?\n\nubuntu\nrstudio\nr\nr-packages\nothers"
+    "text": "1) create a rstudio images\n\nWhat to containrize?\n\nubuntu\nrstudio\nr\nr-packages\nothers\n\nProcedures\n\ninstall docker\nwriting Dockerfile\nsudo docker build -t <image_name>:<tag> .\nsudo docker build -t <image_name>:<tag> . 2>&1 | tee build.log\n\n\nsudo docker run –rm -it –entrypoint bash rs_test:4.1\nsudo docker build -t rs_test:4.1 . 2>&1 | tee build.log\n\nQ&A\n\nhow to specific r version?\n\napt-get install -y --no-install-recommends r-base=4.1.2*\n\nhow to give interactive shell like zsh or R?\n\ndocker run --rm -it --entrypoint bash <image_name>\n\nhow to install r packages, and solve the install.packages error\n\nAs install.packages did not give the error, so using library to see if packages could be loaded\ndevtools::install_version returned error if not loaded"
   },
   {
     "objectID": "qmd/04_tools/15_docker.html#wordpress-with-docker",
@@ -417,6 +417,48 @@
     "href": "qmd/04_tools/14_quarto_tools.html",
     "title": "quarto tools",
     "section": "",
-    "text": "citatation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n---\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::"
+    "text": "citation\n\nyour should prepare\n\ncsl file: download from github\nhttps://github.com/citation-style-language/styles\nbib: you could prepare using endnote\n@article{knuth:1984,\n  title={Literate Programming},\n  author={Donald E. Knuth},\n  journal={The Computer Journal},\n  volume={27},\n  number={2},\n  pages={97--111},\n  year={1984},\n  publisher={Oxford University Press}\n}\n\ninclude it in the qmd yaml header; use with [@index] ; insert the reference\n---\ntitle: \"cite demo\"\nbibliography: references.bib\n---\nsome words[@knuth:1984]\n\n## References\n::: {#refs}\n:::"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/21_sc.html",
+    "href": "qmd/01_bioinformatics/21_sc.html",
+    "title": "single cell",
+    "section": "",
+    "text": "please go to: [https://sci-hub.mksa.top/10.1038/s41596-021-00534-0]"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/21_sc.html#example",
+    "href": "qmd/01_bioinformatics/21_sc.html#example",
+    "title": "single cell",
+    "section": "example",
+    "text": "example\n\nDownload example data\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-1.2.0.tar.gz\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-simple-1.2.0.csv\ntar -zxvf cellranger-tiny-bcl-1.2.0.tar.gz\nmdkfastq\ncellranger mkfastq --id=tutorial_walk_through \\\n    --run=cellranger-tiny-bcl-1.2.0 \\\n    --csv=cellranger-tiny-bcl-simple-1.2.0.csv\ncount\ncurl -O  https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar\ncellranger count --id=run_count_1kpbmcs \\\n    --fastqs=pbmc_1k_v3_fastqs \\\n    --sample=pbmc_1k_v3 \\\n    --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\\\n    --noexit\n\n4 Q&A\n1. fastq-input for cellranger?\n\n    * https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/fastq-input\n\n2. How to do when facing erros?\n\n    * google\n\n    * re-run\n\n    * re-boot\n\n    * pray to god"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html#docker-app",
+    "href": "qmd/04_tools/15_docker.html#docker-app",
+    "title": "Docker",
+    "section": "Docker app",
+    "text": "Docker app\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\nrun docker without root permission\n\n\nrun ubuntu\ndocker run ubuntu sleep 5\n\n\n\ndocker network\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\nvolumns\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\ndocker-compose\n\n\ndocker registry\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\norchestrate\n\n\ndocker swarm\ndocker service --replicas=3 my-web\n\n\n\nkubernetes"
+  },
+  {
+    "objectID": "qmd/04_tools/16_linux.html",
+    "href": "qmd/04_tools/16_linux.html",
+    "title": "Linux tools",
+    "section": "",
+    "text": "how to proxy?\nwho to reverse proxy?\nhow to add https\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* => regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
+  },
+  {
+    "objectID": "qmd/04_tools/16_linux.html#how-to-install",
+    "href": "qmd/04_tools/16_linux.html#how-to-install",
+    "title": "Linux tools",
+    "section": "how to install?",
+    "text": "how to install?\n\nall in one\nDistributed\n\nhttps://socfortress.medium.com/installing-the-new-wazuh-version-4-4-the-socfortress-way-ea3a8030d94b\n\nWazuh Indexer\nwhat is memory locking?\n\n\nWazuh Dashboard\n\n\nGraylog\n\n\nWazuh Manager"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/01_index.html",
+    "href": "qmd/01_bioinformatics/01_index.html",
+    "title": "Bioinformatics",
+    "section": "",
+    "text": "Bioinformatics tutorial"
   }
 ]

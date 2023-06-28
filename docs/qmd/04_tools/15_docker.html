@@ -226,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../qmd/04_tools/16_web.html" class="sidebar-item-text sidebar-link">Web</a>
+  <a href="../../qmd/04_tools/16_linux.html" class="sidebar-item-text sidebar-link">Linux tools</a>
   </div>
 </li>
     </ul>
@@ -238,9 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#docker" id="toc-docker" class="nav-link active" data-scroll-target="#docker">Docker</a>
-  <ul class="collapse">
-  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">install</a></li>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">install</a></li>
   <li><a href="#docker-app" id="toc-docker-app" class="nav-link" data-scroll-target="#docker-app">Docker app</a>
   <ul class="collapse">
   <li><a href="#rstudio-config" id="toc-rstudio-config" class="nav-link" data-scroll-target="#rstudio-config">rstudio config</a></li>
@@ -253,7 +251,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#orchestrate" id="toc-orchestrate" class="nav-link" data-scroll-target="#orchestrate">orchestrate</a></li>
   <li><a href="#docker-swarm" id="toc-docker-swarm" class="nav-link" data-scroll-target="#docker-swarm">docker swarm</a></li>
   <li><a href="#kubernetes" id="toc-kubernetes" class="nav-link" data-scroll-target="#kubernetes">kubernetes</a></li>
-  </ul></li>
   </ul></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">exercise</a>
   <ul class="collapse">
@@ -287,8 +284,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="docker" class="level1">
-<h1>Docker</h1>
 <section id="install" class="level2">
 <h2 class="anchored" data-anchor-id="install">install</h2>
 <ol type="1">
@@ -451,7 +446,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="kubernetes">kubernetes</h3>
 </section>
 </section>
-</section>
 <section id="exercise" class="level1">
 <h1>exercise</h1>
 <section id="create-a-rstudio-images" class="level2">
@@ -465,7 +459,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>r-packages</li>
 <li>others</li>
 </ul></li>
-<li></li>
+<li><p>Procedures</p>
+<ol type="1">
+<li><p>install docker</p></li>
+<li><p>writing <code>Dockerfile</code></p></li>
+<li><p><code>sudo docker build -t &lt;image_name&gt;:&lt;tag&gt; .</code></p></li>
+<li><p><code>sudo docker build -t &lt;image_name&gt;:&lt;tag&gt; . 2&gt;&amp;1 | tee build.log</code></p></li>
+</ol></li>
+</ol>
+<p>sudo docker run –rm -it –entrypoint bash rs_test:4.1</p>
+<p>sudo docker build -t rs_test:4.1 . 2&gt;&amp;1 | tee build.log</p>
+<ol start="3" type="1">
+<li><p>Q&amp;A</p>
+<ol type="1">
+<li><p>how to specific r version?</p>
+<ul>
+<li><code>apt-get install -y --no-install-recommends r-base=4.1.2*</code></li>
+</ul></li>
+<li><p>how to give interactive shell like zsh or R?</p>
+<ul>
+<li><code>docker run --rm -it --entrypoint bash &lt;image_name&gt;</code></li>
+</ul></li>
+<li><p>how to install r packages, and solve the install.packages error</p>
+<ul>
+<li><p>As <code>install.packages</code> did not give the error, so using <code>library</code> to see if packages could be loaded</p></li>
+<li><p><code>devtools::install_version</code> returned error if not loaded</p></li>
+</ul></li>
+</ol></li>
 </ol>
 </section>
 <section id="wordpress-with-docker" class="level2">

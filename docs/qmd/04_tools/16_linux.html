@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bioinfor - quarto tools</title>
+<title>Bioinfor - Linux tools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,9 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -184,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">quarto tools</h1>
+      <h1 class="quarto-secondary-nav-title">Linux tools</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -219,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../qmd/04_tools/14_quarto_tools.html" class="sidebar-item-text sidebar-link active">quarto tools</a>
+  <a href="../../qmd/04_tools/14_quarto_tools.html" class="sidebar-item-text sidebar-link">quarto tools</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -229,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../qmd/04_tools/16_linux.html" class="sidebar-item-text sidebar-link">Linux tools</a>
+  <a href="../../qmd/04_tools/16_linux.html" class="sidebar-item-text sidebar-link active">Linux tools</a>
   </div>
 </li>
     </ul>
@@ -241,12 +238,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#diagram" id="toc-diagram" class="nav-link active" data-scroll-target="#diagram">Diagram</a>
+  <li><a href="#nginx" id="toc-nginx" class="nav-link active" data-scroll-target="#nginx">Nginx</a></li>
+  <li><a href="#setup-a-squid-server" id="toc-setup-a-squid-server" class="nav-link" data-scroll-target="#setup-a-squid-server">setup a squid server</a></li>
+  <li><a href="#what-is-gpg-key-why-we-use-it" id="toc-what-is-gpg-key-why-we-use-it" class="nav-link" data-scroll-target="#what-is-gpg-key-why-we-use-it">What is GPG key? why we use it?</a></li>
+  <li><a href="#how-to-monitor-the-network-dataflow" id="toc-how-to-monitor-the-network-dataflow" class="nav-link" data-scroll-target="#how-to-monitor-the-network-dataflow">how to monitor the network dataflow</a></li>
+  <li><a href="#file-integrity-monitorfim" id="toc-file-integrity-monitorfim" class="nav-link" data-scroll-target="#file-integrity-monitorfim">File Integrity Monitor(FIM)</a></li>
+  <li><a href="#wazuh" id="toc-wazuh" class="nav-link" data-scroll-target="#wazuh">wazuh</a>
   <ul class="collapse">
-  <li><a href="#mermaid" id="toc-mermaid" class="nav-link" data-scroll-target="#mermaid">mermaid</a></li>
-  <li><a href="#graphviz" id="toc-graphviz" class="nav-link" data-scroll-target="#graphviz">Graphviz</a></li>
+  <li><a href="#how-to-install" id="toc-how-to-install" class="nav-link" data-scroll-target="#how-to-install">how to install?</a>
+  <ul class="collapse">
+  <li><a href="#wazuh-indexer" id="toc-wazuh-indexer" class="nav-link" data-scroll-target="#wazuh-indexer">Wazuh Indexer</a></li>
+  <li><a href="#wazuh-dashboard" id="toc-wazuh-dashboard" class="nav-link" data-scroll-target="#wazuh-dashboard">Wazuh Dashboard</a></li>
+  <li><a href="#graylog" id="toc-graylog" class="nav-link" data-scroll-target="#graylog">Graylog</a></li>
+  <li><a href="#wazuh-manager" id="toc-wazuh-manager" class="nav-link" data-scroll-target="#wazuh-manager">Wazuh Manager</a></li>
   </ul></li>
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">citation</a></li>
+  </ul></li>
+  <li><a href="#ftp-download-script" id="toc-ftp-download-script" class="nav-link" data-scroll-target="#ftp-download-script">ftp download script</a></li>
+  <li><a href="#aspera" id="toc-aspera" class="nav-link" data-scroll-target="#aspera">aspera</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">quarto tools</h1>
+<h1 class="title d-none d-lg-block">Linux tools</h1>
 </div>
 
 
@@ -269,192 +277,179 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="diagram" class="level1">
-<h1>Diagram</h1>
-<section id="mermaid" class="level2">
-<h2 class="anchored" data-anchor-id="mermaid">mermaid</h2>
+<section id="nginx" class="level1">
+<h1>Nginx</h1>
 <ol type="1">
-<li>tutorial <a href="https://mermaid.js.org/config/Tutorials.html" class="uri">https://mermaid.js.org/config/Tutorials.html</a></li>
+<li><p>how to proxy?</p></li>
+<li><p>who to reverse proxy?</p></li>
+<li><p>how to add https</p></li>
+<li><p><code>nginx.conf</code> contains</p>
+<ol type="1">
+<li><p>http serve the directory</p></li>
+<li><p>events</p></li>
+<li><p><code>MINE</code></p>
+<p>nigix comes with default MINE types</p></li>
+<li><p>location</p>
+<p><code>alias</code></p></li>
+<li><p>try_files</p></li>
+<li><p>rewrite and redirect</p></li>
 </ol>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
-  A[Hard edge] --&gt; B(Round edge)
-  B --&gt; C{Decision}
-  C --&gt; D[Result one]
-  C --&gt; E[Result two]
-
-</pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-2">%%| fig-width: 6.5
-flowchart LR
-  A[multiple sc datasets] --&gt; B[DC + mono/macro]
-  B --&gt; C[integrate]
-  C --&gt; D[clustering]
-  D --&gt; E[annotation]
-  E --&gt; F[differential expression analysis]
-</pre>
-<div id="mermaid-tooltip-2" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource nginx number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>http {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    # MINE teypes</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    #types {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    #    text/css css;</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    #    text/html html;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    #}</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    include mime.types</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    # server</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    server {</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        listen 80;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>        root /path;</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>        # get locations</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        location /fruits{</span>
+<span id="cb1-17"><a href="#cb1-17"></a>            root /path ;</span>
+<span id="cb1-18"><a href="#cb1-18"></a>        }</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        location /carbs{</span>
+<span id="cb1-21"><a href="#cb1-21"></a>            alias /path/fruits;</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a>        }</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>        # try files</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        location /veges{</span>
+<span id="cb1-27"><a href="#cb1-27"></a>            root /path;</span>
+<span id="cb1-28"><a href="#cb1-28"></a>            try_files /veges/vege.html /veges/index.html = 404;</span>
+<span id="cb1-29"><a href="#cb1-29"></a>        }</span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
+<span id="cb1-31"><a href="#cb1-31"></a>        # count regular expression ~* =&gt; regular expression</span>
+<span id="cb1-32"><a href="#cb1-32"></a>        location ~* /count/[0-9]{</span>
+<span id="cb1-33"><a href="#cb1-33"></a>            root /path</span>
+<span id="cb1-34"><a href="#cb1-34"></a>            try_files /index.html =404;</span>
+<span id="cb1-35"><a href="#cb1-35"></a>        }</span>
+<span id="cb1-36"><a href="#cb1-36"></a></span>
+<span id="cb1-37"><a href="#cb1-37"></a>        # return</span>
+<span id="cb1-38"><a href="#cb1-38"></a>        location /crops {</span>
+<span id="cb1-39"><a href="#cb1-39"></a>            return 307 /fruits;</span>
+<span id="cb1-40"><a href="#cb1-40"></a>        }</span>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a>        # rewrite/redirect</span>
+<span id="cb1-43"><a href="#cb1-43"></a>        rewrite ^/number/(\w+) /counts/$1</span>
+<span id="cb1-44"><a href="#cb1-44"></a>    }</span>
+<span id="cb1-45"><a href="#cb1-45"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>load balancer</p></li>
+</ol>
 </section>
-<section id="graphviz" class="level2">
-<h2 class="anchored" data-anchor-id="graphviz">Graphviz</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 370.99 246.71" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 242.71)">
-<title>
-G
-</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-242.71 366.99,-242.71 366.99,4 -4,4"></polygon> <!-- run --> <g id="node1" class="node">
-<title>
-run
-</title>
-<ellipse fill="none" stroke="black" cx="105.22" cy="-110.03" rx="27" ry="18"></ellipse> <text text-anchor="middle" x="105.22" y="-105.83" font-family="Times,serif" font-size="14.00">run</text> </g> <!-- intr --> <g id="node2" class="node">
-<title>
-intr
-</title>
-<ellipse fill="none" stroke="black" cx="48.11" cy="-59.71" rx="27" ry="18"></ellipse> <text text-anchor="middle" x="48.11" y="-55.51" font-family="Times,serif" font-size="14.00">intr</text> </g> <!-- run&#45;&#45;intr --> <g id="edge1" class="edge">
-<title>
-run–intr
-</title>
-<path fill="none" stroke="black" d="M88.7,-95.48C81.19,-88.86 72.32,-81.04 64.79,-74.4"></path> </g> <!-- kernel --> <g id="node4" class="node">
-<title>
-kernel
-</title>
-<ellipse fill="none" stroke="black" cx="180.95" cy="-137.54" rx="35.33" ry="18"></ellipse> <text text-anchor="middle" x="180.95" y="-133.34" font-family="Times,serif" font-size="14.00">kernel</text> </g> <!-- run&#45;&#45;kernel --> <g id="edge4" class="edge">
-<title>
-run–kernel
-</title>
-<path fill="none" stroke="black" d="M129.18,-118.73C136.46,-121.38 144.54,-124.31 152.1,-127.06"></path> </g> <!-- runbl --> <g id="node3" class="node">
-<title>
-runbl
-</title>
-<ellipse fill="none" stroke="black" cx="31.42" cy="-126.16" rx="31.34" ry="18"></ellipse> <text text-anchor="middle" x="31.42" y="-121.96" font-family="Times,serif" font-size="14.00">runbl</text> </g> <!-- intr&#45;&#45;runbl --> <g id="edge2" class="edge">
-<title>
-intr–runbl
-</title>
-<path fill="none" stroke="black" d="M43.64,-77.51C41.25,-87.05 38.3,-98.76 35.91,-108.3"></path> </g> <!-- runbl&#45;&#45;run --> <g id="edge3" class="edge">
-<title>
-runbl–run
-</title>
-<path fill="none" stroke="black" d="M61.01,-119.7C67.11,-118.36 73.48,-116.97 79.43,-115.67"></path> </g> <!-- zombie --> <g id="node5" class="node">
-<title>
-zombie
-</title>
-<ellipse fill="none" stroke="black" cx="168.31" cy="-220.71" rx="39.42" ry="18"></ellipse> <text text-anchor="middle" x="168.31" y="-216.51" font-family="Times,serif" font-size="14.00">zombie</text> </g> <!-- kernel&#45;&#45;zombie --> <g id="edge5" class="edge">
-<title>
-kernel–zombie
-</title>
-<path fill="none" stroke="black" d="M178.21,-155.58C176.09,-169.54 173.17,-188.76 171.05,-202.7"></path> </g> <!-- sleep --> <g id="node6" class="node">
-<title>
-sleep
-</title>
-<ellipse fill="none" stroke="black" cx="253.25" cy="-154.97" rx="30.76" ry="18"></ellipse> <text text-anchor="middle" x="253.25" y="-150.77" font-family="Times,serif" font-size="14.00">sleep</text> </g> <!-- kernel&#45;&#45;sleep --> <g id="edge6" class="edge">
-<title>
-kernel–sleep
-</title>
-<path fill="none" stroke="black" d="M212.87,-145.23C216.81,-146.18 220.81,-147.15 224.69,-148.08"></path> </g> <!-- runmem --> <g id="node7" class="node">
-<title>
-runmem
-</title>
-<ellipse fill="none" stroke="black" cx="240.17" cy="-83.36" rx="43.44" ry="18"></ellipse> <text text-anchor="middle" x="240.17" y="-79.16" font-family="Times,serif" font-size="14.00">runmem</text> </g> <!-- kernel&#45;&#45;runmem --> <g id="edge7" class="edge">
-<title>
-kernel–runmem
-</title>
-<path fill="none" stroke="black" d="M198.4,-121.57C205.9,-114.71 214.67,-106.69 222.23,-99.77"></path> </g> <!-- sleep&#45;&#45;runmem --> <g id="edge13" class="edge">
-<title>
-sleep–runmem
-</title>
-<path fill="none" stroke="black" d="M249.95,-136.9C247.98,-126.13 245.49,-112.49 243.51,-101.67"></path> </g> <!-- swap --> <g id="node8" class="node">
-<title>
-swap
-</title>
-<ellipse fill="none" stroke="black" cx="330.95" cy="-148.25" rx="30.77" ry="18"></ellipse> <text text-anchor="middle" x="330.95" y="-144.05" font-family="Times,serif" font-size="14.00">swap</text> </g> <!-- sleep&#45;&#45;swap --> <g id="edge8" class="edge">
-<title>
-sleep–swap
-</title>
-<path fill="none" stroke="black" d="M283.96,-152.31C289.3,-151.85 294.86,-151.37 300.21,-150.91"></path> </g> <!-- runswap --> <g id="node9" class="node">
-<title>
-runswap
-</title>
-<ellipse fill="none" stroke="black" cx="319.23" cy="-73.46" rx="43.51" ry="18"></ellipse> <text text-anchor="middle" x="319.23" y="-69.26" font-family="Times,serif" font-size="14.00">runswap</text> </g> <!-- swap&#45;&#45;runswap --> <g id="edge9" class="edge">
-<title>
-swap–runswap
-</title>
-<path fill="none" stroke="black" d="M328.11,-130.15C326.28,-118.47 323.91,-103.35 322.08,-91.66"></path> </g> <!-- runswap&#45;&#45;runmem --> <g id="edge11" class="edge">
-<title>
-runswap–runmem
-</title>
-<path fill="none" stroke="black" d="M276.92,-78.76C276.78,-78.77 276.63,-78.79 276.48,-78.81"></path> </g> <!-- new --> <g id="node10" class="node">
-<title>
-new
-</title>
-<ellipse fill="none" stroke="black" cx="278.31" cy="-18" rx="27.25" ry="18"></ellipse> <text text-anchor="middle" x="278.31" y="-13.8" font-family="Times,serif" font-size="14.00">new</text> </g> <!-- runswap&#45;&#45;new --> <g id="edge10" class="edge">
-<title>
-runswap–new
-</title>
-<path fill="none" stroke="black" d="M306.51,-56.21C301.35,-49.22 295.42,-41.18 290.33,-34.29"></path> </g> <!-- new&#45;&#45;runmem --> <g id="edge12" class="edge">
-<title>
-new–runmem
-</title>
-<path fill="none" stroke="black" d="M268.49,-34.83C263.01,-44.21 256.2,-55.89 250.62,-65.44"></path> </g> </g>
-</svg>
-</p>
-</div>
-</div>
-</div>
+<section id="setup-a-squid-server" class="level1">
+<h1>setup a squid server</h1>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 1) install</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">apt-get</span> install squid</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">systemctl</span> status squid</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># 2) allow ip, find `http_access deny ` to allow or deny ip, could set `http_access allow all`</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ex">vim</span> /etc/squid/squid.conf</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># 3) set password</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="ex">apt</span> install apache2-utils</span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="ex">htpasswd</span> <span class="at">-c</span> /etc/squid/passwords <span class="op">&lt;</span>user_name<span class="op">&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># 4) check </span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="fu">cat</span> /etc/squid/passwords</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># 5) reopen, add params for authentication</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="ex">vim</span> /etc/squid/squid.conf</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="ex">include</span> /etc/squid/conf.d/<span class="pp">*</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#######################ADD#########################</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="ex">auth_param</span> basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords</span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="ex">auth_param</span> basic realm proxy</span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="ex">acl</span> authenticated proxy_auth REQUIRED</span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#######################ADD#########################</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="co"># Example rule allowing access from your local networks.</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="ex">acl</span> localnet src your_ip_address</span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="co"># Adapt localnet in the ACL section to list your (internal) IP networks</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="co"># from where browsing should be allowed</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="co">#http_access allow localnet</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="ex">http_access</span> allow localhost</span>
+<span id="cb2-33"><a href="#cb2-33"></a></span>
+<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#######################ADD#########################</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a><span class="ex">http_access</span> allow authenticated</span>
+<span id="cb2-36"><a href="#cb2-36"></a><span class="co">#######################ADD#########################</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="co"># And finally deny all other access to this proxy</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a><span class="ex">http_access</span> deny all</span>
+<span id="cb2-40"><a href="#cb2-40"></a></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co"># 6) you could change the port if you want</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="ex">ufw</span> allow 7001</span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="ex">vim</span> /etc/squid/squid.conf</span>
+<span id="cb2-44"><a href="#cb2-44"></a></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="ex">http_port</span> 3128</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="co"># 7) test it </span></span>
+<span id="cb2-48"><a href="#cb2-48"></a></span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="ex">curl</span> <span class="at">-OJ</span> https://api.gdc.cancer.gov/data/c0008693-0583-4eac-bd5c-583070763893 <span class="at">--proxy</span> <span class="st">"http://&lt;user_name&gt;:&lt;passwd&gt;@&lt;address&gt;:&lt;port&gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="what-is-gpg-key-why-we-use-it" class="level1">
+<h1>What is GPG key? why we use it?</h1>
 </section>
-<section id="citation" class="level1">
-<h1>citation</h1>
+<section id="how-to-monitor-the-network-dataflow" class="level1">
+<h1>how to monitor the network dataflow</h1>
+</section>
+<section id="file-integrity-monitorfim" class="level1">
+<h1>File Integrity Monitor(FIM)</h1>
+</section>
+<section id="wazuh" class="level1">
+<h1>wazuh</h1>
+<p><img src="https://documentation.wazuh.com/current/_images/deployment-architecture1.png" width="50%"></p>
 <ol type="1">
-<li><p>your should prepare</p>
+<li><p>what is wazuh?</p>
 <ol type="1">
-<li><p>csl file: download from github</p>
-<p><a href="https://github.com/citation-style-language/styles" class="uri">https://github.com/citation-style-language/styles</a></p></li>
-<li><p>bib: you could prepare using endnote</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bib number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">@article</span>{<span class="ot">knuth:1984</span>,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">title</span>={Literate Programming},</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">author</span>={Donald E. Knuth},</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">journal</span>={The Computer Journal},</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">volume</span>={27},</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="dt">number</span>={2},</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="dt">pages</span>={97--111},</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="dt">year</span>={1984},</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="dt">publisher</span>={Oxford University Press}</span>
-<span id="cb1-10"><a href="#cb1-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>https://www.youtube.com/watch?v=Hq58_yGJwHk</p></li>
+<li><p>thread detection, prevention and response</p></li>
 </ol></li>
-<li><p>include it in the qmd yaml header; use with <span class="citation" data-cites="index">[@index]</span> ; insert the reference</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource qmd number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>---</span>
-<span id="cb2-2"><a href="#cb2-2"></a>title: "cite demo"</span>
-<span id="cb2-3"><a href="#cb2-3"></a>bibliography: references.bib</span>
-<span id="cb2-4"><a href="#cb2-4"></a>---</span>
-<span id="cb2-5"><a href="#cb2-5"></a>some words[@knuth:1984]</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>## References</span>
-<span id="cb2-8"><a href="#cb2-8"></a>::: {#refs}</span>
-<span id="cb2-9"><a href="#cb2-9"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>features</p>
+<ul>
+<li><p>FIM</p></li>
+<li><p>…</p></li>
+</ul></li>
+<li><p>how it works?</p>
+<p>wazuh-agent: send message to server</p>
+<p>wazuh-server: recevie message from agents and anlyze it</p>
+<p>Elastic stack: Kibana,Elasticsearch</p></li>
 </ol>
+<section id="how-to-install" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-install">how to install?</h2>
+<ul>
+<li><p>all in one</p></li>
+<li><p>Distributed</p></li>
+</ul>
+<p>https://socfortress.medium.com/installing-the-new-wazuh-version-4-4-the-socfortress-way-ea3a8030d94b</p>
+<section id="wazuh-indexer" class="level3">
+<h3 class="anchored" data-anchor-id="wazuh-indexer">Wazuh Indexer</h3>
+<p>what is memory locking?</p>
+</section>
+<section id="wazuh-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="wazuh-dashboard">Wazuh Dashboard</h3>
+</section>
+<section id="graylog" class="level3">
+<h3 class="anchored" data-anchor-id="graylog">Graylog</h3>
+</section>
+<section id="wazuh-manager" class="level3">
+<h3 class="anchored" data-anchor-id="wazuh-manager">Wazuh Manager</h3>
+</section>
+</section>
+</section>
+<section id="ftp-download-script" class="level1">
+<h1>ftp download script</h1>
+</section>
+<section id="aspera" class="level1">
+<h1>aspera</h1>
 
 
 </section>

@@ -2,10 +2,6 @@
 title: Docker
 ---
 
-
-
-# Docker
-
 ## install
 
 1. install docker
@@ -209,10 +205,35 @@ docker service --replicas=3 my-web
     * r-packages
     * others
 
-2. 
+2. Procedures
 
+    1. install docker
 
+    2. writing `Dockerfile`
 
+    3. `sudo docker build -t <image_name>:<tag> .`
+
+    4. `sudo docker build -t <image_name>:<tag> . 2>&1 | tee build.log`
+
+sudo docker run --rm -it --entrypoint bash rs_test:4.1
+
+sudo docker build -t rs_test:4.1 . 2>&1 | tee build.log 
+
+3. Q&A
+
+    1. how to specific r version?
+
+        * `apt-get install -y --no-install-recommends r-base=4.1.2*`
+
+    2. how to give interactive shell like zsh or R?
+
+        * `docker run --rm -it --entrypoint bash <image_name>`
+
+    3. how to install r packages, and solve the install.packages error
+
+        * As `install.packages` did not give the error, so using `library` to see if packages could be loaded
+
+        * `devtools::install_version` returned error if not loaded
 
 
 
@@ -229,7 +250,4 @@ https://github.com/aschmelyun/docker-compose-wordpress
 
 
 ## 3) discuz with docker
-
-
-
 

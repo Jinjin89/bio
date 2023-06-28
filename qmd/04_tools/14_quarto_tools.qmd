@@ -51,7 +51,7 @@ graph G {
 
 
 
-# citatation
+# citation
 
   1. your should prepare
 

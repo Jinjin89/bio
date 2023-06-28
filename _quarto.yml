@@ -88,7 +88,7 @@ website:
         - href: qmd/04_tools/13_r.qmd
         - href: qmd/04_tools/14_quarto_tools.qmd
         - href: qmd/04_tools/15_docker.qmd
-        - href: qmd/04_tools/16_web.qmd
+        - href: qmd/04_tools/16_linux.qmd
 
 format:
   html:

@@ -210,7 +210,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#todo" id="toc-todo" class="nav-link active" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#single-cell-annotation" id="toc-single-cell-annotation" class="nav-link active" data-scroll-target="#single-cell-annotation">single cell annotation</a></li>
+  <li><a href="#single-cell-technology" id="toc-single-cell-technology" class="nav-link" data-scroll-target="#single-cell-technology">single cell technology</a></li>
+  <li><a href="#analysis-tools" id="toc-analysis-tools" class="nav-link" data-scroll-target="#analysis-tools">analysis tools:</a></li>
+  <li><a href="#cellranger" id="toc-cellranger" class="nav-link" data-scroll-target="#cellranger">Cellranger</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">example</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -233,32 +239,78 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="todo" class="level1">
-<h1>TODO</h1>
+<section id="single-cell-annotation" class="level1">
+<h1>single cell annotation</h1>
+<p>please go to: [https://sci-hub.mksa.top/10.1038/s41596-021-00534-0]</p>
+</section>
+<section id="single-cell-technology" class="level1">
+<h1>single cell technology</h1>
+<ul>
+<li><p>10X</p></li>
+<li><p>SMART-seq</p></li>
+</ul>
+</section>
+<section id="analysis-tools" class="level1">
+<h1>analysis tools:</h1>
+<pre><code>* R
+
+    - Seurat
+
+    - Monocle
+
+* Python
+
+    - scanpy
+
+    - svitools</code></pre>
+</section>
+<section id="cellranger" class="level1">
+<h1>Cellranger</h1>
+<p>https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov</p>
+<p>https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/latest</p>
+<p>install cellranger</p>
+<p>PATH=$PATH:/home/keke/app/cellranger-7.1.0/bin</p>
+<p>intall bcl2fastq2</p>
+<p>https://support.illumina.com/downloads/bcl2fastq-conversion-software-v2-20.html</p>
+<p>mamba install -c dranew bcl2fastq</p>
+<p>get reference</p>
+<p>curl -O https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">example</h2>
 <ol type="1">
-<li><p>Guidelines for annotate single cell?</p>
-<p><a href="https://sci-hub.mksa.top/10.1038/s41596-021-00534-0" class="uri">https://sci-hub.mksa.top/10.1038/s41596-021-00534-0</a></p>
-<p>three steps</p>
-<pre><code> 1. annotate use predefined set of marker genes
-
-     * marker based tools
-
-     * reference based tools
-
- 2.  manual annotation
-
-     * lower confidence, conflicting or absent cell labels, expert manual annotation is required
-
-     * 
-
- 3. verification(1. other methods, 2. new validation experiments)
-
-     * statistical methods
-
-     * expert</code></pre></li>
+<li><p>Download example data</p>
+<pre><code>curl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-1.2.0.tar.gz
+curl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-simple-1.2.0.csv
+tar -zxvf cellranger-tiny-bcl-1.2.0.tar.gz</code></pre></li>
+<li><p>mdkfastq</p>
+<pre><code>cellranger mkfastq --id=tutorial_walk_through \
+    --run=cellranger-tiny-bcl-1.2.0 \
+    --csv=cellranger-tiny-bcl-simple-1.2.0.csv</code></pre></li>
+<li><p>count</p>
+<pre><code>curl -O  https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar
+cellranger count --id=run_count_1kpbmcs \
+    --fastqs=pbmc_1k_v3_fastqs \
+    --sample=pbmc_1k_v3 \
+    --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\
+    --noexit</code></pre></li>
 </ol>
+<p>4 Q&amp;A</p>
+<pre><code>1. fastq-input for cellranger?
+
+    * https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/fastq-input
+
+2. How to do when facing erros?
+
+    * google
+
+    * re-run
+
+    * re-boot
+
+    * pray to god</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
