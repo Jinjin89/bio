@@ -58,5 +58,25 @@ flowchart TD
 ## Salmon
 
 
+## Alternative splicing
+
+### spladder
+
+* what is the output?
+    
+    https://spladder.readthedocs.io/en/latest/file_formats.html
+
+
+* how to get the count matrix?
+
+    * alt3_prime/alt_5prim: e1e3_conf: number of spliced alignments spanning the longer intron
+
+    * IR
+
+    * ES
+
+    * ME
+    
+
 ::: {#refs}
 :::

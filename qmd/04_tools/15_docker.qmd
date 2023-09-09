@@ -112,7 +112,6 @@ mkdir ~/.Renviron
 R_LIBS_USER=/home/rstudio/r_lib
 R_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library
 
-
 # mount a second volumn
 docker run --rm -ti \
     -e PASSWORD=happy_password\
@@ -127,6 +126,16 @@ docker run --rm -ti \
     -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\
     -v /home/keke/data/:/home/rstudio/data/\
     -p 8686:8787 \
+    rocker/rstudio:4.2
+
+# restart always
+docker run -ti \
+    -e PASSWORD=happy_password\
+    -d\
+    -v /mnt/nv1/docker/rstudio/rs1:/home/rstudio/\
+    -v /mnt/hd1:/home/rstudio/data/\
+    -p 8686:8787 \
+    --restart unless-stopped\
     rocker/rstudio:4.2
 
 # stop it 
@@ -236,13 +245,17 @@ sudo docker build -t rs_test:4.1 . 2>&1 | tee build.log
         * `devtools::install_version` returned error if not loaded
 
 
+```docker
+
+
+```
+
 
 ## 2) wordpress with docker
 
 
 ### option 1. build your own docker file
 https://github.com/aschmelyun/docker-compose-wordpress
-
 
 
 ### option2: pull official website

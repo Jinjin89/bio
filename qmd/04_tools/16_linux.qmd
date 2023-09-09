@@ -197,3 +197,84 @@ what is memory locking?
 # ftp download script
 
 # aspera
+
+# Linux
+
+
+1. install oh-my-zsh
+
+    * https://github.com/ohmyzsh/ohmyzsh
+
+2. install openssh-server  
+
+    ```bash
+    sudo apt install openssh-server  
+    ```
+
+3. install git
+
+
+4. install miniconda
+
+    * https://docs.conda.io/projects/miniconda/en/latest/
+
+    ```bash
+    mkdir -p ~/app/conda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/app/conda/miniconda.sh
+    bash ~/app/conda/miniconda.sh -b -u -p ~/app/conda
+    rm -rf ~/app/conda/miniconda.sh
+    ```
+
+    * conda proxy
+
+    add condarc file in 
+    
+
+    * mamba
+
+    ```bash
+    conda install -n base -c conda-forge mamba
+
+    ```
+
+    * alias
+
+        alias mb="mamba"
+
+        alias mba="mamba activate"
+
+        alias mbi="mamba install"
+
+        alias mbic="mamba install -c conda-forge"
+
+
+    * pinned packages
+
+    ```bash
+    cd app/conda/envs/r4.1/conda-meta
+    echo "r-base=4.1">>pinned
+
+    ```
+
+5. install docker
+
+
+6. install gpu-driver
+
+    * https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html
+
+
+7. install rstudio-server
+
+    disable crash-handler
+
+    https://docs.posit.co/ide/server-pro/server_management/automated_crash_reporting.html
+
+    ~/.config/rstudio/crash-handler.conf 
+
+    crash-handling-enabled="0"
+
+8. github config
+
+
+9. wake on lan

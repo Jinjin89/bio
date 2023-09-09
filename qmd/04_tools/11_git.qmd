@@ -14,7 +14,8 @@ title: "git"
 3. how to arrange git in big project, if two people edit same code?
 
 
-# Q&A
+
+# git examples
 
 1. git globa options
 
@@ -77,3 +78,8 @@ title: "git"
     git push
 
     ```
+# Q&A
+
+4. compare the git-workspace and git-repo
+
+https://www.youtube.com/watch?v=8aZW9mYOxhc

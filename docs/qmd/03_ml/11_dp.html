@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bioinfor - RNA pipline</title>
+<title>Bioinfor - Dynamic programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -77,15 +121,12 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -108,7 +149,7 @@ div.csl-indent {
     <a class="nav-link" href="../../qmd/01_bioinformatics/01_index.html">Bioinformatics</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../qmd/02_pipeline/01_index.html" aria-current="page">Pipeline</a>
+    <a class="nav-link" href="../../qmd/02_pipeline/01_index.html">Pipeline</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../qmd/03_ml/01_index.html">ML</a>
@@ -138,72 +179,20 @@ div.csl-indent {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">RNA pipline</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/02_pipeline/01_index.html" class="sidebar-item-text sidebar-link">Pipeline</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/02_pipeline/11_dna.html" class="sidebar-item-text sidebar-link">DNA pipeline</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/02_pipeline/21_rna.html" class="sidebar-item-text sidebar-link active">RNA pipline</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../qmd/02_pipeline/31_metagenomics.html" class="sidebar-item-text sidebar-link">metagenomics &amp; Amplicon</a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#rna" id="toc-rna" class="nav-link active" data-scroll-target="#rna">RNA</a></li>
-  <li><a href="#live-code" id="toc-live-code" class="nav-link" data-scroll-target="#live-code">live code</a>
-  <ul class="collapse">
-  <li><a href="#star" id="toc-star" class="nav-link" data-scroll-target="#star">STAR</a></li>
-  <li><a href="#some-preparations-about-star" id="toc-some-preparations-about-star" class="nav-link" data-scroll-target="#some-preparations-about-star">Some preparations about <code>STAR</code></a></li>
-  <li><a href="#rsem" id="toc-rsem" class="nav-link" data-scroll-target="#rsem">RSEM</a></li>
-  <li><a href="#kallisto" id="toc-kallisto" class="nav-link" data-scroll-target="#kallisto">kallisto</a></li>
-  <li><a href="#salmon" id="toc-salmon" class="nav-link" data-scroll-target="#salmon">Salmon</a></li>
-  <li><a href="#alternative-splicing" id="toc-alternative-splicing" class="nav-link" data-scroll-target="#alternative-splicing">Alternative splicing</a>
-  <ul class="collapse">
-  <li><a href="#spladder" id="toc-spladder" class="nav-link" data-scroll-target="#spladder">spladder</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">RNA pipline</h1>
+<h1 class="title">Dynamic programming</h1>
 </div>
 
 
@@ -217,91 +206,40 @@ div.csl-indent {
 
 </header>
 
-<section id="rna" class="level1">
-<h1>RNA</h1>
-<p>The GDC mRNA quantification analysis pipeline measures gene level expression with <code>STAR</code> as raw read counts.</p>
-<p>for details about pipeline, please view <a href="https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/" class="uri">https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/</a></p>
-<p>for details about <code>STAR</code>, plesae view <a href="https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf" class="uri">https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf</a></p>
-<p>In this chapter@misc</p>
-<ul>
-<li><p>first summarise introduce the alignment</p>
-<ul>
-<li><p><code>STAR</code></p></li>
-<li><p><code>bowtie</code></p></li>
-</ul></li>
-<li><p>What is RSEM?</p></li>
-<li><p>samol</p></li>
-</ul>
-<p>Salmon</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
-    input[fastq]
-    output[tpm/fpkm/count]
-
-    input --&gt; output
-
-</pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
+<p>fib function need extreme long time with big number time complexsity: O(2^n)</p>
+<p>space complexsity: O(n)</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># slow</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">def</span> fib_recusive(n):</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">if</span> n<span class="op">&lt;=</span><span class="dv">2</span>:</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="cf">return</span> fib_recusive(n<span class="op">-</span><span class="dv">1</span>) <span class="op">+</span> fib_recusive(n<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#fib_recusive(7) </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">def</span> fib_dp(n,memo <span class="op">=</span> {}):</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">if</span> n <span class="kw">in</span> memo.keys():</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="cf">return</span> memo[n]</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">if</span> n<span class="op">&lt;=</span><span class="dv">2</span>:</span>
+<span id="cb1-15"><a href="#cb1-15"></a>            <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-17"><a href="#cb1-17"></a>            memo[n] <span class="op">=</span> fib_dp(n<span class="op">-</span><span class="dv">1</span>,memo) <span class="op">+</span> fib_dp(n<span class="op">-</span><span class="dv">2</span>,memo)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>            <span class="cf">return</span> memo[n]</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>fib_dp(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>12586269025</code></pre>
 </div>
 </div>
-</div>
-</section>
-<section id="live-code" class="level1">
-<h1>live code</h1>
 <ul>
-<li>snakemake</li>
-</ul>
-<section id="star" class="level2">
-<h2 class="anchored" data-anchor-id="star">STAR</h2>
-</section>
-<section id="some-preparations-about-star" class="level2">
-<h2 class="anchored" data-anchor-id="some-preparations-about-star">Some preparations about <code>STAR</code></h2>
-<pre><code>1. strand information
-
-2-pass mode
-
-    * more splices reads mapping</code></pre>
-</section>
-<section id="rsem" class="level2">
-<h2 class="anchored" data-anchor-id="rsem">RSEM</h2>
-</section>
-<section id="kallisto" class="level2">
-<h2 class="anchored" data-anchor-id="kallisto">kallisto</h2>
-</section>
-<section id="salmon" class="level2">
-<h2 class="anchored" data-anchor-id="salmon">Salmon</h2>
-</section>
-<section id="alternative-splicing" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-splicing">Alternative splicing</h2>
-<section id="spladder" class="level3">
-<h3 class="anchored" data-anchor-id="spladder">spladder</h3>
-<ul>
-<li><p>what is the output?</p>
-<p>https://spladder.readthedocs.io/en/latest/file_formats.html</p></li>
-<li><p>how to get the count matrix?</p>
-<ul>
-<li><p>alt3_prime/alt_5prim: e1e3_conf: number of spliced alignments spanning the longer intron</p></li>
-<li><p>IR</p></li>
-<li><p>ES</p></li>
-<li><p>ME</p></li>
-</ul></li>
+<li>memoization</li>
 </ul>
 
 
 
-</section>
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" role="doc-bibliography">
-
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

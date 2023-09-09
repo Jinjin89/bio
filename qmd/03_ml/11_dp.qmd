@@ -1,0 +1,37 @@
+---
+title: "Dynamic programming"
+---
+
+
+fib function need extreme long time with big number
+time complexsity: O(2^n)
+
+space complexsity: O(n)
+
+
+```{python}
+# slow
+def fib_recusive(n):
+    if n<=2:
+        return 1
+    else:
+        return fib_recusive(n-1) + fib_recusive(n-2)
+
+#fib_recusive(7) 
+
+def fib_dp(n,memo = {}):
+    if n in memo.keys():
+        return memo[n]
+    else:
+        if n<=2:
+            return 1
+        else:
+            memo[n] = fib_dp(n-1,memo) + fib_dp(n-2,memo)
+            return memo[n]
+
+fib_dp(50)
+
+```
+
+
+* memoization

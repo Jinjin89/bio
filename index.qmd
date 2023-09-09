@@ -10,4 +10,32 @@ title: "Home | Bioinfor"
 
 <p>Be patient?<p/>
 
+
+<h1>TODO</h1>
+
+* deploy the docker images for R 
+
+* pipeline
+
+    1. complete the pipeline
+    2. rewrite the pipeline with docker
+    3. rewrite the pipeline with module
+
+
+* mysql
+
+    * build datasets for biodata
+    
+* SAS
+    
+    * SAS learning
+    
+    * statistics
+    
+* Algorithm
+
+    * dynamic programming
+    
+    * graph theory
+
 </body>

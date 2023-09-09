@@ -73,16 +73,140 @@ curl -O https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.g
 
     ```
     curl -O  https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar
-    cellranger count --id=run_count_1kpbmcs \
+    /home/keke/data2/app/cellranger-7.1.0/cellranger count \
+        --id=run_count_1kpbmcs \
         --fastqs=pbmc_1k_v3_fastqs \
         --sample=pbmc_1k_v3 \
         --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\
         --noexit
     ```
 
+4. count on raw fastq file
+
+    suffix1： _S1_L001_R1_001.fastq.gz
+    suffix2： _S1_L001_R2_001.fastq.gz
+
+    * test data1
+        zcat sample_name_S1_L001_R1_001.fastq.gz | head -n 100000 > sample_1_S1_L001_R1_001.fastq
+        
+        zcat sample_name_S1_L001_R2_001.fastq.gz | head -n 100000 > sample_1_S1_L001_R2_001.fastq
+
+        gzip sample_1_S1_L001_R*fastq
+
+    * test data2
+        ln -s /home/keke/base/raw/HRA003647/HRR858162/HRR858162_f1.fastq.gz sample_name_S1_L001_R1_001.fastq.gz
+        ln -s /home/keke/base/raw/HRA003647/HRR858162/HRR858162_r2.fastq.gz  sample_name_S1_L001_R2_001.fastq.gz  
+
+    ```
+    /home/keke/data2/app/cellranger-7.1.0/cellranger count \
+        --id=out \
+        --fastqs=sample_dir \
+        --sample=sample_name \
+        --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A
+    ```
+
+## snakemake
+
+```
+import pandas as pd
+import os
+class sampleInfo:
+    def __init__(self,input_file,samples_file_index = ["sample","reads"],file = "file_position"):
+        # the input params
+        self.input_file = input_file
+        self.samples_file_index = samples_file_index
+        self.sample_name = samples_file_index[0]
+        self.sample_end = samples_file_index[1]
+        self.file = file
+
+    def run(self):
+        if self.input_file.endswith("csv"):
+            self.samples_df = pd.read_csv(self.input_file)
+        elif self.input_file.endswith("txt") or self.input_file.endswith("tsv"):
+            self.samples_df = pd.read_table(self.input_file,sep = "\s+")
+        else:
+            print("please supply sample metadata with csv/txt/tsv format!")
+            exit("###############################\nThere is something wrong, you know, I only accept the files with csv/txt/tsv extension!\n###############################")
+
+        # 1) get all the samples
+        self.samples = self.samples_df[self.sample_name].unique()
+        
+        # 2) change all reads to upper cases
+        self.samples_df[self.sample_end] = self.samples_df[self.sample_end].str.upper()
+
+        # 3) set index
+        self.samples_df.set_index(self.samples_file_index,inplace=True)
+    
+    def R1(self,wildcards):
+        return self.samples_df.loc[wildcards.sample].at["R1",self.file]
+
+    def R2(self,wildcards):
+        return self.samples_df.loc[wildcards.sample].at["R2",self.file]
+    def getSampleName(self,wildcards):
+        return str(wildcards.sample)
+
+
+#############################################
+# load configs
+#############################################
+
+samples_info = sampleInfo("sample.csv")
+# parse samples
+samples_info.run()
+samples = samples_info.samples
+print(samples)
+
+# prepare dirs
+fastqs = "/home/keke/base/raw/processed/HRA003647/fastqs"
+output = "/home/keke/base/raw/processed/HRA003647/output"
+
+
+# suffix
+suffix1 = "_S1_L001_R1_001.fastq.gz"
+suffix2 = "_S1_L001_R2_001.fastq.gz"
+
+#############################################
+# Rules
+#############################################
+
+rule all:
+    input:
+        #expand(str(os.path.join(fastqs,"{sample}")) + suffix2,sample=samples)
+        expand(str(os.path.join(output,"{sample}")),sample=samples)
+
+rule step_1_createSoftLink:
+    input:
+        r1 = samples_info.R1,
+        r2 = samples_info.R2
+    output:
+        fq1 = str(os.path.join(fastqs,"{sample}")) + suffix1,
+        fq2 = str(os.path.join(fastqs,"{sample}")) + suffix2
+    shell:
+        """
+        ln -s {input.r1} {output.fq1}
+        ln -s {input.r2} {output.fq2}
+        """
+
+rule step_2_cellrangerCount:
+    input: 
+        fq1 = str(os.path.join(fastqs,"{sample}")) + suffix1,
+        fq2 = str(os.path.join(fastqs,"{sample}")) + suffix2,
+        fastqs = fastqs,
+        output = output
+    output:
+        output_dir = str(os.path.join(output,"{sample}"))
+    shell:
+        """
+        cd {input.output};
+        /home/keke/data2/app/cellranger-7.1.0/cellranger count \
+            --id={wildcards.sample} \
+            --fastqs={input.fastqs} \
+            --sample={wildcards.sample} \
+            --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A
+        """
+```
 
 4 Q&A
-
 
     1. fastq-input for cellranger?
 

@@ -35,7 +35,5 @@ title: "Omics field"
 
 1. what is the basic structure of idat file format?
 
-
-
 ## SNP-array
 what is SNP6.0?

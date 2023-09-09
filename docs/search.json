@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Home | Bioinfor",
     "section": "",
-    "text": "How are your there?\n\n\nBe patient?"
+    "text": "Home page\n\n\nHow are your there?\n\n\nBe patient?\n\n\nTODO\n\n\ndeploy the docker images for R\npipeline\n\ncomplete the pipeline\nrewrite the pipeline with docker\nrewrite the pipeline with module\n\nmysql\n\nbuild datasets for biodata\n\nSAS\n\nSAS learning\nstatistics\n\nAlgorithm\n\ndynamic programming\ngraph theory"
   },
   {
     "objectID": "qmd/bioinformatics/genome.html",
@@ -361,14 +361,14 @@
     "href": "qmd/04_tools/15_docker.html",
     "title": "Docker",
     "section": "",
-    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop <id>\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull <iamge>\n\n# pull and run images\ndocker run <iamge:tag>\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d <container>\n\ndocker attach <id>\n\n# inspect containder\ndocker inspect <id>\n\n# check logs\ndocker logs <id>\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -> data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t <image_name>"
+    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop &lt;id&gt;\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull &lt;iamge&gt;\n\n# pull and run images\ndocker run &lt;iamge:tag&gt;\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d &lt;container&gt;\n\ndocker attach &lt;id&gt;\n\n# inspect containder\ndocker inspect &lt;id&gt;\n\n# check logs\ndocker logs &lt;id&gt;\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -&gt; data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t &lt;image_name&gt;"
   },
   {
     "objectID": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
     "href": "qmd/04_tools/15_docker.html#create-a-rstudio-images",
     "title": "Docker",
     "section": "1) create a rstudio images",
-    "text": "1) create a rstudio images\n\nWhat to containrize?\n\nubuntu\nrstudio\nr\nr-packages\nothers\n\nProcedures\n\ninstall docker\nwriting Dockerfile\nsudo docker build -t <image_name>:<tag> .\nsudo docker build -t <image_name>:<tag> . 2>&1 | tee build.log\n\n\nsudo docker run –rm -it –entrypoint bash rs_test:4.1\nsudo docker build -t rs_test:4.1 . 2>&1 | tee build.log\n\nQ&A\n\nhow to specific r version?\n\napt-get install -y --no-install-recommends r-base=4.1.2*\n\nhow to give interactive shell like zsh or R?\n\ndocker run --rm -it --entrypoint bash <image_name>\n\nhow to install r packages, and solve the install.packages error\n\nAs install.packages did not give the error, so using library to see if packages could be loaded\ndevtools::install_version returned error if not loaded"
+    "text": "1) create a rstudio images\n\nWhat to containrize?\n\nubuntu\nrstudio\nr\nr-packages\nothers\n\nProcedures\n\ninstall docker\nwriting Dockerfile\nsudo docker build -t &lt;image_name&gt;:&lt;tag&gt; .\nsudo docker build -t &lt;image_name&gt;:&lt;tag&gt; . 2&gt;&1 | tee build.log\n\n\nsudo docker run –rm -it –entrypoint bash rs_test:4.1\nsudo docker build -t rs_test:4.1 . 2&gt;&1 | tee build.log\n\nQ&A\n\nhow to specific r version?\n\napt-get install -y --no-install-recommends r-base=4.1.2*\n\nhow to give interactive shell like zsh or R?\n\ndocker run --rm -it --entrypoint bash &lt;image_name&gt;\n\nhow to install r packages, and solve the install.packages error\n\nAs install.packages did not give the error, so using library to see if packages could be loaded\ndevtools::install_version returned error if not loaded"
   },
   {
     "objectID": "qmd/04_tools/15_docker.html#wordpress-with-docker",
@@ -403,7 +403,7 @@
     "href": "qmd/04_tools/11_git.html",
     "title": "git",
     "section": "",
-    "text": "Q&A\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b <newbranch>\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge <newbranch>\nclone with ssh\ngit clone username@ip_address:/path/to/your/git\nbuild the data\n# 1) build new data\ngit init\n\n# 2) rename branch\ngit rename -m master current\n\n# 3) add remote data\ngit remote add <repo-name> username@ip_address:/path/to/your/git\n\n# 4) pull or push\ngit pull \ngit push"
+    "text": "TODO\n\nset difftoos\nset line end in different system\nhow to arrange git in big project, like many people edit the same code system?\nhow to arrange git in big project, if two people edit same code?\n\n\n\ngit examples\n\ngit globa options\n# show global options\ngit config --list\n\n# set git editor\ngit config --global core.editor \"code --wait\"\ngit config -e \ngit config --global -e \nget git status short\ngit status \ngit status -s\ncreate new branch\n# create new brance\ngit checkout -b &lt;newbranch&gt;\n\n# back to mater\ngit checkout master\n\n# merge new brache into master(should be in master branche)\ngit merge &lt;newbranch&gt;\nclone with ssh\ngit clone username@ip_address:/path/to/your/git\nbuild the data\n# 1) build new data\ngit init\n\n# 2) rename branch\ngit rename -m master current\n\n# 3) add remote data\ngit remote add &lt;repo-name&gt; username@ip_address:/path/to/your/git\n\n# 4) pull or push\ngit pull \ngit push\nQ&A\ncompare the git-workspace and git-repo\n\nhttps://www.youtube.com/watch?v=8aZW9mYOxhc"
   },
   {
     "objectID": "qmd/04_tools/16_web.html",
@@ -431,21 +431,21 @@
     "href": "qmd/01_bioinformatics/21_sc.html#example",
     "title": "single cell",
     "section": "example",
-    "text": "example\n\nDownload example data\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-1.2.0.tar.gz\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-simple-1.2.0.csv\ntar -zxvf cellranger-tiny-bcl-1.2.0.tar.gz\nmdkfastq\ncellranger mkfastq --id=tutorial_walk_through \\\n    --run=cellranger-tiny-bcl-1.2.0 \\\n    --csv=cellranger-tiny-bcl-simple-1.2.0.csv\ncount\ncurl -O  https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar\ncellranger count --id=run_count_1kpbmcs \\\n    --fastqs=pbmc_1k_v3_fastqs \\\n    --sample=pbmc_1k_v3 \\\n    --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\\\n    --noexit\n\n4 Q&A\n1. fastq-input for cellranger?\n\n    * https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/fastq-input\n\n2. How to do when facing erros?\n\n    * google\n\n    * re-run\n\n    * re-boot\n\n    * pray to god"
+    "text": "example\n\nDownload example data\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-1.2.0.tar.gz\ncurl -O https://cf.10xgenomics.com/supp/cell-exp/cellranger-tiny-bcl-simple-1.2.0.csv\ntar -zxvf cellranger-tiny-bcl-1.2.0.tar.gz\nmdkfastq\ncellranger mkfastq --id=tutorial_walk_through \\\n    --run=cellranger-tiny-bcl-1.2.0 \\\n    --csv=cellranger-tiny-bcl-simple-1.2.0.csv\ncount\ncurl -O  https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar\n/home/keke/data2/app/cellranger-7.1.0/cellranger count \\\n    --id=run_count_1kpbmcs \\\n    --fastqs=pbmc_1k_v3_fastqs \\\n    --sample=pbmc_1k_v3 \\\n    --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\\\n    --noexit\ncount on raw fastq file\nsuffix1： _S1_L001_R1_001.fastq.gz suffix2： _S1_L001_R2_001.fastq.gz\n\ntest data1 zcat sample_name_S1_L001_R1_001.fastq.gz | head -n 100000 > sample_1_S1_L001_R1_001.fastq\nzcat sample_name_S1_L001_R2_001.fastq.gz | head -n 100000 > sample_1_S1_L001_R2_001.fastq\ngzip sample_1_S1_L001_R*fastq\ntest data2 ln -s /home/keke/base/raw/HRA003647/HRR858162/HRR858162_f1.fastq.gz sample_name_S1_L001_R1_001.fastq.gz ln -s /home/keke/base/raw/HRA003647/HRR858162/HRR858162_r2.fastq.gz sample_name_S1_L001_R2_001.fastq.gz\n\n/home/keke/data2/app/cellranger-7.1.0/cellranger count \\\n    --id=out \\\n    --fastqs=sample_dir \\\n    --sample=sample_name \\\n    --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A"
   },
   {
     "objectID": "qmd/04_tools/15_docker.html#docker-app",
     "href": "qmd/04_tools/15_docker.html#docker-app",
     "title": "Docker",
     "section": "Docker app",
-    "text": "Docker app\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=<passwd> -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop <CONTAINER ID>\n\n\nrun docker without root permission\n\n\nrun ubuntu\ndocker run ubuntu sleep 5\n\n\n\ndocker network\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\nvolumns\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\ndocker-compose\n\n\ndocker registry\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\norchestrate\n\n\ndocker swarm\ndocker service --replicas=3 my-web\n\n\n\nkubernetes"
+    "text": "Docker app\n\nrstudio config\n\nHave a rstudio in docker(version=4.2)\n\nhttps://rocker-project.org/images/versioned/rstudio.html\nhttps://hub.docker.com/r/rocker/rstudio\n# pull images (Make sure the version is what you want)\ndocker pull rocker/rstudio:4.2\n\n# run it (should not change the image port in this case), with password\n# inorder to make it configuration persistent, your should map the /home/rstudio/ directory with the same directory(In which you saved the configurations previously)\ndocker run --rm -ti -e PASSWORD=&lt;passwd&gt; -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/ -p 8686:8787 rocker/rstudio:4.2\n\n# how to make packages persistent and rstudio configs persistent \n# 1) Check the libs path `.libPaths()`\n# 2) rewrite the `.Renviron` with  `R_LIBS_USER` and `R_LIBS`\n# 3) relaod `R` and install the packages\n# 4) your could check the `r_lib` fold first then reload the docker images to see if the package could be reloaded\nmkdir ~/.Renviron\nR_LIBS_USER=/home/rstudio/r_lib\nR_LIBS=/home/rstudio/r_lib:/usr/local/lib/R/site-library:/usr/local/lib/R/library\n\n# mount a second volumn\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -v /home/keke/data/tutorial/docker/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n# run in background(--detached -d)\ndocker run --rm -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /home/keke/data2/docker/rstudio/rs1:/home/rstudio/\\\n    -v /home/keke/data/:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    rocker/rstudio:4.2\n\n# restart always\ndocker run -ti \\\n    -e PASSWORD=happy_password\\\n    -d\\\n    -v /mnt/nv1/docker/rstudio/rs1:/home/rstudio/\\\n    -v /mnt/hd1:/home/rstudio/data/\\\n    -p 8686:8787 \\\n    --restart unless-stopped\\\n    rocker/rstudio:4.2\n\n# stop it \ndocker stop &lt;CONTAINER ID&gt;\n\n\nrun docker without root permission\n\n\nrun ubuntu\ndocker run ubuntu sleep 5\n\n\n\ndocker network\n* bride[default]:  `docker run ubuntu`\n\n* none:  `docker run ubuntu --network=none`\n\n* host:  `docker run ubuntu --network=host`\n\n* create sub network\n\n\nvolumns\ndocker volumne create data_volumn\n* -v\n\n* --mount\n\n\ndocker-compose\n\n\ndocker registry\n\nprivate\n\ndocker run -d --name registry\n\ndocker image tag my-image localhost:5000/my-image\ndocker push localhost:5000/my-image\ndocker pull localhost:5000/my-image\n\n\norchestrate\n\n\ndocker swarm\ndocker service --replicas=3 my-web\n\n\n\nkubernetes"
   },
   {
     "objectID": "qmd/04_tools/16_linux.html",
     "href": "qmd/04_tools/16_linux.html",
     "title": "Linux tools",
     "section": "",
-    "text": "how to proxy?\nwho to reverse proxy?\nhow to add https\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* => regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
+    "text": "how to proxy?\nwho to reverse proxy?\nhow to add https\nnginx.conf contains\n\nhttp serve the directory\nevents\nMINE\nnigix comes with default MINE types\nlocation\nalias\ntry_files\nrewrite and redirect\n\nhttp {\n    # MINE teypes\n    #types {\n    #    text/css css;\n    #    text/html html;\n    #}\n\n    include mime.types\n\n    # server\n    server {\n        listen 80;\n        root /path;\n\n        # get locations\n        location /fruits{\n            root /path ;\n        }\n\n        location /carbs{\n            alias /path/fruits;\n\n        }\n\n        # try files\n        location /veges{\n            root /path;\n            try_files /veges/vege.html /veges/index.html = 404;\n        }\n\n        # count regular expression ~* =&gt; regular expression\n        location ~* /count/[0-9]{\n            root /path\n            try_files /index.html =404;\n        }\n\n        # return\n        location /crops {\n            return 307 /fruits;\n        }\n\n        # rewrite/redirect\n        rewrite ^/number/(\\w+) /counts/$1\n    }\n}\nload balancer"
   },
   {
     "objectID": "qmd/04_tools/16_linux.html#how-to-install",
@@ -460,5 +460,145 @@
     "title": "Bioinformatics",
     "section": "",
     "text": "Bioinformatics tutorial"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/21_sc.html#snakemake",
+    "href": "qmd/01_bioinformatics/21_sc.html#snakemake",
+    "title": "single cell",
+    "section": "snakemake",
+    "text": "snakemake\nimport pandas as pd\nimport os\nclass sampleInfo:\n    def __init__(self,input_file,samples_file_index = [\"sample\",\"reads\"],file = \"file_position\"):\n        # the input params\n        self.input_file = input_file\n        self.samples_file_index = samples_file_index\n        self.sample_name = samples_file_index[0]\n        self.sample_end = samples_file_index[1]\n        self.file = file\n\n    def run(self):\n        if self.input_file.endswith(\"csv\"):\n            self.samples_df = pd.read_csv(self.input_file)\n        elif self.input_file.endswith(\"txt\") or self.input_file.endswith(\"tsv\"):\n            self.samples_df = pd.read_table(self.input_file,sep = \"\\s+\")\n        else:\n            print(\"please supply sample metadata with csv/txt/tsv format!\")\n            exit(\"###############################\\nThere is something wrong, you know, I only accept the files with csv/txt/tsv extension!\\n###############################\")\n\n        # 1) get all the samples\n        self.samples = self.samples_df[self.sample_name].unique()\n        \n        # 2) change all reads to upper cases\n        self.samples_df[self.sample_end] = self.samples_df[self.sample_end].str.upper()\n\n        # 3) set index\n        self.samples_df.set_index(self.samples_file_index,inplace=True)\n    \n    def R1(self,wildcards):\n        return self.samples_df.loc[wildcards.sample].at[\"R1\",self.file]\n\n    def R2(self,wildcards):\n        return self.samples_df.loc[wildcards.sample].at[\"R2\",self.file]\n    def getSampleName(self,wildcards):\n        return str(wildcards.sample)\n\n\n#############################################\n# load configs\n#############################################\n\nsamples_info = sampleInfo(\"sample.csv\")\n# parse samples\nsamples_info.run()\nsamples = samples_info.samples\nprint(samples)\n\n# prepare dirs\nfastqs = \"/home/keke/base/raw/processed/HRA003647/fastqs\"\noutput = \"/home/keke/base/raw/processed/HRA003647/output\"\n\n\n# suffix\nsuffix1 = \"_S1_L001_R1_001.fastq.gz\"\nsuffix2 = \"_S1_L001_R2_001.fastq.gz\"\n\n#############################################\n# Rules\n#############################################\n\nrule all:\n    input:\n        #expand(str(os.path.join(fastqs,\"{sample}\")) + suffix2,sample=samples)\n        expand(str(os.path.join(output,\"{sample}\")),sample=samples)\n\nrule step_1_createSoftLink:\n    input:\n        r1 = samples_info.R1,\n        r2 = samples_info.R2\n    output:\n        fq1 = str(os.path.join(fastqs,\"{sample}\")) + suffix1,\n        fq2 = str(os.path.join(fastqs,\"{sample}\")) + suffix2\n    shell:\n        \"\"\"\n        ln -s {input.r1} {output.fq1}\n        ln -s {input.r2} {output.fq2}\n        \"\"\"\n\nrule step_2_cellrangerCount:\n    input: \n        fq1 = str(os.path.join(fastqs,\"{sample}\")) + suffix1,\n        fq2 = str(os.path.join(fastqs,\"{sample}\")) + suffix2,\n        fastqs = fastqs,\n        output = output\n    output:\n        output_dir = str(os.path.join(output,\"{sample}\"))\n    shell:\n        \"\"\"\n        cd {input.output};\n        /home/keke/data2/app/cellranger-7.1.0/cellranger count \\\n            --id={wildcards.sample} \\\n            --fastqs={input.fastqs} \\\n            --sample={wildcards.sample} \\\n            --transcriptome=/home/keke/data2/ref/refdata-gex-GRCh38-2020-A\n        \"\"\"\n4 Q&A\n1. fastq-input for cellranger?\n\n    * https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/fastq-input\n\n2. How to do when facing erros?\n\n    * google\n\n    * re-run\n\n    * re-boot\n\n    * pray to god"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html",
+    "href": "qmd/02_pipeline/21_rna.html",
+    "title": "RNA pipline",
+    "section": "",
+    "text": "The GDC mRNA quantification analysis pipeline measures gene level expression with STAR as raw read counts.\nfor details about pipeline, please view https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/\nfor details about STAR, plesae view https://raw.githubusercontent.com/alexdobin/STAR/master/doc/STARmanual.pdf\nIn this chapter@misc\n\nfirst summarise introduce the alignment\n\nSTAR\nbowtie\n\nWhat is RSEM?\nsamol\n\nSalmon\n\n\n\n\nflowchart TD\n    input[fastq]\n    output[tpm/fpkm/count]\n\n    input --> output"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#star",
+    "href": "qmd/02_pipeline/21_rna.html#star",
+    "title": "RNA pipline",
+    "section": "STAR",
+    "text": "STAR"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#some-preparations-about-star",
+    "href": "qmd/02_pipeline/21_rna.html#some-preparations-about-star",
+    "title": "RNA pipline",
+    "section": "Some preparations about STAR",
+    "text": "Some preparations about STAR\n1. strand information\n\n2-pass mode\n\n    * more splices reads mapping"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#rsem",
+    "href": "qmd/02_pipeline/21_rna.html#rsem",
+    "title": "RNA pipline",
+    "section": "RSEM",
+    "text": "RSEM"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#kallisto",
+    "href": "qmd/02_pipeline/21_rna.html#kallisto",
+    "title": "RNA pipline",
+    "section": "kallisto",
+    "text": "kallisto"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#salmon",
+    "href": "qmd/02_pipeline/21_rna.html#salmon",
+    "title": "RNA pipline",
+    "section": "Salmon",
+    "text": "Salmon"
+  },
+  {
+    "objectID": "qmd/02_pipeline/21_rna.html#alternative-splicing",
+    "href": "qmd/02_pipeline/21_rna.html#alternative-splicing",
+    "title": "RNA pipline",
+    "section": "Alternative splicing",
+    "text": "Alternative splicing\n\nspladder\n\nwhat is the output?\nhttps://spladder.readthedocs.io/en/latest/file_formats.html\nhow to get the count matrix?\n\nalt3_prime/alt_5prim: e1e3_conf: number of spliced alignments spanning the longer intron\nIR\nES\nME"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/41_omics.html",
+    "href": "qmd/01_bioinformatics/41_omics.html",
+    "title": "Omics field",
+    "section": "",
+    "text": "BeadChip(27,450K,EPIC)\n\n\n\nBisulfit techniques\n\nsingle-base resolution\nloss of complementarity(why? and how it matters?)\n\nAll Cs are converted into Us\nprobe design must be target specific and assue complete bisulfite conversion\n\n\ncompare infinium1 and infinium2?\n\n\n\n\n\n450K contains >450K probes(discontinued)\nEPIC contains >850K probes\n\n\nwhat is the basic structure of idat file format?\n\n\n\n\nwhat is SNP6.0?"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/12_ensembl.html",
+    "href": "qmd/01_bioinformatics/12_ensembl.html",
+    "title": "Ensembl",
+    "section": "",
+    "text": "How?"
+  },
+  {
+    "objectID": "qmd/03_ml/11_dp.html",
+    "href": "qmd/03_ml/11_dp.html",
+    "title": "Dynamic programming",
+    "section": "",
+    "text": "space complexsity: O(n)\n\n# slow\ndef fib_recusive(n):\n    if n<=2:\n        return 1\n    else:\n        return fib_recusive(n-1) + fib_recusive(n-2)\n\n#fib_recusive(7) \n\ndef fib_dp(n,memo = {}):\n    if n in memo.keys():\n        return memo[n]\n    else:\n        if n<=2:\n            return 1\n        else:\n            memo[n] = fib_dp(n-1,memo) + fib_dp(n-2,memo)\n            return memo[n]\n\nfib_dp(50)\n\n12586269025\n\n\n\nmemoization"
+  },
+  {
+    "objectID": "qmd/04_tools/15_docker.html#install",
+    "href": "qmd/04_tools/15_docker.html#install",
+    "title": "Docker",
+    "section": "",
+    "text": "install docker\n\nhttps://docs.docker.com/engine/install/binaries/\nhttps://www.kali.org/docs/containers/installing-docker-on-kali/\n\ndocker basic commnad\n\n# docker version\n# containers\ndocker ps\ndocker ps -a\ndocker stop &lt;id&gt;\n\n# showing images\ndocker images\n# remove images\ndocker rmi\n\n# pull images \ndocker pull &lt;iamge&gt;\n\n# pull and run images\ndocker run &lt;iamge:tag&gt;\n\n# run ubuntu\ndocker run ubuntu sleep 100 \n\n# run: attach detached\ndocker run -d &lt;container&gt;\n\ndocker attach &lt;id&gt;\n\n# inspect containder\ndocker inspect &lt;id&gt;\n\n# check logs\ndocker logs &lt;id&gt;\n\ndocker params\n\n-i: interactive mode\n-t: pesuodo terminal\n-p: port mapping\neach container has its own ip, which can only be acessed in containder host\n-v: volumn mappping -&gt; data persistent\n-e: set enviroment variables\n\ncreate images\n\nFROM Ubuntu\n\nRUN apt-get update\nRUN apt-get install python\n\nRUN pip install flask\n\nCOPY . ???\n\nENTRYPOINT ???\n\nCMD [\"command\", \"param1\"]\ndocker build Dockerfile -t &lt;image_name&gt;"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html",
+    "href": "qmd/01_bioinformatics/11_ncbi.html",
+    "title": "NCBI",
+    "section": "",
+    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/\n\n\n\n\n\n\n\nWhat can we retrive from gene database?\nGene supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data.\n\ngene\npublished papers\nsnps\ngeneRIF: gene referene into functions\nGene ontology\n\nWhat is refeseq?\n\nIt is a database\nwhen you search with NCBI Gene, there are filter options which you can select RefSeq/RefSeqGene/Ensembl and so on.\n\ntranscript\n\nN…: experiment validated transcript\nX…: predicted transcript\n\n\n\n\n\nkeywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/\n\n\n\n\n\n\nupload a sequence and we could get the conserved domains"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#bioproject",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#bioproject",
+    "title": "NCBI",
+    "section": "",
+    "text": "https://www.ncbi.nlm.nih.gov/books/NBK54016/\nhttps://www.ncbi.nlm.nih.gov/bioproject/"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#gene",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#gene",
+    "title": "NCBI",
+    "section": "",
+    "text": "What can we retrive from gene database?\nGene supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data.\n\ngene\npublished papers\nsnps\ngeneRIF: gene referene into functions\nGene ontology\n\nWhat is refeseq?\n\nIt is a database\nwhen you search with NCBI Gene, there are filter options which you can select RefSeq/RefSeqGene/Ensembl and so on.\n\ntranscript\n\nN…: experiment validated transcript\nX…: predicted transcript"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#clinvar",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#clinvar",
+    "title": "NCBI",
+    "section": "",
+    "text": "keywords: variant, variant classification(Benign/Likely Benign; Uncertain(VUS);Likely Pathogenic/Pathogenic)\n\nhow to use clinvar?\n\nsearch in https://www.ncbi.nlm.nih.gov/clinvar/\nE-utilities and Entrez Direct\n\nhow download clinvar database?\n\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\nhttps://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#conserved-domains",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#conserved-domains",
+    "title": "NCBI",
+    "section": "",
+    "text": "upload a sequence and we could get the conserved domains"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#blast",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#blast",
+    "title": "NCBI",
+    "section": "2.1 BLAST",
+    "text": "2.1 BLAST"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#comparative-genome-viewer",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#comparative-genome-viewer",
+    "title": "NCBI",
+    "section": "2.2 Comparative Genome Viewer",
+    "text": "2.2 Comparative Genome Viewer"
+  },
+  {
+    "objectID": "qmd/01_bioinformatics/11_ncbi.html#e-utilities",
+    "href": "qmd/01_bioinformatics/11_ncbi.html#e-utilities",
+    "title": "NCBI",
+    "section": "2.3 E-utilities",
+    "text": "2.3 E-utilities\n\nNine E-utilities\n\nEInfo –&gt; database statistics\nESearch –&gt; text search\nEPost –&gt; UID uploads\nESummary –&gt; document summary downloads\nEFetch –&gt; data record downloads\nELink –&gt; Entrez links\n-related: Neighbors in same database\n-target: Links in different database\n-cited: reference to this parer(pubmed)\n-cites: publication reference list\n-cmd: history,neighbor,acheck\nEGQuery –&gt; global query\nESpell –&gt; spelling suggestions\nEciMatch –&gt; batch citation searching in PubMed\n\npipeline\n\nRetrieving data records matching an Entrez query\n\nESearch -&gt; Esummary\nEsearch - &gt; EFetch\n\nRetrieving data records matching a list of UIDs\n\nEsearch -&gt; ELink\nEPost -&gt; ELink\n\nFinding UIDs linked to a set of records\n\nEPost -&gt; ESearch\nELikn -&gt; ESearch\n\nLimiting a set of records with an Entrez query\n\nESearch -&gt; ELink -&gt; ESummary\nESearch -&gt; ELink -&gt; EFetch\n\nRetrieving data records in database B linked to records in database A matching an Entrez query\n\nEPost -&gt; ESearch -&gt; ESummary\nEPOst -&gt; ESearch -&gt; EFetch\n\nRetrieving data records from a subset of an ID list defined by an Entrez query\n\nEPost -&gt; ESearch -&gt; ESummary\nEPost -&gt; ESearch -&gt; EFetch\n\nRetrieving a set of data records, defined by an Entrez query, in database B from a larger set of records linked to a list of UIDs in database A\n\nEPost -&gt; ELink -&gt; ESearch -&gt; ESummary\nEPost -&gt; ELink -&gt; ESearch -&gt; EFetch\n\n\nEntrez Direct: E-utilities on the Unix Command Line\n\nHow to add keys\nexport NCBI_API_KEY=unique_api_key\nresources\n\nEntrez Unique Identifiers (UIDs) for selected databases\n\nexample\n\nsearch pubmed\n# 1) examples context \"NLRP3 AND TCGA\"\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | esummary\n\n# 2) search with date options\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2022 -maxdate 2023\n\n# 3) sort by revelence or title or pub datetype\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml\n\n# 4) search pubmed, fetch the format, and extract the authors,your could use `-sep` to seprate element,or `-tab` to sperate block\nesearch -db pubmed -query \"selective serotonin reuptake inhibitor\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -block Author -element LastName, Initials\n\n# 5) search pubmed with text, return the medline format\nesearch -db pubmed -query \"NLRP3 AND TCGA\" | efetch -format medline\n\n# 6) search pubmed with text and extract the 1) journal 2) title  3) abastrct 4) author 5) keyword\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle \\\n-block Journal  -element \"Title\" \\\n-block Article -element \"ArticleTitle\" \\\n-block Author -sep \" \" -tab \", \" -element Initials,LastName \\\n-block KeywordList -sep \",\" -element \"Keyword\" \\\n-block Abstract -element \"AbstractText\"\n\n# 7) search pubmed text, and get the related results\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -related | \nefetch -xml\n\n# 8) search pubmed text, and get the related paper\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target pubmed \n\n# 9) search pubmed text, and get the related genes/protein...\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target gene \n\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nelink -target protein \nsearch gene\n# 1) search gene in Y in homo sampiens, use other programming tools to find the gene in forward or reverse strand\nesearch -db gene -query  \"Homo sapiens [ORGN] AND Y [CHR]\" |\nefilter -query \"alive [PROP]\" |\nesummary |\nxtract -pattern DocumentSummary -NAME Name \\\n-block GenomicInfoType -match \"ChrLoc:Y\" \\\n-element \"&NAME\", ChrLoc, ChrAccVer, ChrStart, ChrStop\n\n# 2) search a gene get its  transcript\nesearch -db gene -query \"TP53[gene name] AND Homo sapiens[ORGN]\"|\nefetch -format fasta\nsearch proteins\nsearch proteins for each genes using elink\nesearch -db gene -query \"NLPR3 AND Homo sapiens [ORGN] AND alive [prop]\"|\nelink -target protein -name gene_protein_refseq -cmd neighbor | \nxtract -pattern LinkSet -block IdList -element Id -block LinkSetDb -element Id\nxtract tips\n\npattern  with capitals, create a variable , invoke it with &STRINGS\nA slash (/) to indicate Parent/Child construction\nesearch -db pubmed -query \"NLRP3 AND TCGA\" -datetype PDAT -mindate 2021 -maxdate 2023 -sort \"Pub Date\" |\nefetch -format xml |\nxtract -pattern PubmedArticle -element PubDate/Year\n\nOthers\n\nalive[prop]: currently alive"
   }
 ]
